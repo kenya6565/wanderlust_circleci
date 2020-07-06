@@ -56,6 +56,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+                                 <button type="submit" class="btn btn-primary">
+                                     {{ route('login.guest') }}
+                                 </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
