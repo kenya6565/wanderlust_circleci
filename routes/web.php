@@ -20,8 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-//先生用認証
-Route::group(['prefix' => 'admins'], function () { //teachesディレクトリをここで指定しておく
+
+Route::group(['prefix' => 'admins'], function () { 
+Route::get('register', 'AuthAdmin\RegisterController@showRegisterForm')->name('admin_auth.register');
+Route::post('register', 'AuthAdmin\RegisterController@register')->name('admin_auth.register');
+
 Route::get('login', 'AuthAdmin\LoginController@showLoginForm')->name('admin_auth.login');
 Route::post('login', 'AuthAdmin\LoginController@login')->name('admin_auth.login');
 Route::post('logout', 'AuthAdmin\LoginController@logout')->name('admin_auth.logout');
