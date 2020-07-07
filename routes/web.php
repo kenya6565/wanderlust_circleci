@@ -22,4 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/timeline', 'Auth\TimelineController@showTimelinePage');   
 Route::post('/timeline', 'Auth\TimelineController@post');
 
-Route::get('guest', 'Guest\Auth\LoginController@authenticate')->name('login.guest');
+//ログイン画面からゲストユーザボタンが押された時
+

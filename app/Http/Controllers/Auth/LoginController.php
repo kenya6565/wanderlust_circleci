@@ -37,21 +37,5 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     
-    /**
-     * 認証を処理する
-     *
-     * @return Response
-     */
-    public function authenticate()
-    {
-        $email = 'guest@guest.com';
-        $password = 'guestpass';
-        $name = 'guestuser';
-
-        if (\Auth::attempt(['email' => $email, 'password' => $password])) {
-            // 認証に成功した
-            return redirect('/timeline');
-        }
-        return back();
-    }
+    
 }
