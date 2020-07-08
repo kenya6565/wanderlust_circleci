@@ -20,14 +20,13 @@ class TimelineControllerTest extends TestCase
 
         $response->assertStatus(200);
     }
-    
-    public function Test_showTimelinePage()
+    //未ログイン時
+    public function Test_showTimelinePage_Guest()
     {
-        $user = factory(User::class)->create();
         $response->assertRedirect(route('/timeline'));
     }
-    
-    public function Test_post()
+    //ログイン時
+    public function Test_showTimelinePage()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get(route('/timeline'));
