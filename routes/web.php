@@ -21,3 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/timeline', 'Auth\TimelineController@showTimelinePage');   
 Route::post('/timeline', 'Auth\TimelineController@post');
+
+//ログイン画面からゲストユーザボタンが押された時
+

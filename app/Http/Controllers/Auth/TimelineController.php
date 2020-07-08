@@ -9,16 +9,18 @@ use \App\Post;
 
 class TimelineController extends Controller
 {
-   public function showTimelinePage()
+    
+   public function showTimelinePage(Request $request)
    {
-       $posts = Post::latest()->get();
+       $user = Auth::id();
+       $posts = Post::where('user_id',$user)->latest()->get();
        return view('auth.timeline', compact('posts'));
    }
    
    public function post(Request $request)
     {
-        $validator = $request->validate([ // これだけでバリデーションできるLaravelすごい！
-            'post' => ['required', 'string', 'max:140'], // 必須・文字であること・280文字まで（ツイッターに合わせた）というバリデーションをします（ビューでも軽く説明します。）
+        $validator = $request->validate([ 
+            'post' => ['required', 'string', 'max:140'], 
         ]);
         Post::create([ // postテーブルにいれる
             'user_id' => Auth::id(), // Auth::user()は、現在ログインしている人（つまりツイートしたユーザー）

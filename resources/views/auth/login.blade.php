@@ -9,6 +9,7 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
+                    
                         @csrf
 
                         <div class="form-group row">
@@ -56,6 +57,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
+                                 
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -64,6 +66,12 @@
                                 @endif
                             </div>
                         </div>
+                    </form>
+                    <form  method="POST" action="{{ route('login')  }}">
+                         @csrf
+                        <input id="email" type="hidden"  name="email" value="test@user.com">
+                        <input id="password" type="hidden" name="password" value="testuser">
+			            <input type="submit" value="テストログイン">
                     </form>
                 </div>
             </div>
