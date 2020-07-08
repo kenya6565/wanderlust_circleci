@@ -69,9 +69,9 @@
                     </form>
                     <form  method="POST" action="{{ route('login')  }}">
                          @csrf
-                        <input id="email" type="hidden"  name="email" value="guest@user.com">
-                        <input id="password" type="hidden" name="password" value="guestuser">
-			            <input type="submit" value="ゲストログイン">
+                        <input id="email" type="hidden"  name="email" value="test@user.com">
+                        <input id="password" type="hidden" name="password" value="testuser">
+			            <input type="submit" value="テストログイン">
                     </form>
                 </div>
             </div>
