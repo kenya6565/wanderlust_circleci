@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>SNSを作ってみよう！</title>
+    <title>timeline</title>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" type="text/css">
     </head>
     <body style="height:100%; background-color: #E6ECF0;">
@@ -23,9 +23,11 @@
 
             <div class="post-wrapper"> <!-- この辺追加 -->
                 @foreach($posts as $post)
+                <a href="{{ action('Auth\TimelineController@postDetail', $post->id )}}">
                 <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
                     <div>{{ $post->post }}</div>
                 </div>
+                </a>
                 @endforeach
             </div>
         </div>

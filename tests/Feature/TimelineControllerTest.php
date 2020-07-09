@@ -21,17 +21,30 @@ class TimelineControllerTest extends TestCase
         $response->assertStatus(200);
     }
     
-    public function Test_showTimelinePage()
+    //未ログイン時
+    public function Test_showTimelinePage_Guest()
     {
-        $user = factory(User::class)->create();
         $response->assertRedirect(route('/timeline'));
     }
     
+    //ログイン時
+    public function Test_showTimelinePage()
+    {
+        $user = factory(User::class)->create();
+        $response = $this->actingAs($user)->get(route('/timeline'));
+        $response->assertStatus(200)->assertViewIs('/timeline');
+    }
+    
+    //ログイン時
     public function Test_post()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get(route('/timeline'));
-
-        $response->assertStatus(200)->assertViewIs('/timeline');
+        $response = $this->from('/timeline')->post('/timeline', ['post' => 'テスト']);
+        $this->assertDatabaseHas('posts', ['post' => 'テスト']);
+        $response->assertStatus(200);
+        $response->assertRedirect(route('/timeline'));
     }
+    
+    
 }

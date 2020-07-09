@@ -18,7 +18,7 @@ class TimelineController extends Controller
    }
    
    public function post(Request $request)
-    {
+   {
         $validator = $request->validate([ 
             'post' => ['required', 'string', 'max:140'], 
         ]);
@@ -29,5 +29,11 @@ class TimelineController extends Controller
         ]);
         
         return back(); // リクエスト送ったページに戻る（つまり、/timelineにリダイレクトする）
+    }
+    
+    public function postDetail($id)
+    {
+        $post = Post::find($id);
+        return view('auth.postdetail', compact('post'));
     }
 }
