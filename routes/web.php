@@ -22,6 +22,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/timeline', 'Auth\TimelineController@showTimelinePage');   
 Route::post('/timeline', 'Auth\TimelineController@post');
 
-//ポストのID
+
 Route::get('/timeline/detail/{id}', 'Auth\TimelineController@postDetail'); 
 
