@@ -41,9 +41,8 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">Link</a>
               </li>
-              
               <li class="nav-item">
-                <a class="nav-link" href="#">マイページ</a>
+                <a class="nav-link" href="{{ action('Auth\MypageController@showMyPage',  Auth::user()->id  )}}">マイページ</a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">

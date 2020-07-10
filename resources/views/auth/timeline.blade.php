@@ -1,4 +1,4 @@
-@extends('layouts.hedder')
+@extends('layouts.header')
 @section('title', 'timeline')
     
 @section('content')
