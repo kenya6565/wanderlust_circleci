@@ -16,12 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/timeline', 'Auth\TimelineController@showTimelinePage');   
-Route::post('/timeline', 'Auth\TimelineController@post');
+//ログイン時
 
+Route::get('/timeline','Auth\TimelineController@showTimelinePage');
+Route::post('/timeline','Auth\TimelineController@post');
+Route::get('/timeline/detail/{id}','Auth\TimelineController@postDetail');
 
-Route::get('/timeline/detail/{id}', 'Auth\TimelineController@postDetail'); 
-
+Route::get('/mypage/{id}','Auth\MypageController@showMyPage');

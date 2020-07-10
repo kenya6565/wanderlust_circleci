@@ -15,6 +15,7 @@ class TimelineController extends Controller
        $user = Auth::id();
        $posts = Post::where('user_id',$user)->latest()->get();
        return view('auth.timeline', compact('posts'));
+       
    }
    
    public function post(Request $request)
