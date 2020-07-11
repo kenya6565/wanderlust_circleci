@@ -27,28 +27,27 @@
         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Wanderlust</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <nav class="navbar navbar-dark bg-dark">
+          <a class="navbar-brand" href="{{ action('Auth\TimelineController@showTimelinePage' )}}">Wanderlust</a>
+          <form class="form-inline my-2 my-md-0">
+              <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
+          </form>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
             <span class="navbar-toggler-icon"></span>
           </button>
-        
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+          <div class="collapse navbar-collapse" id="navbar">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">ホーム <span class="sr-only">(現位置)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link"  href="{{ action('Auth\MypageController@showMyPage',  Auth::user()->id  )}}">マイページ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{ action('Auth\MypageController@showMyPage',  Auth::user()->id  )}}">マイページ</a>
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
           </div>
         </nav>
         <main>
