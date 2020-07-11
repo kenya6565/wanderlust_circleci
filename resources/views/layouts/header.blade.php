@@ -27,7 +27,7 @@
         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body>
-          <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-dark bg-dark">
           <a class="navbar-brand" href="{{ action('Auth\TimelineController@showTimelinePage' )}}">Wanderlust</a>
           <form class="form-inline my-2 my-md-0">
               <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
@@ -42,7 +42,7 @@
                 <a class="nav-link" href="#">ホーム <span class="sr-only">(現位置)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="{{ action('Auth\MypageController@showMyPage',  Auth::user()->id  )}}">マイページ</a>
+                <a class="nav-link"  href="{{ action('Auth\MypageController@showMyPage',  Auth::id() )}}">マイページ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>
@@ -50,6 +50,21 @@
             </ul>
           </div>
         </nav>
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-3 col-3-pull-2">
+             
+                <div class="card">
+                  <h3 class="card-header">Featured</h3>
+                  <div class="card-body">
+                    <h4 class="card-title">Special title treatment</h4>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#!" class="btn btn-primary">Go somewhere</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
         <main>
             {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
             @yield('content')

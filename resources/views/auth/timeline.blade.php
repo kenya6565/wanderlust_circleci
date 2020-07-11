@@ -15,11 +15,32 @@
         </form>
         <div class="post-wrapper"> 
             @foreach($posts as $post)
-            <a href="{{ action('Auth\TimelineController@postDetail',  $post->id )}}">
-            <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
-                <div>{{ $post->post }}</div>
+            <div class="card-columns">
+              <div class="card">
+                <div class="card-body">
+                    <a href="{{ action('Auth\TimelineController@postDetail',  $post->id )}}">
+                        <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
+                            <div>{{ $post->post }}</div>
+                        </div>
+                    </a>
+                </div>
+              </div>
+              <div class="card">
+                  <div class="card-body">
+                    <h6>テスト</h6>
+                  </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h6>テスト</h6>
+                </div>
+              </div>
+              <div class="card">
+                  <div class="card-body">
+                      <h6>テスト</h6>
+                  </div>
+              </div>
             </div>
-            </a>
             @endforeach
         </div>
     </div>
