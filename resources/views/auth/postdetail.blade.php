@@ -5,9 +5,13 @@
     <div class="container">
         {{ $post->post }}
         @foreach($post->comments as $comment)
-        <tr>
-            <td>{{ $comment->comment }}</td>
-        </tr>
+            <div class="media">
+              <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="user_image">
+              <div class="media-body">
+                <h5 class="mt-0">{{ $comment->user->name }}</h5>
+                <h5 class="mt-0">{{ $comment->comment }}</h5>
+              </div>
+            </div>
         @endforeach
         <form action="/timeline/detail" method="post">
         @csrf
