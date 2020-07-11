@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\Post;
+use \App\Comment;
 
 class TimelineController extends Controller
 {
@@ -13,6 +14,8 @@ class TimelineController extends Controller
    public function showTimelinePage(Request $request)
    {
        $user = Auth::id();
+       
+       //ログインユーザのフィールド
        $posts = Post::where('user_id',$user)->latest()->get();
        return view('auth.timeline', compact('posts'));
        
@@ -24,17 +27,24 @@ class TimelineController extends Controller
             'post' => ['required', 'string', 'max:140'], 
         ]);
         Post::create([ // postテーブルにいれる
-            'user_id' => Auth::id(), // Auth::user()は、現在ログインしている人（つまりツイートしたユーザー）
-            'post' => $request->post, // ツイート内容
+            'user_id' => Auth::id(), 
+            'post' => $request->post, 
             
         ]);
         
         return back(); // リクエスト送ったページに戻る（つまり、/timelineにリダイレクトする）
     }
     
-    public function postDetail($id)
+    public function postDetail(Request $request)
     {
-        $post = Post::find($id);
-        return view('auth.postdetail', compact('post'));
+        //クリックした投稿のID
+        $post = Post::find($request->id);
+        //１つの投稿を表示する際それについてるコメントを表示
+        $comments = Comment::where('post_id',$post)->latest()->get();
+      
+        return view('auth.postdetail', compact(
+            'post',
+            'comments'
+            ));
     }
 }

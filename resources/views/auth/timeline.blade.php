@@ -15,7 +15,7 @@
         </form>
         <div class="post-wrapper"> 
             @foreach($posts as $post)
-            <a href="{{ action('Auth\TimelineController@postDetail', $post->id )}}">
+            <a href="{{ action('Auth\TimelineController@postDetail',  $post->id )}}">
             <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
                 <div>{{ $post->post }}</div>
             </div>
