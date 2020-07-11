@@ -28,7 +28,7 @@
     </head>
     <body>
           <nav class="navbar navbar-dark bg-dark">
-          <a class="navbar-brand" href="#">Wanderlust</a>
+          <a class="navbar-brand" href="{{ action('Auth\TimelineController@showTimelinePage' )}}">Wanderlust</a>
           <form class="form-inline my-2 my-md-0">
               <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
           </form>
