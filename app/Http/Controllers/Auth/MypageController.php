@@ -16,8 +16,22 @@ class MypageController extends Controller
         $login_user_id = $request->id;
         $posts = Post::where('user_id',$login_user_id)->latest()->get();
         return view('auth.mypage',compact(
-            'posts'
+            'posts',
+            'login_user_id'
             ));
+    }
     
+    public function editMyPage (Request $request)
+    {
+        $login_user = Auth::user();
+        
+        if (empty($login_user))
+        { //aaaaaは単なるパラメーター、News::findによってニューステーブルの特定の情報１行（bodyとか名前とか）を＄newsに入れてる
+            abort(404);
+        }
+        
+        return view('auth.editmypage',compact(
+            'login_user'
+            ));
     }
 }

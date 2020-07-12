@@ -50,21 +50,6 @@
             </ul>
           </div>
         </nav>
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-3 col-3-pull-2">
-             
-                <div class="card">
-                  <h3 class="card-header">Featured</h3>
-                  <div class="card-body">
-                    <h4 class="card-title">Special title treatment</h4>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#!" class="btn btn-primary">Go somewhere</a>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
         <main>
             {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
             @yield('content')
