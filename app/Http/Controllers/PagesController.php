@@ -7,11 +7,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\User;
 use \App\Post;
+use Hash;
 
 class PagesController extends Controller
 {
     
-    public function show (Request $request)
+    public function show(Request $request)
     {
         $login_user_id = Auth::id();
         $posts = Post::where('user_id',$login_user_id)->latest()->get();
@@ -21,7 +22,7 @@ class PagesController extends Controller
         ));
     }
     
-    public function edit (Request $request)
+    public function edit(Request $request)
     {
         $login_user = Auth::user();
         
@@ -35,12 +36,24 @@ class PagesController extends Controller
         ));
     }
     
-    public function update (Request $request)
+    public function update(Request $request)
     {
-        $this->validate($request, User::$rules);
         
+         //現在のパスワードが正しいかを調べる
+        if(!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
+        }
+
+        //現在のパスワードと新しいパスワードが違っているかを調べる
+        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0) {
+            return redirect()->back()->with('change_password_error', '新しいパスワードが現在のパスワードと同じです。違うパスワードを設定してください。');
+        }
+
+        //バリデーション
+        $this->validate($request, User::$rules);
         $login_user = Auth::user();
-        $updated_user_info = $request->all(); //all関数
+        $updated_user_info = $request->all(); 
+        $login_user->password = bcrypt($request->get('new-password'));
         $login_user->fill($updated_user_info)->save();
         
         return redirect(route('mypage', ['id'=>Auth::id()]));

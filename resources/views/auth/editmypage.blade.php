@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="title">名前</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="name" value="{{ $login_user->name }}">
+                            <input type="text" class="form-control" name="name" value="{{ $login_user->name }}" autofocus>
                         </div>   
                     </div>
                     <div class="form-group row">
@@ -28,9 +28,26 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">パスワード</label>
+                        <label class="col-md-2" for="title">現在のパスワード</label>
                         <div class="col-md-10">
-                            <input type="text" class="form-control" name="password" value="">
+                            <input type="password" class="form-control" name="current-password" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="title">新しいパスワード</label>
+                        <div class="col-md-10">
+                            <input type="password" class="form-control" name="new-password" required>
+                             @if ($errors->has('new-password'))
+                              <span class="help-block">
+                                <strong>{{ $errors->first('new-password') }}</strong>
+                              </span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-2" for="title">新しいパスワード（確認用）</label>
+                        <div class="col-md-10">
+                            <input type="password" class="form-control" name="new-password_confirmation" required>
                         </div>
                     </div>
                     <div class="form-group row">
