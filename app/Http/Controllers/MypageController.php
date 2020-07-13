@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,7 +40,6 @@ class MypageController extends Controller
         $this->validate($request, User::$rules);
         
         $login_user = Auth::user();
-        $login_user_id = Auth::id();
         $updated_user_info = $request->all(); //all関数
         $login_user->fill($updated_user_info)->save();
         
