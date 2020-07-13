@@ -24,7 +24,7 @@ Route::get('/timeline','Auth\TimelineController@showTimelinePage');
 Route::post('/timeline','Auth\TimelineController@post');
 Route::get('/timeline/detail/{id}','Auth\TimelineController@postDetail')->name('postdetail');
 Route::post('/timeline/detail','Auth\CommentController@comment');
-Route::get('/mypage/{id}','Auth\MypageController@showMyPage');
+Route::get('/mypage/{id}','Auth\MypageController@showMyPage')->name('mypage');
 
 Route::get('/mypage/editmypage/{id}','Auth\MypageController@editMyPage');
 Route::post('/mypage/editmypage','Auth\MypageController@updateMyPage');

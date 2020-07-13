@@ -13,12 +13,12 @@ class MypageController extends Controller
     
     public function showMyPage (Request $request)
     {
-        $login_user_id = $request->id;
+        $login_user_id = Auth::id();
         $posts = Post::where('user_id',$login_user_id)->latest()->get();
         return view('auth.mypage',compact(
             'posts',
             'login_user_id'
-            ));
+        ));
     }
     
     public function editMyPage (Request $request)
@@ -32,7 +32,7 @@ class MypageController extends Controller
         
         return view('auth.editmypage',compact(
             'login_user'
-            ));
+        ));
     }
     
     public function updateMyPage (Request $request)
@@ -40,9 +40,10 @@ class MypageController extends Controller
         $this->validate($request, User::$rules);
         
         $login_user = Auth::user();
+        $login_user_id = Auth::id();
         $updated_user_info = $request->all(); //all関数
         $login_user->fill($updated_user_info)->save();
         
-        return view('auth/mypage');
+        return redirect(route('mypage', ['id'=>Auth::id()]));
     }
 }
