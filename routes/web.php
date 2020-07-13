@@ -18,17 +18,13 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-//ログイン時
-Route::group(['middleware' => 'auth'], function () {
-    
-Route::get('/timeline','TimelineController@index');
-Route::post('/timeline','TimelineController@post');
-Route::get('/timeline/detail/{id}','TimelineController@show')->name('postdetail');
-Route::post('/timeline/detail','CommentController@comment');
-
-
-Route::get('/mypage/{id}','PagesController@show')->name('mypage');
-Route::get('/mypage/editmypage/{id}','PagesController@edit');
-Route::post('/mypage/editmypage','PagesController@update');
-
+//ログイン一般ユーザー
+Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
+    Route::get('/','User\TimelineController@index');
+    Route::post('/','User\TimelineController@post');
+    Route::get('detail/{id}','User\TimelineController@show')->name('postdetail');
+    Route::post('detail','User\CommentController@comment');
+    Route::get('mypage/{id}','User\PagesController@show')->name('mypage');
+    Route::get('mypage/editmypage/{id}','User\PagesController@edit');
+    Route::post('mypage/editmypage','User\PagesController@update');
 });

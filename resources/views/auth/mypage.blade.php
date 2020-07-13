@@ -16,14 +16,14 @@
                   <p class="font-weight-bolder">フォロー</p>
                   <p class="font-weight-bolder">フォロワー</p>
                 </div>
-                <a href="{{ action('PagesController@edit', Auth::id() ) }}" role="button" class="btn btn-primary">編集</a>
+                <a href="{{ action('User\PagesController@edit', Auth::id() ) }}" role="button" class="btn btn-primary">編集</a>
             </div>
             <div class="col-9">
                 @foreach($posts as $post)
                     <div class="card-columns">
                       <div class="card">
                         <div class="card-body">
-                            <a href="{{ action('TimelineController@show',  $post->id )}}">
+                            <a href="{{ action('User\TimelineController@show',  $post->id )}}">
                                 <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
                                     <div>{{ $post->post }}</div>
                                 </div>
