@@ -27,7 +27,7 @@
         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
     </head>
     <body>
-          <nav class="navbar navbar-dark bg-dark">
+        <nav class="navbar navbar-dark bg-dark">
           <a class="navbar-brand" href="{{ action('Auth\TimelineController@showTimelinePage' )}}">Wanderlust</a>
           <form class="form-inline my-2 my-md-0">
               <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
@@ -42,7 +42,7 @@
                 <a class="nav-link" href="#">ホーム <span class="sr-only">(現位置)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="{{ action('Auth\MypageController@showMyPage',  Auth::user()->id  )}}">マイページ</a>
+                <a class="nav-link"  href="{{ action('Auth\MypageController@showMyPage',  Auth::id() )}}">マイページ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>
