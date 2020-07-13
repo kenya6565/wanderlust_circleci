@@ -7,7 +7,7 @@
             <div class="col-md-8 mx-auto">
                 <h2>ユーザ編集</h2>
                 <!--submit押された後の処理-->
-                <form action="{{ action('PagesController@updateMyPage') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ action('PagesController@update') }}" method="post" enctype="multipart/form-data">
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)

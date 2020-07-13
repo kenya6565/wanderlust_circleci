@@ -11,7 +11,7 @@ use \App\Post;
 class PagesController extends Controller
 {
     
-    public function showMyPage (Request $request)
+    public function show (Request $request)
     {
         $login_user_id = Auth::id();
         $posts = Post::where('user_id',$login_user_id)->latest()->get();
@@ -21,7 +21,7 @@ class PagesController extends Controller
         ));
     }
     
-    public function editMyPage (Request $request)
+    public function edit (Request $request)
     {
         $login_user = Auth::user();
         
@@ -35,7 +35,7 @@ class PagesController extends Controller
         ));
     }
     
-    public function updateMyPage (Request $request)
+    public function update (Request $request)
     {
         $this->validate($request, User::$rules);
         

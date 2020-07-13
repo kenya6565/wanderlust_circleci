@@ -21,14 +21,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 //ログイン時
 Route::group(['middleware' => 'auth'], function () {
     
-Route::get('/timeline','TimelineController@showTimelinePage');
+Route::get('/timeline','TimelineController@index');
 Route::post('/timeline','TimelineController@post');
-Route::get('/timeline/detail/{id}','TimelineController@postDetail')->name('postdetail');
+Route::get('/timeline/detail/{id}','TimelineController@show')->name('postdetail');
 Route::post('/timeline/detail','CommentController@comment');
 
 
-Route::get('/mypage/{id}','PagesController@showMyPage')->name('mypage');
-Route::get('/mypage/editmypage/{id}','PagesController@editMyPage');
-Route::post('/mypage/editmypage','PagesController@updateMyPage');
+Route::get('/mypage/{id}','PagesController@show')->name('mypage');
+Route::get('/mypage/editmypage/{id}','PagesController@edit');
+Route::post('/mypage/editmypage','PagesController@update');
 
 });

@@ -11,7 +11,7 @@ use \App\Comment;
 class TimelineController extends Controller
 {
     
-   public function showTimelinePage(Request $request)
+   public function index(Request $request)
    {
        $user = Auth::id();
        
@@ -35,7 +35,7 @@ class TimelineController extends Controller
         return back(); // リクエスト送ったページに戻る（つまり、/timelineにリダイレクトする）
     }
     
-    public function postDetail(Request $request)
+    public function show(Request $request)
     {
         //クリックした投稿のID
         $post = Post::find($request->id);
