@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use \App\User;
 use \App\Post;
 
-class MypageController extends Controller
+class PagesController extends Controller
 {
     
     public function showMyPage (Request $request)

@@ -16,7 +16,7 @@
                   <p class="font-weight-bolder">フォロー</p>
                   <p class="font-weight-bolder">フォロワー</p>
                 </div>
-                <a href="{{ action('Auth\MypageController@editMyPage', Auth::id() ) }}" role="button" class="btn btn-primary">編集</a>
+                <a href="{{ action('PagesController@editMyPage', Auth::id() ) }}" role="button" class="btn btn-primary">編集</a>
             </div>
             <div class="col-9">
                 @foreach($posts as $post)

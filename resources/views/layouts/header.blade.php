@@ -42,7 +42,7 @@
                 <a class="nav-link" href="#">ホーム <span class="sr-only">(現位置)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link"  href="{{ action('MypageController@showMyPage',  Auth::id() )}}">マイページ</a>
+                <a class="nav-link"  href="{{ action('PagesController@showMyPage',  Auth::id() )}}">マイページ</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">無効</a>

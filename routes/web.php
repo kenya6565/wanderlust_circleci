@@ -25,8 +25,10 @@ Route::get('/timeline','TimelineController@showTimelinePage');
 Route::post('/timeline','TimelineController@post');
 Route::get('/timeline/detail/{id}','TimelineController@postDetail')->name('postdetail');
 Route::post('/timeline/detail','CommentController@comment');
-Route::get('/mypage/{id}','MypageController@showMyPage')->name('mypage');
-Route::get('/mypage/editmypage/{id}','MypageController@editMyPage');
-Route::post('/mypage/editmypage','MypageController@updateMyPage');
+
+
+Route::get('/mypage/{id}','PagesController@showMyPage')->name('mypage');
+Route::get('/mypage/editmypage/{id}','PagesController@editMyPage');
+Route::post('/mypage/editmypage','PagesController@updateMyPage');
 
 });
