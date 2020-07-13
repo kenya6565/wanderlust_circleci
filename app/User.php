@@ -37,6 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    public static $rules = array(
+        'name' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        //バリデーションのルール設定
+    );
+    
     public function posts()
     {
          return $this->hasMany('App\Post');

@@ -34,4 +34,15 @@ class MypageController extends Controller
             'login_user'
             ));
     }
+    
+    public function updateMyPage (Request $request)
+    {
+        $this->validate($request, User::$rules);
+        
+        $login_user = Auth::user();
+        $updated_user_info = $request->all(); //all関数
+        $login_user->fill($updated_user_info)->save();
+        
+        return view('auth/mypage');
+    }
 }
