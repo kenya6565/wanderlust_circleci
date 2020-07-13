@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = [   // <---　追加
+    protected $fillable = [   
         'user_id', 'post',
     ];
     
     public static $rules = array(
         'post' => ['required', 'string', 'max:140'], 
-        //バリデーションのルール設定
     );
     
     public function User()
