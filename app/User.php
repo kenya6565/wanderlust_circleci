@@ -40,7 +40,8 @@ class User extends Authenticatable
     public static $rules = array(
         'name' => 'required',
         'email' => 'required',
-        'password' => 'required',
+        'current-password' => 'required',
+        'new-password' => 'required|string|min:8|confirmed',
         //バリデーションのルール設定
     );
     

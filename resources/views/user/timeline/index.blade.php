@@ -1,5 +1,5 @@
 @extends('layouts.header')
-@section('title', 'mypage')
+@section('title', 'timeline')
     
 @section('content')
     <div class="container">
@@ -16,14 +16,25 @@
                   <p class="font-weight-bolder">フォロー</p>
                   <p class="font-weight-bolder">フォロワー</p>
                 </div>
-                <a href="{{ action('Auth\MypageController@editMyPage', Auth::id() ) }}" role="button" class="btn btn-primary">編集</a>
+                <a href="#!" class="btn btn-primary">Go somewhere</a>
             </div>
             <div class="col-9">
-                @foreach($posts as $post)
+                <form action="/timeline" method="post">
+                {{ csrf_field() }}
+                    <div style="background-color: #E8F4FA; text-align: center;">
+                        <input type="text" name="post" style="margin: 1rem; padding: 0 1rem; width: 70%; border-radius: 6px; border: 1px solid #ccc; height: 2.3rem;" placeholder="今どうしてる？">
+                        <button type="submit" style="background-color: #2695E0; color: white; border-radius: 10px; padding: 0.5rem;">ツイート</button>
+                    </div>
+                    @if($errors->first('post'))
+                        <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
+                    @endif
+                </form>
+                <div class="post-wrapper"> 
+                    @foreach($posts as $post)
                     <div class="card-columns">
                       <div class="card">
                         <div class="card-body">
-                            <a href="{{ action('Auth\TimelineController@postDetail',  $post->id )}}">
+                            <a href="{{ action('User\TimelineController@show',  $post->id )}}">
                                 <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
                                     <div>{{ $post->post }}</div>
                                 </div>
@@ -32,7 +43,7 @@
                       </div>
                       <div class="card">
                           <div class="card-body">
-                            <h3>テスト</h3>
+                            <h6>テスト</h6>
                           </div>
                       </div>
                       <div class="card">
@@ -46,9 +57,9 @@
                           </div>
                       </div>
                     </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
-  
 @endsection
