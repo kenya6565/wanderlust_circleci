@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Comment');
     }
+    
+    public function follows()
+    {
+        return $this->belongsToMany('App\Follow');
+    }
 }
