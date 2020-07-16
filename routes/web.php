@@ -27,4 +27,9 @@ Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
     Route::get('mypage/{id}','User\PagesController@show')->name('mypage');
     Route::get('mypage/editmypage/{id}','User\PagesController@edit');
     Route::post('mypage/editmypage','User\PagesController@update');
+    
+    Route::get('followings/{id}', 'User\FollowsController@showFollowings')->name('followings');
+    Route::get('followers/{id}', 'User\FollowsController@showFollowers')->name('followers');
+    Route::post('follow/{id}', 'User\FollowsController@store')->name('follow');
+    Route::delete('unfollow/{id}', 'User\FollowsController@destroy')->name('unfollow');
 });

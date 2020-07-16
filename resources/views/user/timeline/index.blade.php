@@ -13,8 +13,8 @@
                   <div class="card-body">
                     <p class="card-text"><h3>自己紹介文</h3></p>
                   </div>
-                  <p class="font-weight-bolder">フォロー</p>
-                  <p class="font-weight-bolder">フォロワー</p>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowings',Auth::id() )}}">フォロー</a>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowers',Auth::id() )}}">フォロワー</a>
                 </div>
                 <a href="#!" class="btn btn-primary">Go somewhere</a>
             </div>
@@ -29,8 +29,9 @@
                         <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
                     @endif
                 </form>
-                <div class="post-wrapper"> 
-                    @foreach($posts as $post)
+                <div class="post-wrapper">
+                  
+                    @foreach($user_posts as $post)
                     <div class="card-columns">
                       <div class="card">
                         <div class="card-body">
@@ -58,6 +59,7 @@
                       </div>
                     </div>
                     @endforeach
+                   
                 </div>
             </div>
         </div>

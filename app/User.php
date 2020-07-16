@@ -55,7 +55,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
     //あるユーザのフォロー中のユーザを取得する
-    public function follows()
+    public function followings()
     {
         return $this->belongsToMany(User::class,'follows','user_id','following_id')->withTimestamps();
     }
@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function is_following($userId)
     {
-        return $this->follows()->where('following_id', $userId)->exists();
+        return $this->followings()->where('following_id', $userId)->exists();
     }
     
     public function follow($userId)
@@ -79,7 +79,7 @@ class User extends Authenticatable
     
         // フォロー済みではない、かつフォロー相手がユーザ自身ではない場合、フォロー
         if (!$existing && !$myself) {
-            $this->follows()->attach($userId);
+            $this->followings()->attach($userId);
         }
     }
     
@@ -92,7 +92,7 @@ class User extends Authenticatable
     
         // すでにフォロー済みならば、フォローを外す
         if ($existing && !$myself) {
-            $this->follows()->detach($userId);
+            $this->followings()->detach($userId);
         }
     }
 }

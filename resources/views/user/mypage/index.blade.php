@@ -13,8 +13,8 @@
                   <div class="card-body">
                     <p class="card-text"><h3>自己紹介文</h3></p>
                   </div>
-                  <p class="font-weight-bolder">フォロー</p>
-                  <p class="font-weight-bolder">フォロワー</p>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowings',Auth::id() )}}">フォロー</a>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowers',Auth::id() )}}">フォロワー</a>
                 </div>
                 <a href="{{ action('User\PagesController@edit', Auth::id() ) }}" role="button" class="btn btn-primary">編集</a>
             </div>
