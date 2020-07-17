@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use \App\User;
+use \App\Auth;
 
 class FollowsController extends Controller
 {
@@ -24,35 +25,24 @@ class FollowsController extends Controller
     //フォローしてるユーザー表示
      public function showFollowings($id)
     {
-        $user = User::find($id);
-        $followings = $user->followings();
-
-        $data = [
-            'user' => $user,
-            'users' => $followings,
-        ];
-        //dd($data);
-        $data += $this->counts($user);
+        
+        $following_users = \Auth::user()->followings;
+        //dd($following_users);
 
         return view('user.follow.followings',compact(
-            'data'
+            'following_users'
         ));
     }
 
     public function showFollowers($id)
     {
-        $user = User::find($id);
-        $followers = $user->followers();
+        $followers = \Auth::user()->followers;
+        //dd($following_users);
 
-        $data = [
-            'user' => $user,
-            'users' => $followers,
-        ];
-
-        $data += $this->counts($user);
+       
         //dd($data);
         return view('user.follow.followers', compact(
-            'data'
+            'followers'
         ));
     }
 }
