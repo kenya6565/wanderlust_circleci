@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\User;
 use \App\Post;
+use \App\Follow;
 use Hash;
 
 class PagesController extends Controller
@@ -14,11 +15,12 @@ class PagesController extends Controller
     
     public function show(Request $request)
     {
-        $login_user_id = Auth::id();
-        $posts = Post::where('user_id',$login_user_id)->latest()->get();
+        $user_info = User::where('id',$request->id)->get();
+        //dd($user_info);
+        $posts = Post::where('user_id',$request->id)->latest()->get();
         return view('user.mypage.index',compact(
             'posts',
-            'login_user_id'
+            'user_info'
         ));
     }
     

@@ -13,8 +13,9 @@
                   <div class="card-body">
                     <p class="card-text"><h3>自己紹介文</h3></p>
                   </div>
-                  <p class="font-weight-bolder">フォロー</p>
-                  <p class="font-weight-bolder">フォロワー</p>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowings',Auth::id() )}}">フォロー</a>
+                  <p class= "font-weight-bolder"></p>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowers',Auth::id() )}}">フォロワー</a>
                 </div>
                 <a href="#!" class="btn btn-primary">Go somewhere</a>
             </div>
@@ -29,11 +30,17 @@
                         <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
                     @endif
                 </form>
-                <div class="post-wrapper"> 
-                    @foreach($posts as $post)
+                <div class="post-wrapper">
+                  
+                    @foreach($all_posts as $post)
                     <div class="card-columns">
                       <div class="card">
                         <div class="card-body">
+                            <a href="{{ action('User\PagesController@show', $post->user->id )}}">
+                                <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
+                                    <div>{{ $post->user->name }}</div>
+                                </div>
+                            </a>
                             <a href="{{ action('User\TimelineController@show',  $post->id )}}">
                                 <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
                                     <div>{{ $post->post }}</div>
@@ -58,6 +65,7 @@
                       </div>
                     </div>
                     @endforeach
+                   
                 </div>
             </div>
         </div>
