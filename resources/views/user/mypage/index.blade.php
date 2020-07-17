@@ -5,18 +5,20 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
+              @foreach($user_info as $user_info)
                 <div class="card">
-                  <h3 class="card-header">{{  Auth::user()->name }}</h3>
+                  <h3 class="card-header">{{  $user_info->name }}</h3>
                   <a class="d-flex pr-3" href="#!">
                     <img src="/images/pathToYourImage.png" alt="Generic placeholder image">
                   </a>
                   <div class="card-body">
                     <p class="card-text"><h3>自己紹介文</h3></p>
                   </div>
-                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowings',Auth::id() )}}">フォロー</a>
-                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowers',Auth::id() )}}">フォロワー</a>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowings', ['id' => $user_info->id] )}}">フォロー</a>
+                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowers',['id' => $user_info->id] )}}">フォロワー</a>
                 </div>
-                <a href="{{ action('User\PagesController@edit', Auth::id() ) }}" role="button" class="btn btn-primary">編集</a>
+                <a href="{{ action('User\PagesController@edit', ['id' => $user_info->id] )}}" role="button" class="btn btn-primary">編集</a>
+              @endforeach
             </div>
             <div class="col-9">
                 @foreach($posts as $post)

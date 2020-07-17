@@ -27,8 +27,7 @@ class FollowsController extends Controller
     {
         
         $following_users = \Auth::user()->followings;
-        //dd($following_users);
-
+       
         return view('user.follow.followings',compact(
             'following_users'
         ));
@@ -37,10 +36,7 @@ class FollowsController extends Controller
     public function showFollowers($id)
     {
         $followers = \Auth::user()->followers;
-        //dd($following_users);
-
-       
-        //dd($data);
+        
         return view('user.follow.followers', compact(
             'followers'
         ));
