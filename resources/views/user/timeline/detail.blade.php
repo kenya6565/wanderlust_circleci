@@ -8,7 +8,7 @@
             <div class="media">
               <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="user_image">
               <div class="media-body">
-                <h5 class="mt-0">{{ $comment->user->name }}</h5>
+                 <a href="{{ action('User\PagesController@show', ['id' => $comment->user->id] )}}" class="text-secondary">{{ $comment->user->name }}</a>
                 <h5 class="mt-0">{{ $comment->comment }}</h5>
               </div>
             </div>

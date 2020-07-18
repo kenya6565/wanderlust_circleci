@@ -21,7 +21,7 @@ class TimelineController extends Controller
         $counts = BaseClass::counts(Auth::user());
        // dd($user_posts);
        // もしログインユーザが誰かをフォローしていたならforeachでフォローしてるユーザ１つ１つの投稿を取得
-        $following_users = Auth::user()->followings();
+        $following_users = Auth::user()->followings;
         //dd($following_users);
         if($following_users != NULL)
         {

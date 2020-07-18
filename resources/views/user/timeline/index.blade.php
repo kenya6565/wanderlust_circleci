@@ -14,9 +14,9 @@
                     <p class="card-text"><h3>自己紹介文</h3></p>
                   </div>
                   <p class="font-weight-bolder">フォロー</p>
-                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowings', Auth::id() )}}">{{ $counts['count_followings'] }}</a>
+                  <a class="text-secondary" href="{{ action('User\FollowsController@showFollowings', Auth::id() )}}">{{ $counts['count_followings'] }}</a>
                   <p class="font-weight-bolder">フォロワー</p>
-                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowers', Auth::id() )}}">{{ $counts['count_followers'] }}</a>
+                  <a class="text-secondary" href="{{ action('User\FollowsController@showFollowers', Auth::id() )}}">{{ $counts['count_followers'] }}</a>
                 </div>
                 <a href="#!" class="btn btn-primary">Go somewhere</a>
             </div>

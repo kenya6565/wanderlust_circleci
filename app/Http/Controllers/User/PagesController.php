@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
+use App\Library\BaseClass;
 use \App\User;
 use \App\Post;
 use \App\Follow;
@@ -15,13 +17,14 @@ class PagesController extends Controller
     
     public function show(Request $request)
     {
-        $user_info = User::where('id',$request->id)->get();
-        //dd($user_info);
+        $user_info = User::find($request->id);
+        $counts = BaseClass::counts($user_info);
         $posts = Post::where('user_id',$request->id)->latest()->get();
       
         return view('user.mypage.index',compact(
             'posts',
-            'user_info'
+            'user_info',
+            'counts'
             
         ));
     }
