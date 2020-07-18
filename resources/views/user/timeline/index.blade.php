@@ -18,21 +18,36 @@
                   <p class="font-weight-bolder">フォロワー</p>
                   <a class="text-secondary" href="{{ action('User\FollowsController@showFollowers', Auth::id() )}}">{{ $counts['count_followers'] }}</a>
                 </div>
-                <a href="#!" class="btn btn-primary">Go somewhere</a>
-            </div>
-            <div class="col-9">
                 <form action="/timeline" method="post">
                 {{ csrf_field() }}
-                    <div style="background-color: #E8F4FA; text-align: center;">
-                        <input type="text" name="post" style="margin: 1rem; padding: 0 1rem; width: 70%; border-radius: 6px; border: 1px solid #ccc; height: 2.3rem;" placeholder="今どうしてる？">
-                        <button type="submit" style="background-color: #2695E0; color: white; border-radius: 10px; padding: 0.5rem;">ツイート</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                  投稿
+                </button>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">思い出の場所を共有しよう</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">＋</button>
+                            <input type="text" name="post" class="modal-body" placeholder="今どうしてる？">
+                            <button type="submit" class="btn btn-primary">ツイート</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
-                    @if($errors->first('post'))
-                        <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
-                    @endif
+                  </div>
+                </div>
+                @if($errors->first('post'))
+                    <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
+                @endif
                 </form>
+            </div>
+            <div class="col-9" "justify-content-end">
                 <div class="post-wrapper">
-                  
                     @foreach($all_posts as $post)
                     <div class="card-columns">
                       <div class="card">
@@ -48,6 +63,9 @@
                                 </div>
                             </a>
                         </div>
+                            <a class="d-flex pr-3" href="#!">
+                                <img class="far fa-heart like-btn" src="{{ asset('images/heart-regular.svg') }}">
+                            </a>
                       </div>
                       <div class="card">
                           <div class="card-body">
