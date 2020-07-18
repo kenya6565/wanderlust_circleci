@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers;
+use App\Library\BaseClass;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\Post;
@@ -16,9 +18,10 @@ class TimelineController extends Controller
    {
         //自分の投稿とフォローしてるユーザの投稿を取得してそれを作成日時順で表示
         $user_posts = Auth::user()->posts;
+        $counts = BaseClass::counts(Auth::user());
        // dd($user_posts);
        // もしログインユーザが誰かをフォローしていたならforeachでフォローしてるユーザ１つ１つの投稿を取得
-        $following_users = Auth::user()->followings();
+        $following_users = Auth::user()->followings;
         //dd($following_users);
         if($following_users != NULL)
         {
@@ -32,7 +35,8 @@ class TimelineController extends Controller
             }
           //dd($all_posts);
             return view('user.timeline.index',compact(
-                'all_posts'
+                'all_posts',
+                'counts'
             ));
         }
    }

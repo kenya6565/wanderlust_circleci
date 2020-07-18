@@ -5,7 +5,6 @@
     <div class="container">
         <div class="row">
             <div class="col-3">
-              @foreach($user_info as $user_info)
                 <div class="card">
                   <h3 class="card-header">{{  $user_info->name }}</h3>
                   <a class="d-flex pr-3" href="#!">
@@ -14,11 +13,14 @@
                   <div class="card-body">
                     <p class="card-text"><h3>自己紹介文</h3></p>
                   </div>
-                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowings', ['id' => $user_info->id] )}}">フォロー</a>
-                  <a class="nav-link" "font-weight-bolder" href="{{ action('User\FollowsController@showFollowers',['id' => $user_info->id] )}}">フォロワー</a>
+                  <p class="font-weight-bolder">フォロー</p>
+                  <a class="text-secondary" href="{{ action('User\FollowsController@showFollowings',  ['id' => $user_info->id] )}}">{{ $counts['count_followings'] }}</a>
+                  <p class="font-weight-bolder">フォロワー</p>
+                  <a class="text-secondary" href="{{ action('User\FollowsController@showFollowers', ['id' => $user_info->id] )}}">{{ $counts['count_followers'] }}</a>
                 </div>
-                <a href="{{ action('User\PagesController@edit', ['id' => $user_info->id] )}}" role="button" class="btn btn-primary">編集</a>
-              @endforeach
+                @if(Auth::id() == $user_info->id)
+                  <a href="{{ action('User\PagesController@edit', ['id' => $user_info->id] )}}" role="button" class="btn btn-primary">編集</a>
+                @endif
             </div>
             <div class="col-9">
                 @foreach($posts as $post)
