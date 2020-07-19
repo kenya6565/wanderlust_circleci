@@ -18,6 +18,8 @@ class TimelineController extends Controller
    {
         //自分の投稿とフォローしてるユーザの投稿を取得してそれを作成日時順で表示
         $user_posts = Auth::user()->posts;
+        
+        //dd($request);
         $counts = BaseClass::counts(Auth::user());
        // dd($user_posts);
        // もしログインユーザが誰かをフォローしていたならforeachでフォローしてるユーザ１つ１つの投稿を取得
@@ -32,13 +34,24 @@ class TimelineController extends Controller
                 }else{
                     $all_posts = $user_posts-> sortByDesc('created_at');
                 }
+                
             }
+        }
+        //dd($all_posts);
+        foreach($all_posts as $post){
+            $count_liking_users = $post->liking_users->count();
+            //dd($count_liking_users);
+            $data=[
+               'count_liking_users'=>$count_liking_users,
+            ];
+        }
           //dd($all_posts);
             return view('user.timeline.index',compact(
                 'all_posts',
-                'counts'
+                'counts',
+                'data'
             ));
-        }
+        
    }
    
    public function post(Request $request)

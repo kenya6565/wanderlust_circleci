@@ -9,13 +9,15 @@ class LikesController extends Controller
 {
     public function store(Request $request, $id)
     {
-            \Auth::user()->like($id);
-            return back();
+        $like= \Auth::user()->like($id);
+        $json = json_encode($like);
+        echo $json;
+        //return back();
     }
 
     public function destroy($id)
     {
-            \Auth::user()->unlike($id);
-            return back();
+        \Auth::user()->unlike($id);
+        return back();
     }
 }

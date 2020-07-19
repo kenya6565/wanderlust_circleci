@@ -71,11 +71,15 @@
             
                                         <button type="submit" class="btn btn-danger">いいね解除</button>
                                     </form>
+                                    <div class="text-right mb-2">いいね！
+                                         <span class="badge badge-pill badge-success">{{ $data['count_liking_users'] }}</span>
+                                    </div>
                                 @else
                                     <form action="{{ route('like', ['id' => $post->id]) }}" method="POST">
                                         {{ csrf_field() }}
             
-                                        <button type="submit" class="btn btn-primary">いいね</button>
+                                        <button type="submit" id='like' class="btn btn-primary">いいね</button>
+                                        
                                     </form>
                                 @endif
                             </div>
