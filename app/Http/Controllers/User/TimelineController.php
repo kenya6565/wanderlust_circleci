@@ -43,12 +43,25 @@ class TimelineController extends Controller
    
    public function post(Request $request)
    {
+        //dd($request);
         $this->validate($request, Post::$rules);
-        Post::create([ // postテーブルにいれる
-            'user_id' => Auth::id(), 
-            'post' => $request->post, 
-        ]);
-        return back(); // リクエスト送ったページに戻る（つまり、/timelineにリダイレクトする）
+        //dd($request);
+        if($request->hasFile('image')){
+            $request->file('image')->store('/public/images');
+            Post::create([ 
+                'user_id' => Auth::id(), 
+                'post' => $request->image, 
+                'image' => $request->file('image')->hashName(),
+            ]);
+         
+        }else{
+            Post::create([ 
+                'user_id' => Auth::id(), 
+                'post' => $request->post, 
+            ]);
+           
+        }
+        return back(); 
     }
     
     public function show(Request $request)

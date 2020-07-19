@@ -18,7 +18,7 @@
                   <p class="font-weight-bolder">フォロワー</p>
                   <a class="text-secondary" href="{{ action('User\FollowsController@showFollowers', Auth::id() )}}">{{ $counts['count_followers'] }}</a>
                 </div>
-                <form action="/timeline" method="post">
+                <form action="/timeline" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                   投稿
@@ -33,7 +33,7 @@
                             </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary rounded-circle p-0" style="width:2rem;height:2rem;">＋</button>
+                            <input type="file" class="form-control-file" name="image">
                             <input type="text" name="post" class="modal-body" placeholder="今どうしてる？">
                             <button type="submit" class="btn btn-primary">ツイート</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -69,7 +69,7 @@
                       </div>
                       <div class="card">
                           <div class="card-body">
-                            <h6>テスト</h6>
+                            <img class="far fa-heart like-btn" src="{{ asset('storage/images/' .$post->image) }}">
                           </div>
                       </div>
                       <div class="card">
