@@ -25,4 +25,10 @@ class Post extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    
+    public function liking_users()
+    {
+        //ある投稿に誰がいいねしてるか
+        return $this->belongsToMany(User::class,'likes','post_id','user_id')->withTimestamps();
+    }
 }

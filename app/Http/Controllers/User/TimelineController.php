@@ -50,7 +50,7 @@ class TimelineController extends Controller
             $request->file('image')->store('/public/images');
             Post::create([ 
                 'user_id' => Auth::id(), 
-                'post' => $request->image, 
+                'post' => $request->post, 
                 'image' => $request->file('image')->hashName(),
             ]);
          
