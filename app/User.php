@@ -106,7 +106,7 @@ class User extends Authenticatable
     public function like($postId)
     {
         //いいね
-        $exist = $this->is_liked($postId);
+        $exist = $this->is_liking($postId);
 
         if($exist){
             return false;
@@ -119,7 +119,7 @@ class User extends Authenticatable
     public function unlike($postId)
     {
         //いいね解除
-        $exist = $this->is_liked($postId);
+        $exist = $this->is_liking($postId);
 
         if($exist){
             $this->likes()->detach($postId);
@@ -129,7 +129,7 @@ class User extends Authenticatable
         }
     }
 
-    public function is_liked($postId)
+    public function is_liking($postId)
     {
         //ある投稿に対してpost_idがあるか
         return $this->likes()->where('post_id',$postId)->exists();

@@ -63,9 +63,22 @@
                                 </div>
                             </a>
                         </div>
-                            <a class="d-flex pr-3" href="#!">
-                                <img class="far fa-heart like-btn" src="{{ asset('images/heart-regular.svg') }}">
-                            </a>
+                            <div class="d-flex justify-content-end flex-grow-1">
+                                @if (Auth::user()->is_liking($post->id))
+                                    <form action="{{ route('unlike', ['id' => $post->id]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+            
+                                        <button type="submit" class="btn btn-danger">いいね解除</button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('like', ['id' => $post->id]) }}" method="POST">
+                                        {{ csrf_field() }}
+            
+                                        <button type="submit" class="btn btn-primary">いいね</button>
+                                    </form>
+                                @endif
+                            </div>
                       </div>
                       <div class="card">
                           <div class="card-body">
