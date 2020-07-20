@@ -14,7 +14,7 @@
 
         <!-- Scripts -->
          {{-- Laravel標準で用意されているJavascriptを読み込みます --}}
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/app.js') }}"></script>
 
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -25,6 +25,7 @@
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         {{-- この章の後半で作成するCSSを読み込みます --}}
         <link href="{{ secure_asset('css/style.css') }}" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar navbar-dark bg-dark">

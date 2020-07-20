@@ -59,28 +59,26 @@
                             </a>
                             <a href="{{ action('User\TimelineController@show',  $post->id )}}">
                                 <div style="padding:2rem; border-top: solid 1px #E6ECF0; border-bottom: solid 1px #E6ECF0;">
+                                    <div>{{ $post->id }}</div>
                                     <div>{{ $post->post }}</div>
                                 </div>
                             </a>
                         </div>
                             <div class="d-flex justify-content-end flex-grow-1">
                                 @if (Auth::user()->is_liking($post->id))
-                                    <form action="{{ route('unlike', ['id' => $post->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-            
-                                        <button type="submit" class="btn btn-danger">いいね解除</button>
-                                    </form>
-                                    <div class="text-right mb-2">いいね！
+                                    <button type="button" class="unfav" data-name="{{$post->id}}">
+                                        <i class="fas fa-heart"></i>
+                                        <span id="unlike" data-name="{{$post->id}}"></span>
+                                        <!--フォロー解除-->
+                                    </button>
+                                    <div class="text-right mb-2">
                                          <span class="badge badge-pill badge-success">{{ $data['count_liking_users'] }}</span>
                                     </div>
                                 @else
-                                    <form action="{{ route('like', ['id' => $post->id]) }}" method="POST">
-                                        {{ csrf_field() }}
-            
-                                        <button type="submit" id='like' class="btn btn-primary">いいね</button>
-                                        
-                                    </form>
+                                    <button type="button" class="fav" data-name="{{$post->id}}">
+                                        <i class="far fa-heart"></i>
+                                        <span id="like" data-name="{{$post->id}}"></span>
+                                    </button>
                                 @endif
                             </div>
                       </div>
@@ -106,4 +104,64 @@
             </div>
         </div>
     </div>
+    <script>
+        
+        $(function() {
+             $('.fav').click('on', function(){
+                 const post_id = $('#like').data();
+                //console.log(post_id);
+                 $.ajax({
+                     headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                     },
+                     url:"{{ action('User\LikesController@store', ['id' => $post->id ]) }}",
+                     type: 'POST',
+                     data: {}
+                 })
+                 .done(function(response) {
+                    //console.log(response);
+                    var get_data = JSON.parse(response);
+                    //console.log(get_data);
+                    //alert('成功');
+                    if(get_data =='true')
+                    {
+                        $('.fas').hide();
+                        $('.far').show();
+                    }
+                 })
+        
+                 .fail(function() {
+                     alert('エラー');
+                 });
+             })
+             
+             $('.unfav').click('on', function(){
+                 const post_id = $('#unlike').data();
+                //console.log(post_id);
+                 $.ajax({
+                     headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                     },
+                     url:"{{ action('User\LikesController@destroy', ['id' => $post->id ]) }}",
+                     type: 'POST',
+                     data: {}
+                 })
+                 .done(function(response) {
+                    //console.log(response);
+                    var get_data = JSON.parse(response);
+                    //console.log(get_data);
+                    //alert('成功');
+                    if(get_data =='true')
+                    {
+                        $('.far').hide();
+                        $('.fas').show();
+                    }
+                 })
+        
+                 .fail(function() {
+                     alert('エラー');
+                 });
+             })
+        });
+    </script>
 @endsection

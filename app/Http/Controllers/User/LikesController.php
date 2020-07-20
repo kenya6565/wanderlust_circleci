@@ -7,17 +7,20 @@ use App\Http\Controllers\Controller;
 
 class LikesController extends Controller
 {
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $like= \Auth::user()->like($id);
-        $json = json_encode($like);
-        echo $json;
+        //\Log::debug($id);
+        $like= \Auth::user()->like($request->id);
+        //dd($like);
+        echo json_encode($like);
+        
         //return back();
     }
 
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        \Auth::user()->unlike($id);
-        return back();
+        $unlike = \Auth::user()->unlike($request->id);
+        echo json_encode($unlike);
+        //return back();
     }
 }
