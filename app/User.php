@@ -95,4 +95,43 @@ class User extends Authenticatable
             $this->followings()->detach($userId);
         }
     }
+  
+    public function likes()
+    {
+        //あるユーザがどの投稿にいいねしているかを見る
+        //Userクラスが、likesテーブルを通して、Postクラスと繋がっている
+        return $this->belongsToMany(Post::class, 'likes', 'user_id', 'post_id')->withTimestamps();
+    }
+
+    public function like($postId)
+    {
+        //いいね
+        $exist = $this->is_liking($postId);
+
+        if($exist){
+            return false;
+        }else{
+            $this->likes()->attach($postId);
+            return true;
+        }
+    }
+
+    public function unlike($postId)
+    {
+        //いいね解除
+        $exist = $this->is_liking($postId);
+
+        if($exist){
+            $this->likes()->detach($postId);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function is_liking($postId)
+    {
+        //ある投稿に対してpost_idがあるか
+        return $this->likes()->where('post_id',$postId)->exists();
+    }
 }
