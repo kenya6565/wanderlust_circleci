@@ -89,4 +89,21 @@ class TimelineController extends Controller
             'comments'
         ));
     }
+    
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        //dd($keyword);
+        if (!empty($keyword)) {
+            $searched_users = User::where('name', $keyword)->get();
+            $searched_posts = Post::where('post', $keyword)->get();
+                
+        }
+ 
+        return view('user.timeline.search', compact(
+            'keyword', 
+            'searched_users', 
+            'searched_posts'
+        ));
+    }
 }

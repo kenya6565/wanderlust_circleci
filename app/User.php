@@ -109,10 +109,12 @@ class User extends Authenticatable
         $exist = $this->is_liking($postId);
 
         if($exist){
-            return false;
+            //return false;
+            return $postId;
         }else{
             $this->likes()->attach($postId);
-            return true;
+            //return true;
+            return $postId;
         }
     }
 

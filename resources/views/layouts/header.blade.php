@@ -30,8 +30,9 @@
     <body>
         <nav class="navbar navbar-dark bg-dark">
           <a class="navbar-brand" href="{{ action('User\TimelineController@index' )}}">Wanderlust</a>
-          <form class="form-inline my-2 my-md-0">
-              <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
+          <form action="{{ route('search') }}" method="GET" class= "form-inline my-2 my-md-0">
+              <input class="form-control" type="text" name="keyword" value="" placeholder="検索..." aria-label="検索...">
+              <p><input type="submit" value="検索"></p>
           </form>
           <ul class="navbar-nav ml-auto">
               @guest

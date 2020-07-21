@@ -121,9 +121,9 @@
                  .done(function(response) {
                     //console.log(response);
                     var get_data = JSON.parse(response);
-                    //console.log(get_data);
+                    console.log(get_data);
                     //alert('成功');
-                    if(get_data =='true')
+                    if(get_data ==='true')
                     {
                         $('.fas').hide();
                         $('.far').show();
@@ -151,7 +151,7 @@
                     var get_data = JSON.parse(response);
                     //console.log(get_data);
                     //alert('成功');
-                    if(get_data =='true')
+                    if(get_data ==='true')
                     {
                         $('.far').hide();
                         $('.fas').show();

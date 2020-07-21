@@ -31,7 +31,7 @@ Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
     Route::get('followers/{id}', 'User\FollowsController@showFollowers')->name('followers');
     Route::post('follow/{id}', 'User\FollowsController@store')->name('follow');
     Route::delete('unfollow/{id}', 'User\FollowsController@destroy')->name('unfollow');
-    
+    Route::get('/search', 'User\TimelineController@search')->name('search');
   
     Route::post('like/{id}','User\LikesController@store')->name('like');
     Route::delete('unlike/{id}','User\LikesController@destroy')->name('unlike');
