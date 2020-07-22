@@ -18,22 +18,98 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ action('User\TimelineController@index' )}}">
+                    <img class='navbar-logo' src="{{ asset('images/logo.png') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse mr10" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li class="nav-item active">
+                             <form action="/timeline" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">
+                                新規登録
+                            </a>
+                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">思い出の場所を共有しよう</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <input type="file" class="form-control-file" name="image">
+                                        <input type="text" name="title" class="modal-body" placeholder="タイトル">
+                                        <input type="text" name="post" class="modal-body" placeholder="思い出の場所を共有しよう">
+                                        <button type="submit" class="btn btn-primary">ツイート</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            @if($errors->first('post'))
+                                <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
+                            @endif
+                            </form>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <form action="{{ route('search') }}" method="GET" class= "form-inline my-2 my-md-0">
+                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-xl">検索</a>
+                            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myHugeModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="dropdown">
+                                          <button class="btn btn-secondary dropdown-toggle"
+                                                  type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                                  aria-haspopup="true" aria-expanded="false">
+                                                国を選択してください
+                                          </button>
+                                          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <a class="dropdown-item" href="#!">日本</a>
+                                            <a class="dropdown-item" href="#!">アメリカ</a>
+                                          </div>
+                                        </div>
+                                        <input type="file" class="form-control-file" name="image">
+                                        <input type="text" name="post" class="modal-body" placeholder="場所もしくはユーザ名で探す">
+                                        <button type="submit" class="btn btn-primary">検索</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            @if($errors->first('post'))
+                                <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
+                            @endif
+                            </form>
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ action('User\PagesController@show',Auth::id() )}}">マイページ</a>
+                        </li>
+           
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -71,10 +147,18 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+        <main class="main">
+         <!-- フラッシュメッセージ -->
+        @if (session('flash_message'))
+            <div class="flash_message bg-success text-center py-3 my-0 mb30">
+                {{ session('flash_message') }}
+            </div>
+        @endif
             @yield('content')
         </main>
+        <footer class='footer p20'>
+          <small class='copyright'>Wanderlust 2020 copyright</small>
+        </footer>
     </div>
 </body>
 </html>

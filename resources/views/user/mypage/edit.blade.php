@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.app')
 @section('title', 'editmypage')
     
 @section('content')

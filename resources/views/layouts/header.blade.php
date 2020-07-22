@@ -86,5 +86,8 @@
             {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
             @yield('content')
         </main>
+        <footer class='footer p20'>
+          <small class='copyright'>Laravel 2020 copyright</small>
+        </footer>
     </body>
 </html>

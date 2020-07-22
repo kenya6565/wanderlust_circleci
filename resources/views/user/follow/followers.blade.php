@@ -1,4 +1,4 @@
-@extends('layouts.header')
+@extends('layouts.app')
 @section('title', 'followers')
     
 @section('content')

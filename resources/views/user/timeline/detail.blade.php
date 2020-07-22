@@ -1,9 +1,14 @@
-@extends('layouts.header')
+@extends('layouts.app')
 @section('title', 'postdetail')
     
 @section('content')
     <div class="container">
-        {{ $post->post }}
+        <div class="card mb50">
+          <div class="card-body">
+              {{ $post->post }}
+          </div>
+        </div>
+      
         @foreach($post->comments as $comment)
             <div class="media">
               <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="user_image">
@@ -22,5 +27,8 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg btn-block">コメント</button>
         </form>
+        @if(Auth::id() == $post->user->id)
+                  <a href="{{ action('User\TimelineController@edit', ['id' => $post->user->id,'post' => $post->post,'title' => $post->title] )}}" role="button" class="btn btn-primary">編集</a>
+        @endif
     </<div>
 @endsection

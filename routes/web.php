@@ -24,6 +24,8 @@ Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
     Route::post('/','User\TimelineController@post');
     Route::get('detail/{id}','User\TimelineController@show')->name('postdetail');
     Route::post('detail','User\CommentController@comment');
+    Route::get('detail/edit/{id}','User\TimelineController@edit');
+    
     Route::get('mypage/{id}','User\PagesController@show')->name('mypage');
     Route::get('mypage/editmypage/{id}','User\PagesController@edit');
     Route::post('mypage/editmypage','User\PagesController@update');
@@ -33,6 +35,6 @@ Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
     Route::delete('unfollow/{id}', 'User\FollowsController@destroy')->name('unfollow');
     Route::get('/search', 'User\TimelineController@search')->name('search');
   
-    Route::post('like/{id}','User\LikesController@store')->name('like');
-    Route::delete('unlike/{id}','User\LikesController@destroy')->name('unlike');
+    Route::post('like','User\LikesController@store')->name('like');
+    Route::delete('unlike','User\LikesController@destroy')->name('unlike');
 });
