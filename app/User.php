@@ -110,6 +110,7 @@ class User extends Authenticatable
 
         if($exist){
             return false;
+            
         }else{
             $this->likes()->attach($postId);
             return true;

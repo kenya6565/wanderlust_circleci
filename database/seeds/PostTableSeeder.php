@@ -12,6 +12,7 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         $post = new \App\Post([
+            'title' => 'テスト１',
             'post' => 'テスト１',
             'user_id' => '1',
      
@@ -19,6 +20,7 @@ class PostTableSeeder extends Seeder
         $post->save();
         
         $post = new \App\Post([
+            'title' => 'テスト１',
             'post' => 'テスト１',
             'user_id' => '1',
      
@@ -26,6 +28,7 @@ class PostTableSeeder extends Seeder
         $post->save();
         
         $post = new \App\Post([
+            'title' => 'テスト１',
             'post' => 'テスト2',
             'user_id' => '2',
      
@@ -33,6 +36,7 @@ class PostTableSeeder extends Seeder
         $post->save();
         
         $post = new \App\Post([
+            'title' => 'テスト１',
             'post' => 'テスト3',
             'user_id' => '3',
      
