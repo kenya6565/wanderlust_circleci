@@ -21,7 +21,6 @@ class TimelineController extends Controller
         $all_posts = NULL;
         //dd($user_posts);
         $counts = BaseClass::counts(Auth::user());
-       // dd($user_posts);
        // もしログインユーザが誰かをフォローしていたならforeachでフォローしてるユーザ１つ１つの投稿を取得
         $following_users = Auth::user()->followings;
         //dd($following_users);
@@ -33,10 +32,10 @@ class TimelineController extends Controller
                     $all_posts = $all_posts-> sortByDesc('created_at');
                 }
             }
-        }else{
-            $all_posts = $user_posts-> sortByDesc('created_at');
-            //dd($all_posts);
         }
+        $all_posts = $user_posts-> sortByDesc('created_at');
+        //dd($all_posts);
+        
         
         if($all_posts != NULL){
             foreach($all_posts as $post){
