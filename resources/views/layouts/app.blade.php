@@ -34,6 +34,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
+                @if(Auth::check())
                 <div class="collapse navbar-collapse mr10" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -109,6 +110,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ action('User\PagesController@show',Auth::id() )}}">マイページ</a>
                         </li>
+                @endif
+           
            
                     </ul>
 
