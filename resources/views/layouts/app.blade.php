@@ -41,23 +41,34 @@
                         <li class="nav-item active">
                              <form action="/timeline" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
-                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">
+                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-xl">
                                 新規登録
                             </a>
-                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-lg">
+                            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">思い出の場所を共有しよう</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
+                                            <h5 class="modal-title text-dark" id="exampleModalLabel">思い出の場所を共有しよう</h5>
                                     </div>
+                                    <div class="modal-body">
+                                        <form>
+                                          <div class="form-group">
+                                            <label for="title-name" class="col-form-label text-dark">名所の名前:</label>
+                                            <input type="text" name="title" class="form-control" id="title-name" placeholder="名所の名前">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="message-text" class="col-form-label text-dark">紹介文:</label>
+                                            <textarea class="form-control" name="post" id="message-text" placeholder="紹介文"></textarea>
+                                          </div>
+                                         <div class="form-group">
+                                            <label for="message-text" class="col-form-label text-dark">画像(任意):</label>
+                                            <input type="file" class="form-control-file" name="image">
+                                         </div>
+                                        </form>
+                                    </div>
+                                    
                                     <div class="modal-footer">
-                                        <input type="file" class="form-control-file" name="image">
-                                        <input type="text" name="title" class="modal-body" placeholder="タイトル">
-                                        <input type="text" name="post" class="modal-body" placeholder="思い出の場所を共有しよう">
-                                        <button type="submit" class="btn btn-primary">ツイート</button>
+                                        <button type="submit" class="btn btn-primary">投稿</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
@@ -71,9 +82,9 @@
                         
                         <li class="nav-item">
                             <form action="{{ route('search') }}" method="GET" class= "form-inline my-2 my-md-0">
-                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-xl">検索</a>
-                            <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myHugeModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-xl">
+                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">検索</a>
+                            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myHugeModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
@@ -111,10 +122,7 @@
                             <a class="nav-link" href="{{ action('User\PagesController@show',Auth::id() )}}">マイページ</a>
                         </li>
                 @endif
-           
-           
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

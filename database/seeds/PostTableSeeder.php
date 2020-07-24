@@ -12,33 +12,43 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         $post = new \App\Post([
-            'title' => 'テスト１',
-            'post' => 'テスト１',
+            'title' => 'ユーザー1',
+            'post' => 'ユーザー1',
             'user_id' => '1',
      
             ]);
         $post->save();
         
         $post = new \App\Post([
-            'title' => 'テスト１',
-            'post' => 'テスト１',
+            'title' => 'ユーザー1',
+            'post' => 'ユーザー1',
             'user_id' => '1',
      
             ]);
         $post->save();
         
         $post = new \App\Post([
-            'title' => 'テスト１',
-            'post' => 'テスト2',
+            'title' => 'ユーザー2',
+            'post' => 'ユーザー2',
             'user_id' => '2',
      
             ]);
         $post->save();
         
+        $post->save();
+        
         $post = new \App\Post([
-            'title' => 'テスト１',
-            'post' => 'テスト3',
+            'title' => 'ユーザー3',
+            'post' => 'ユーザー3',
             'user_id' => '3',
+     
+            ]);
+        $post->save();
+        
+        $post = new \App\Post([
+            'title' => '55555',
+            'post' => '55555',
+            'user_id' => '5',
      
             ]);
         $post->save();

@@ -41,5 +41,8 @@
             </div>
         </div>
     @endforeach
+    <div class="d-flex justify-content-center mt40">
+      {{ $following_users->links() }}
+    </div>
     
 @endsection
