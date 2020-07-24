@@ -21,6 +21,8 @@
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
     <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
     @yield('css')
+    
+    
 </head>
 <body>
     <div id="app">
@@ -58,18 +60,22 @@
                                           </div>
                                           <div class="form-group">
                                             <label for="message-text" class="col-form-label text-dark">紹介文:</label>
-                                            <textarea class="form-control" name="post" id="message-text" placeholder="紹介文"></textarea>
+                                            <textarea class="form-control" style=" height:220px; resize: none;" name="post" id="message-text" placeholder="紹介文"></textarea>
                                           </div>
-                                         <div class="form-group">
+                                          <div class="form-group">
+                                            <label for="country-name" class="col-form-label text-dark">名所の国:</label>
+                                            <input type="text" name="country" class="form-control" id="country-name" placeholder="国名を入力">
+                                          </div>
+                                          <div class="form-group">
                                             <label for="message-text" class="col-form-label text-dark">画像(任意):</label>
-                                            <input type="file" class="form-control-file" name="image">
-                                         </div>
+                                            <input type="file" class="form-control-file text-dark" name="image" id="exampleFormControlFile1">
+                                          </div>
                                         </form>
                                     </div>
                                     
                                     <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                                         <button type="submit" class="btn btn-primary">投稿</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                               </div>
@@ -87,27 +93,23 @@
                               <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
+                                            <h5 class="modal-title text-dark" id="exampleModalLabel">検索</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                          <div class="form-group">
+                                            <label for="title-name" class="col-form-label text-dark">名所:</label>
+                                            <input type="text" name="title" style="width:100%;" class="form-control" id="title-name" placeholder="名所を入力">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="country-name" class="col-form-label text-dark">名所の国:</label>
+                                            <input type="text" name="country" style="width:100%;" class="form-control" id="country-name" placeholder="国名を入力">
+                                          </div>
+                                        </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <div class="dropdown">
-                                          <button class="btn btn-secondary dropdown-toggle"
-                                                  type="button" id="dropdownMenu1" data-toggle="dropdown"
-                                                  aria-haspopup="true" aria-expanded="false">
-                                                国を選択してください
-                                          </button>
-                                          <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <a class="dropdown-item" href="#!">日本</a>
-                                            <a class="dropdown-item" href="#!">アメリカ</a>
-                                          </div>
-                                        </div>
-                                        <input type="file" class="form-control-file" name="image">
-                                        <input type="text" name="post" class="modal-body" placeholder="場所もしくはユーザ名で探す">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                                         <button type="submit" class="btn btn-primary">検索</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                               </div>

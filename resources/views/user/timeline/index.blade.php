@@ -4,10 +4,8 @@
     <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
 @endsection
 @section('title', 'timeline')
-    
 @section('content')
         <div class="row justify-content-center container">
-         
             @foreach($all_posts as $post)
             <div class="col-4 mb50">
                 <div class="card">
@@ -24,7 +22,6 @@
                 </div>
             </div>
             @endforeach
-           
         </div>
          {{ $all_posts->links() }}
 @endsection
