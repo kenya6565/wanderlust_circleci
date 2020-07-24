@@ -7,7 +7,7 @@
     
 @section('content')
         <div class="row justify-content-center container">
-            @if(!empty($all_posts))
+         
             @foreach($all_posts as $post)
             <div class="col-4 mb50">
                 <div class="card">
@@ -24,6 +24,7 @@
                 </div>
             </div>
             @endforeach
-            @endif
+           
         </div>
+         {{ $all_posts->links() }}
 @endsection

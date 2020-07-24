@@ -28,5 +28,23 @@ class FollowTableSeeder extends Seeder
             'following_id'  => '1'
         ]);
         $follow->save();
+        
+        $follow = new \App\Follow([
+            'user_id' => '4',
+            'following_id'  => '1'
+        ]);
+        $follow->save();
+        
+         $follow = new \App\Follow([
+            'user_id' => '3',
+            'following_id'  => '2'
+        ]);
+        $follow->save();
+        
+         $follow = new \App\Follow([
+            'user_id' => '3',
+            'following_id'  => '4'
+        ]);
+        $follow->save();
     }
 }

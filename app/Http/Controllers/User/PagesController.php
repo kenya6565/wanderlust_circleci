@@ -21,7 +21,7 @@ class PagesController extends Controller
         $counts = BaseClass::counts($user_info);
         $posts = Post::where('user_id',$request->id)->latest()->get();
       
-        return view('user.mypage.index',compact(
+        return view('user.users.index',compact(
             'posts',
             'user_info',
             'counts'
@@ -36,7 +36,7 @@ class PagesController extends Controller
         { //aaaaaは単なるパラメーター、News::findによってニューステーブルの特定の情報１行（bodyとか名前とか）を＄newsに入れてる
             abort(404);
         }
-        return view('user.mypage.edit',compact(
+        return view('user.users.edit',compact(
             'login_user'
         ));
     }

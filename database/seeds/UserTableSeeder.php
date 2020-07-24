@@ -33,10 +33,17 @@ class UserTableSeeder extends Seeder
         ]);
     $user->save();
     
-     $user = new \App\User([
+    $user = new \App\User([
         'name' => 'testuser',
         'email' => 'test@user.com',
         'password' => bcrypt('testuser')
+        ]);
+    $user->save();
+    
+    $user = new \App\User([
+        'name' => 'Python',
+        'email' => 'user5@user.com',
+        'password' => bcrypt('55555555')
         ]);
     $user->save();
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
 use App\Http\Controllers;
 use App\Library\BaseClass;
 use App\Http\Controllers\Controller;
@@ -18,27 +19,24 @@ class TimelineController extends Controller
    {
         //自分の投稿とフォローしてるユーザの投稿を取得してそれを作成日時順で表示
         $user_posts = Auth::user()->posts;
-        $all_posts = NULL;
-        //dd($user_posts);
         $counts = BaseClass::counts(Auth::user());
-       // dd($user_posts);
        // もしログインユーザが誰かをフォローしていたならforeachでフォローしてるユーザ１つ１つの投稿を取得
-        $following_users = Auth::user()->followings;
-        //dd($following_users);
-        if($following_users != NULL)
+        $user_id = [Auth::id()];
+        if(count(Auth::user()->followings) > 0)
         {
+            $following_users = Auth::user()->followings;
             foreach($following_users as $following_user){
-                if(!empty($following_user->posts)){
-                    $all_posts = $user_posts->merge($following_user->posts);
-                    $all_posts = $all_posts-> sortByDesc('created_at');
-                }
+                //フォローしてるユーザーのID＋ログインユーザのID
+                array_push($user_id,$following_user->id);
             }
-        }else{
-            $all_posts = $user_posts-> sortByDesc('created_at');
-            //dd($all_posts);
         }
-        
-        if($all_posts != NULL){
+        //postsテーブルのユーザID(投稿ユーザ)にフォローしてるユーザのIDかログインユーザのIDがあったら取得
+        $all_posts = Post::whereIn('user_id',$user_id)
+                           ->orderBy('created_at','DESC')
+                           ->paginate(9);
+                           
+        //$all_posts = $all_posts->sortByDesc('created_at');
+        if(count($all_posts) > 0){
             foreach($all_posts as $post){
                 $count_liking_users = $post->liking_users->count();
                 //dd($count_liking_users);
@@ -48,7 +46,8 @@ class TimelineController extends Controller
             }
             
         }
-        
+        //id 3と2
+        //dd($all_posts);
         return view('user.timeline.index',compact(
             'all_posts',
             'counts',
