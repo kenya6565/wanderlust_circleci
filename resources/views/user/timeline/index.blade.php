@@ -18,6 +18,22 @@
                         <div>{{ $post->post }}</div>
                     </p>
                     <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-primary">詳細</a>
+                    <div class="d-flex justify-content-end flex-grow-1">
+                        @if (Auth::user()->is_liking($post->id))
+                            <form action="{{ route('unlike', ['id' => $post->id]) }}" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <span class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
+                                <button type="submit" class="btn btn-danger">いいね解除</button>
+                            </form>
+                        @else
+                            <form action="{{ route('like', ['id' => $post->id]) }}" method="POST">
+                                {{ csrf_field() }}
+                                <span class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
+                                <button type="submit" class="btn btn-primary">いいねする</button>
+                            </form>
+                        @endif
+                    </div>
                   </div>
                 </div>
             </div>
