@@ -28,7 +28,11 @@
         <button type="submit" class="btn btn-primary btn-lg btn-block">コメント</button>
         </form>
         @if(Auth::id() == $post->user->id)
-                  <a href="{{ action('User\TimelineController@edit', ['id' => $post->user->id,'post' => $post->post,'title' => $post->title] )}}" role="button" class="btn btn-primary">編集</a>
+            <a href="{{ action('User\TimelineController@edit', ['id' => $post->id] )}}" role="button" class="btn btn-primary">編集</a>
+            <form action="/timeline/detail/{{$post->id}}" method="post">
+              {{ csrf_field() }}
+              <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("君は本当に削除するつもりかい？");'>
+        　  </form>
         @endif
     </<div>
 @endsection
