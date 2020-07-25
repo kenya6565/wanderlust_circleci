@@ -55,16 +55,14 @@ class TimelineController extends Controller
         ));
         
    }
-   public function edit(Request $request)
+   public function edit($id)
     {
-        //dd($request);
-       
-        $edit_post = Post::find($request->id);
+        //dd($id);
         
-        if (empty($edit_post))
-        { //aaaaaは単なるパラメーター、News::findによってニューステーブルの特定の情報１行（bodyとか名前とか）を＄newsに入れてる
-            abort(404);
-        }
+        $edit_post = Post::find($id);
+        //dd($edit_post);
+       
+       
         return view('user.timeline.edit',compact(
             'edit_post'
         ));
@@ -110,6 +108,15 @@ class TimelineController extends Controller
         ));
     }
     
+    public function delete(Request $request)
+    {
+        Post::find($request->id)->delete();
+        
+        return redirect('/timeline'); 
+    }
+
+
+
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
