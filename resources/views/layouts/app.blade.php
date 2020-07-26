@@ -21,8 +21,6 @@
     <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
     <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
     @yield('css')
-    
-    
 </head>
 <body>
     <div id="app">
@@ -35,7 +33,6 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 @if(Auth::check())
                 <div class="collapse navbar-collapse mr10" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -70,6 +67,8 @@
                                             <label for="message-text" class="col-form-label text-dark">画像(任意):</label>
                                             <input type="file" class="form-control-file text-dark" name="image" id="exampleFormControlFile1">
                                           </div>
+                                        
+                                    
                                         </form>
                                     </div>
                                     

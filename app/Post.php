@@ -32,5 +32,13 @@ class Post extends Model
     {
         //ある投稿に誰がいいねしてるか
         return $this->belongsToMany(User::class,'likes','post_id','user_id')->withTimestamps();
+        //return $this->belongsToMany(User::class, 'users')->using(Like::class);
+        // $users = [];
+        // $likes = Like::where('post_id', $this->id)->get();
+        // foreach($likes as $like) {
+        //   $users[] = User::find($like->user_id);
+        // }
+        // dd( $users);
+        // return $users;
     }
 }

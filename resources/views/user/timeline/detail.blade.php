@@ -18,6 +18,7 @@
               </div>
             </div>
         @endforeach
+        <iframe id="iframe" src="https://maps.google.co.jp/maps?output=embed&q={{ $post->title }}"></iframe>
         <form action="/timeline/detail" method="post">
         @csrf
         <input id="post_id" type="hidden"  name="id" value="{{$post->id}}">
@@ -31,7 +32,7 @@
             <a href="{{ action('User\TimelineController@edit', ['id' => $post->id] )}}" role="button" class="btn btn-primary">編集</a>
             <form action="/timeline/detail/{{$post->id}}" method="post">
               {{ csrf_field() }}
-              <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("君は本当に削除するつもりかい？");'>
+              <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("投稿を削除しますか？");'>
         　  </form>
         @endif
     </<div>
