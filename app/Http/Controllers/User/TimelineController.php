@@ -58,7 +58,7 @@ class TimelineController extends Controller
         $this->validate($request, Post::$rules);
         $post= Post::find($request->id);
         $updated_post = $request->all(); 
-        dd($updated_post);
+        //dd($updated_post);
         $post->fill($updated_post)->save();
         
         return redirect('/timeline'); 
