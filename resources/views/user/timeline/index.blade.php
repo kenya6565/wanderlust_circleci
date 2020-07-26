@@ -9,8 +9,9 @@
             @foreach($all_posts as $post)
             <div class="col-4 mb50">
                 <div class="card">
-                 
-                  <img class="far fa-heart card-img-top" src="{{ asset('storage/images/' .$post->image) }}">
+                  @if(isset($post->image))
+                  <img class="card-img-top" src="{{ asset('storage/images/' .$post->image) }}">
+                  @endif
                   <div class="card-body">
                     <h4 class="card-title">{{ $post->title }}</h4>
                     <p class="card-text">
@@ -24,13 +25,13 @@
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <span class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
-                                <button type="submit" class="btn btn-danger">いいね解除</button>
+                                <button type="submit" class="fas fa-heart"></button>
                             </form>
                         @else
                             <form action="{{ route('like', ['id' => $post->id]) }}" method="POST">
                                 {{ csrf_field() }}
                                 <span class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
-                                <button type="submit" class="btn btn-primary">いいねする</button>
+                                <button type="submit" class="far fa-heart "></button>
                             </form>
                         @endif
                     </div>

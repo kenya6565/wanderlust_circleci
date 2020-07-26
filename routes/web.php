@@ -26,6 +26,7 @@ Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
     Route::post('detail','User\CommentController@comment');
     Route::post('detail/{id}', 'User\TimelineController@delete');
     Route::get('detail/edit/{id}','User\TimelineController@edit');
+    Route::post('detail/edit','User\TimelineController@update');
     
     Route::get('users/{id}','User\PagesController@show')->name('mypage');
     Route::get('users/edit/{id}','User\PagesController@edit');

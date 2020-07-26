@@ -18,7 +18,9 @@ class TimelineController extends Controller
    public function index(Request $request)
    {
         //自分の投稿とフォローしてるユーザの投稿を取得してそれを作成日時順で表示
+       
         $user_posts = Auth::user()->posts;
+        //dd($user_posts);
        // もしログインユーザが誰かをフォローしていたならforeachでフォローしてるユーザ１つ１つの投稿を取得
         $user_id = [Auth::id()];
         if(count(Auth::user()->followings) > 0)
@@ -51,7 +53,17 @@ class TimelineController extends Controller
             'edit_post'
         ));
     }
+    public function update(Request $request)
+    {
+        $this->validate($request, Post::$rules);
+        $post= Post::find($request->id);
+        $updated_post = $request->all(); 
+        dd($updated_post);
+        $post->fill($updated_post)->save();
+        
+        return redirect('/timeline'); 
     
+    }
    
    public function post(Request $request)
    {
