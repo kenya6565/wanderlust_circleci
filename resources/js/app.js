@@ -31,3 +31,16 @@ const app = new Vue({
     el: '#app',
 });
 
+var num = 0;
+$('#add').on('click', function() {
+
+   var add_image = '<input type="file" class="form-control-file text-dark"  name="image" id="File"  multiple>'
+   $('.form-group-file').append(add_image)
+   $(this).data("click", ++num);
+    var click = $(this).data("click");
+    if(click >= 5){
+        $("#add").attr('disabled', true);
+        alert("投稿できる画像は5枚までです");
+    }
+    return false;
+});

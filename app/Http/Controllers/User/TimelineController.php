@@ -9,6 +9,7 @@ use App\Library\BaseClass;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\Post;
+use \App\PostPhoto;
 use \App\Comment;
 use \App\User;
 
@@ -71,22 +72,27 @@ class TimelineController extends Controller
         $this->validate($request, Post::$rules);
         //dd($request);
         if($request->hasFile('image')){
-            $request->file('image')->store('/public/images');
-            Post::create([ 
-                'user_id' => Auth::id(), 
-                'title' => $request->title, 
-                'post' => $request->post, 
-                'image' => $request->file('image')->hashName(),
-            ]);
-         
-        }else{
-            Post::create([ 
-                'user_id' => Auth::id(), 
-                'title' => $request->title, 
-                'post' => $request->post, 
-            ]);
+            $images = $request->file('image');
            
+            foreach($images as $image)
+            {
+                dd($image);
+                $image->store('/public/images');
+                PostPhoto::create([
+                    'post_id' => $request->id,
+                    'image' => $image->file('image')->hashName(),
+                ]);
+            }
+         
         }
+        
+        Post::create([ 
+            'user_id' => Auth::id(), 
+            'title' => $request->title, 
+            'post' => $request->post, 
+        ]);
+           
+        
         return redirect('/timeline'); 
     }
     

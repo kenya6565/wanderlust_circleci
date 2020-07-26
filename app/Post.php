@@ -10,8 +10,7 @@ class Post extends Model
         'user_id',
         'title',
         'post',
-        'country',
-        'image'
+        'country'
     ];
     
     public static $rules = array(
@@ -40,5 +39,10 @@ class Post extends Model
         // }
         // dd( $users);
         // return $users;
+    }
+    
+    public function photo()
+    {
+        return $this->hasMany('App\PostPhoto');
     }
 }
