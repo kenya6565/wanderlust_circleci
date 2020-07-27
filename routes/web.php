@@ -20,8 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //ログイン一般ユーザー
 Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
-    Route::get('/','User\TimelineController@index');
-    Route::post('/','User\TimelineController@post');
+    Route::get('/','User\TimelineController@index')->name('timeline');
+    Route::post('/','User\TimelineController@post')->name('post');
     Route::get('detail/{id}','User\TimelineController@show')->name('postdetail');
     Route::post('detail','User\CommentController@comment');
     Route::get('detail/edit/{id}','User\TimelineController@edit');

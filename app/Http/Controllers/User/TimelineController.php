@@ -68,32 +68,27 @@ class TimelineController extends Controller
    
    public function post(Request $request)
    {
-        //dd($request);
+        
         $this->validate($request, Post::$rules);
+        
+        $form = $request->all();
+        $post = new Post;
+        $post->fill($form)->fill(['user_id' => Auth::id()])->save();
         //dd($request);
         if($request->hasFile('image')){
-            $images = $request->file('image');
-           
-            foreach($images as $image)
+            //dd($images);
+            foreach($request->file('image') as $image)
             {
-                dd($image);
+                //dd($image);
                 $image->store('/public/images');
                 PostPhoto::create([
-                    'post_id' => $request->id,
-                    'image' => $image->file('image')->hashName(),
+                    'post_id' => $post->id,
+                    'image' => $image->hashName(),
                 ]);
             }
          
         }
-        
-        Post::create([ 
-            'user_id' => Auth::id(), 
-            'title' => $request->title, 
-            'post' => $request->post, 
-        ]);
-           
-        
-        return redirect('/timeline'); 
+        return redirect(route('timeline'));
     }
     
     public function show(Request $request)

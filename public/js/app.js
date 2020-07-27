@@ -49517,7 +49517,7 @@ var app = new Vue({
 });
 var num = 0;
 $('#add').on('click', function () {
-  var add_image = '<input type="file" class="form-control-file text-dark"  name="image" id="File"  multiple>';
+  var add_image = ' <input type="file" class="form-control-file text-dark"  name="image[]" id="File"  multiple="multiple">';
   $('.form-group-file').append(add_image);
   $(this).data("click", ++num);
   var click = $(this).data("click");

@@ -41,8 +41,13 @@ class Post extends Model
         // return $users;
     }
     
-    public function photo()
+    public function photos()
     {
         return $this->hasMany('App\PostPhoto');
+    }
+    
+    public function firstPhoto()
+    {
+        return $this->photos->first();
     }
 }

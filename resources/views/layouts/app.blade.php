@@ -53,7 +53,7 @@
                                             <h5 class="modal-title text-dark" id="exampleModalLabel">思い出の場所を共有しよう</h5>
                                     </div>
                                     <div class="modal-body">
-                                       
+                                        <form>
                                           <div class="form-group">
                                             <label for="title-name" class="col-form-label text-dark">名所の名前:</label>
                                             <input type="text" name="title" class="form-control" id="title-name" placeholder="名所の名前">
@@ -69,11 +69,9 @@
                                           <button type="button" id="add" class=" btn-floating btn-primary" ><i class="fas fa-plus"></i></button>
                                           <div class="form-group-file">
                                             <label for="message-text" class="col-form-label text-dark">画像(任意):</label>
-                                            <input type="file" class="form-control-file text-dark"  name="image" id="File"  multiple>
+                                            <input type="file" class="form-control-file text-dark"  name="image[]" id="File"  multiple="multiple">
                                           </div>
-                                          
-                                       
-                                        
+                                        </form>
                                     </div>
                                   
                                     <div class="modal-footer">
