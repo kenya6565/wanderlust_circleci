@@ -66,15 +66,14 @@
                                             <label for="country-name" class="col-form-label text-dark">名所の国:</label>
                                             <input type="text" name="country" class="form-control" id="country-name" placeholder="国名を入力">
                                           </div>
-                                          <div class="form-group">
+                                          <button type="button" id="add" class=" btn-floating btn-primary" ><i class="fas fa-plus"></i></button>
+                                          <div class="form-group-file">
                                             <label for="message-text" class="col-form-label text-dark">画像(任意):</label>
-                                            <input type="file" class="form-control-file text-dark" name="image" id="exampleFormControlFile1">
+                                            <input type="file" class="form-control-file text-dark"  name="image[]" id="File"  multiple="multiple">
                                           </div>
-                                        
-                                    
                                         </form>
                                     </div>
-                                    
+                                  
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
                                         <button type="submit" class="btn btn-primary">投稿</button>

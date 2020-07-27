@@ -10,8 +10,7 @@ class Post extends Model
         'user_id',
         'title',
         'post',
-        'country',
-        'image'
+        'country'
     ];
     
     public static $rules = array(
@@ -40,5 +39,19 @@ class Post extends Model
         // }
         // dd( $users);
         // return $users;
+    }
+    
+    public function photos()
+    {
+        return $this->hasMany('App\PostPhoto');
+    }
+    
+    public function firstPhoto()
+    {
+        
+        return $this->photos->first();
+        //Postクラス（このクラス）の別のメソッド（photosメソッド)を呼び出すために$thisを使っている
+        //photosでpostphotoテーブルを参照してfirst()で投稿された画像の最初のものを取得する
+        
     }
 }

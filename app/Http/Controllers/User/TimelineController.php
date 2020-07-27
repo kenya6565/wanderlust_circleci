@@ -9,6 +9,7 @@ use App\Library\BaseClass;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth; 
 use \App\Post;
+use \App\PostPhoto;
 use \App\Comment;
 use \App\User;
 
@@ -67,40 +68,40 @@ class TimelineController extends Controller
    
    public function post(Request $request)
    {
-        //dd($request);
+        
         $this->validate($request, Post::$rules);
+        
+        $form = $request->all();
+        $post = new Post;
+        $post->fill($form)->fill(['user_id' => Auth::id()])->save();
         //dd($request);
         if($request->hasFile('image')){
-            $request->file('image')->store('/public/images');
-            Post::create([ 
-                'user_id' => Auth::id(), 
-                'title' => $request->title, 
-                'post' => $request->post, 
-                'image' => $request->file('image')->hashName(),
-            ]);
-         
-        }else{
-            Post::create([ 
-                'user_id' => Auth::id(), 
-                'title' => $request->title, 
-                'post' => $request->post, 
-            ]);
-           
+            //dd($images);
+            foreach($request->file('image') as $image)
+            {
+                $image->store('/public/images');
+                PostPhoto::create([
+                    'post_id' => $post->id,
+                    'image' => $image->hashName(),
+                ]);
+            }
         }
-        return redirect('/timeline'); 
+        return redirect(route('timeline'))->with('flash_message', '投稿が完了しました');
     }
     
     public function show(Request $request)
     {
         //クリックした投稿のID
         $post = Post::find($request->id);
-        //dd($post);
+        $images = $post->photos;
+        //dd($images);
         //１つの投稿を表示する際それについてるコメントを表示
         $comments = Comment::where('post_id',$post)->latest()->get();
-      
+       
         return view('user.timeline.detail', compact(
             'post',
-            'comments'
+            'comments',
+            'images'
         ));
     }
     
