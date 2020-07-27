@@ -79,29 +79,29 @@ class TimelineController extends Controller
             //dd($images);
             foreach($request->file('image') as $image)
             {
-                //dd($image);
                 $image->store('/public/images');
                 PostPhoto::create([
                     'post_id' => $post->id,
                     'image' => $image->hashName(),
                 ]);
             }
-         
         }
-        return redirect(route('timeline'));
+        return redirect(route('timeline'))->with('flash_message', '投稿が完了しました');
     }
     
     public function show(Request $request)
     {
         //クリックした投稿のID
         $post = Post::find($request->id);
-        //dd($post);
+        $images = $post->photos;
+        //dd($images);
         //１つの投稿を表示する際それについてるコメントを表示
         $comments = Comment::where('post_id',$post)->latest()->get();
-      
+       
         return view('user.timeline.detail', compact(
             'post',
-            'comments'
+            'comments',
+            'images'
         ));
     }
     

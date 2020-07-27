@@ -10,7 +10,7 @@
             <div class="col-4 mb50">
                 <div class="card">
                   @if(isset($post->firstPhoto()->image))
-                  <img class="card-img-top" src="{{ asset('storage/images/' .$post->firstPhoto()->image) }}">
+                      <img class="card-img-top" src="{{ asset('storage/images/' .$post->firstPhoto()->image) }}">
                   @endif
                   <div class="card-body">
                     <h4 class="card-title">{{ $post->title }}</h4>

@@ -48,6 +48,10 @@ class Post extends Model
     
     public function firstPhoto()
     {
+        
         return $this->photos->first();
+        //Postクラス（このクラス）の別のメソッド（photosメソッド)を呼び出すために$thisを使っている
+        //photosでpostphotoテーブルを参照してfirst()で投稿された画像の最初のものを取得する
+        
     }
 }

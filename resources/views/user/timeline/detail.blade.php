@@ -3,9 +3,12 @@
     
 @section('content')
     <div class="container">
+        @foreach($images as $image)
+             <img class="card-img-top" src="{{ asset('storage/images/' .$image->image) }}">
+        @endforeach
         <div class="card mb50">
           <div class="card-body">
-              {{ $post->post }}
+                {{ $post->post }}
           </div>
         </div>
       
