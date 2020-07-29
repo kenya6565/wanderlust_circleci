@@ -42,32 +42,9 @@ class TimelineController extends Controller
         ));
         
    }
-   public function edit($id)
-    {
-        //dd($id);
-        
-        $edit_post = Post::find($id);
-        //dd($edit_post);
-       
-       
-        return view('user.timeline.edit',compact(
-            'edit_post'
-        ));
-    }
-    public function update(Request $request)
-    {
-        $this->validate($request, Post::$rules);
-        $post= Post::find($request->id);
-        $updated_post = $request->all(); 
-        //dd($updated_post);
-        $post->fill($updated_post)->save();
-        
-        return redirect('/timeline'); 
-    
-    }
    
-   public function post(Request $request)
-   {
+    public function post(Request $request)
+    {
         
         $this->validate($request, Post::$rules);
         
@@ -79,26 +56,25 @@ class TimelineController extends Controller
             //dd($images);
             foreach($request->file('image') as $image)
             {
-                
                 //$image->store('/public/images');
                 PostPhoto::create([
                     'post_id' => $post->id,
                     'image' => $image->hashName(),
                 ]);
                 \Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
-                
             }
             
         }
         return redirect(route('timeline'))->with('flash_message', '投稿が完了しました');
     }
-    
+   
     public function show(Request $request)
     {
         //クリックした投稿のID
         $post = Post::find($request->id);
         $images = $post->photos;
          //dd($images);
+       
         //$images = \Image::make($images);
         
         //dd($images);
@@ -111,7 +87,33 @@ class TimelineController extends Controller
             'images'
         ));
     }
+   
+   public function edit($id)
+    {
+        //dd($id);
+        
+        $edit_post = Post::find($id);
+        //dd($edit_post);
+       
+       
+        return view('user.timeline.edit',compact(
+            'edit_post'
+        ));
+    }
     
+    
+    public function update(Request $request)
+    {
+        $this->validate($request, Post::$rules);
+        $post= Post::find($request->id);
+        $updated_post = $request->all(); 
+        //dd($updated_post);
+        $post->fill($updated_post)->save();
+        
+        return redirect('/timeline'); 
+    
+    }
+   
     public function delete(Request $request)
     {
         Post::find($request->id)->delete();
@@ -119,22 +121,23 @@ class TimelineController extends Controller
         return redirect('/timeline'); 
     }
 
-
-
     public function search(Request $request)
     {
+        //dd($request);
         $keyword = $request->input('keyword');
         //dd($keyword);
-        if (!empty($keyword)) {
-            $searched_users = User::where('name', $keyword)->get();
-            $searched_posts = Post::where('post', $keyword)->get();
-                
+        //$results = [];
+        if (isset($keyword)) {
+           
+            $results = Post::where('title', $keyword)
+                   ->orderBy('created_at','DESC')
+                   ->paginate(9);
         }
- 
+     
         return view('user.timeline.search', compact(
-            'keyword', 
-            'searched_users', 
-            'searched_posts'
+            'results',
+            'keyword'
+            
         ));
     }
 }

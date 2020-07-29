@@ -99,13 +99,9 @@
                                     <div class="modal-body">
                                         <form>
                                           <div class="form-group">
-                                            <label for="title-name" class="col-form-label text-dark">名所:</label>
-                                            <input type="text" name="title" style="width:100%;" class="form-control" id="title-name" placeholder="名所を入力">
+                                            <input type="text" name="keyword" style="width:100%;" class="form-control" id="title-name"  placeholder="名所の名前を入力してください">
                                           </div>
-                                          <div class="form-group">
-                                            <label for="country-name" class="col-form-label text-dark">名所の国:</label>
-                                            <input type="text" name="country" style="width:100%;" class="form-control" id="country-name" placeholder="国名を入力">
-                                          </div>
+                                         
                                         </form>
                                     </div>
                                     <div class="modal-footer">
