@@ -2,16 +2,23 @@
 @section('title', 'postdetail')
     
 @section('content')
+    
     <div class="container">
-        @foreach($images as $image)
-             <img class="card-img-top" src="{{ asset('storage/images/' .$image->image) }}">
-        @endforeach
+        <div class="row justify-content-center container" style="margin: auto;">
+            <div class="col-4 mb50">
+                @foreach($images as $image)
+                  <img src="{{ asset('storage/images/' .$image->image) }}" class="d-block w-100" alt="...">
+                @endforeach
+            </div>
+        </div>
+        <div class="row justify-content-center container" style="margin: auto;">
+            <div class="col-8 mb50">
+       
         <div class="card mb50">
           <div class="card-body">
                 {{ $post->post }}
           </div>
         </div>
-      
         @foreach($post->comments as $comment)
             <div class="media">
               <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="user_image">
@@ -38,5 +45,7 @@
               <input type="submit" value="削除" class="btn btn-danger" onclick='return confirm("投稿を削除しますか？");'>
         　  </form>
         @endif
-    </<div>
+            </div>
+        </div>
+    </div>
 @endsection

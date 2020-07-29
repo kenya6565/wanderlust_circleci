@@ -42,6 +42,52 @@ class TimelineController extends Controller
         ));
         
    }
+   
+    public function post(Request $request)
+    {
+        
+        $this->validate($request, Post::$rules);
+        
+        $form = $request->all();
+        $post = new Post;
+        $post->fill($form)->fill(['user_id' => Auth::id()])->save();
+        //dd($request);
+        if($request->hasFile('image')){
+            //dd($images);
+            foreach($request->file('image') as $image)
+            {
+                //$image->store('/public/images');
+                PostPhoto::create([
+                    'post_id' => $post->id,
+                    'image' => $image->hashName(),
+                ]);
+                \Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
+            }
+            
+        }
+        return redirect(route('timeline'))->with('flash_message', '投稿が完了しました');
+    }
+   
+    public function show(Request $request)
+    {
+        //クリックした投稿のID
+        $post = Post::find($request->id);
+        $images = $post->photos;
+         //dd($images);
+       
+        //$images = \Image::make($images);
+        
+        //dd($images);
+        //１つの投稿を表示する際それについてるコメントを表示
+        $comments = Comment::where('post_id',$post)->latest()->get();
+       
+        return view('user.timeline.detail', compact(
+            'post',
+            'comments',
+            'images'
+        ));
+    }
+   
    public function edit($id)
     {
         //dd($id);
@@ -54,6 +100,8 @@ class TimelineController extends Controller
             'edit_post'
         ));
     }
+    
+    
     public function update(Request $request)
     {
         $this->validate($request, Post::$rules);
@@ -66,45 +114,6 @@ class TimelineController extends Controller
     
     }
    
-   public function post(Request $request)
-   {
-        
-        $this->validate($request, Post::$rules);
-        
-        $form = $request->all();
-        $post = new Post;
-        $post->fill($form)->fill(['user_id' => Auth::id()])->save();
-        //dd($request);
-        if($request->hasFile('image')){
-            //dd($images);
-            foreach($request->file('image') as $image)
-            {
-                $image->store('/public/images');
-                PostPhoto::create([
-                    'post_id' => $post->id,
-                    'image' => $image->hashName(),
-                ]);
-            }
-        }
-        return redirect(route('timeline'))->with('flash_message', '投稿が完了しました');
-    }
-    
-    public function show(Request $request)
-    {
-        //クリックした投稿のID
-        $post = Post::find($request->id);
-        $images = $post->photos;
-        //dd($images);
-        //１つの投稿を表示する際それについてるコメントを表示
-        $comments = Comment::where('post_id',$post)->latest()->get();
-       
-        return view('user.timeline.detail', compact(
-            'post',
-            'comments',
-            'images'
-        ));
-    }
-    
     public function delete(Request $request)
     {
         Post::find($request->id)->delete();
@@ -112,22 +121,23 @@ class TimelineController extends Controller
         return redirect('/timeline'); 
     }
 
-
-
     public function search(Request $request)
     {
+        //dd($request);
         $keyword = $request->input('keyword');
         //dd($keyword);
-        if (!empty($keyword)) {
-            $searched_users = User::where('name', $keyword)->get();
-            $searched_posts = Post::where('post', $keyword)->get();
-                
+        //$results = [];
+        if (isset($keyword)) {
+           
+            $results = Post::where('title', $keyword)
+                   ->orderBy('created_at','DESC')
+                   ->paginate(9);
         }
- 
+     
         return view('user.timeline.search', compact(
-            'keyword', 
-            'searched_users', 
-            'searched_posts'
+            'results',
+            'keyword'
+            
         ));
     }
 }
