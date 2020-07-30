@@ -29,7 +29,7 @@
     <div id="app">
          <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ action('User\TimelineController@index' )}}">
+                <a class="navbar-brand" href="{{ action('TopController@index' )}}">
                     <i class="fas fa-plane-departure faa-wrench animated"></i>
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -125,13 +125,22 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        @if(Auth::check())
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('User\TimelineController@index' )}}">タイムライン</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}">タイムライン</a>
+                            </li>
+                        @endif
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">ログイン</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
                                 </li>
                             @endif
                         @else
@@ -144,7 +153,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        ログアウト
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

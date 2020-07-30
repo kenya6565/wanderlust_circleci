@@ -1,32 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Guest;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use \App\User;
-use \App\Auth;
 
 class FollowsController extends Controller
 {
-    public function store($id)
-    {
-        \Auth::user()->follow($id);
-        return back();
-    }
-
-    public function destroy($id)
-    {
-        \Auth::user()->unfollow($id);
-        return back();
-    }
-    
-    
-    //フォローしてるユーザー表示
     public function showFollowings($id)
     {
         $following_users = User::find($id)->followings()->paginate(9);
-        return view('user.follow.followings',compact(
+        return view('guest.follow.followings',compact(
             'following_users'
         ));
     }
@@ -34,7 +19,7 @@ class FollowsController extends Controller
     public function showFollowers($id)
     {
         $followers = User::find($id)->followers()->paginate(9);
-        return view('user.follow.followers', compact(
+        return view('guest.follow.followers', compact(
             'followers'
         ));
     }

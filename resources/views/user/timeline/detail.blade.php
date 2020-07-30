@@ -2,7 +2,6 @@
 @section('title', 'postdetail')
     
 @section('content')
-    
     <div class="container">
         <div class="row justify-content-center container" style="margin: auto;">
             <div class="col-4 mb50">
@@ -16,7 +15,9 @@
        
         <div class="card mb50">
           <div class="card-body">
-                {{ $post->post }}
+              <a href="{{ action('User\PagesController@show', ['id' => $post->user->id] )}}" class="text-secondary">{{ $post->user->name }}</a>
+             
+              {{ $post->post }}
           </div>
         </div>
         @foreach($post->comments as $comment)

@@ -11,16 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
+Route::get('/', 'TopController@index');
+
+
 Route::get('/home', 'HomeController@index')->name('home');
 
+//未ログイン時
+Route::group(['prefix' => 'guest'], function () {
+    Route::get('timeline/','Guest\TimelineController@index')->name('timeline');
+    Route::get('detail/{id}','Guest\TimelineController@show')->name('postdetail');
+    Route::get('users/{id}','Guest\PagesController@show')->name('mypage');
+    Route::get('followings/{id}', 'Guest\FollowsController@showFollowings')->name('followings');
+    Route::get('followers/{id}', 'Guest\FollowsController@showFollowers')->name('followers');
+});
+
+
+
+Auth::routes();
 //ログイン一般ユーザー
-Route::group(['prefix' => 'timeline',['middleware' => 'auth']], function () {
-    Route::get('/','User\TimelineController@index')->name('timeline');
+Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
+    Route::get('timeline/','User\TimelineController@index')->name('timeline');
     Route::post('/','User\TimelineController@post')->name('post');
     Route::get('detail/{id}','User\TimelineController@show')->name('postdetail');
     Route::post('detail','User\CommentController@comment');
