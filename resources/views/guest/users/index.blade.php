@@ -6,38 +6,17 @@
     <div class="row justify-content-center mb50">
       <div class="col-12">
         <div class="card">
-          <h3 class="card-header">{{ $user_info->name }}</h3>
+          <h3 class="card-header">{{  $user_info->name }}</h3>
           <div class="card-body">
             <h6 class="float-right">
               <p class="font-weight-bolder">フォロワー</p>
-              <a class="text-secondary" href="{{ action('User\FollowsController@showFollowers', ['id' => $user_info->id] )}}">{{ $counts['count_followers'] }}</a>
+              <a class="text-secondary" href="{{ action('Guest\FollowsController@showFollowers', ['id' => $user_info->id] )}}">{{ $counts['count_followers'] }}</a>
             </h6>
             <h6 class="float-right mr20">
               <p class="font-weight-bolder">フォロー</p>
-              <a class="text-secondary" href="{{ action('User\FollowsController@showFollowings',  ['id' => $user_info->id] )}}">{{ $counts['count_followings'] }}</a>
+              <a class="text-secondary" href="{{ action('Guest\FollowsController@showFollowings',  ['id' => $user_info->id] )}}">{{ $counts['count_followings'] }}</a>
             </h6> 
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-           
-            @if (Auth::id() == $user_info->id)
-             
-            @elseif(Auth::user()->is_following($user_info->id))
-                <form action="{{ route('unfollow', ['id' => $user_info->id]) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-
-                    <button type="submit" class="btn btn-danger">フォロー解除</button>
-                </form>
-            @else(Auth::user()->is_following($user_info->id))
-                <form action="{{ route('follow', ['id' => $user_info->id]) }}" method="POST">
-                    {{ csrf_field() }}
-
-                    <button type="submit" class="btn btn-primary">フォローする</button>
-                </form>
-            @endif
-            
-            @if(Auth::id() == $user_info->id)
-              <a href="{{ action('User\PagesController@edit', ['id' => $user_info->id] )}}" role="button" class="btn btn-primary">編集</a>
-            @endif
           </div>
         </div>
       </div>

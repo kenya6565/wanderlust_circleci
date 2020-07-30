@@ -49522,7 +49522,7 @@ $('#add').on('click', function () {
   $(this).data("click", ++num);
   var click = $(this).data("click");
 
-  if (click >= 5) {
+  if (click >= 4) {
     $("#add").attr('disabled', true);
     alert("投稿できる画像は5枚までです");
   }

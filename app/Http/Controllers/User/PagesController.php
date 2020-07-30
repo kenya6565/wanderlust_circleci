@@ -19,7 +19,7 @@ class PagesController extends Controller
     {
         $user_info = User::find($request->id);
         $counts = BaseClass::counts($user_info);
-        $posts = Post::where('user_id',$request->id)->latest()->get();
+        $posts = Post::where('user_id',$request->id)->orderBy('created_at','DESC')->paginate(9);
       
         return view('user.users.index',compact(
             'posts',
@@ -32,8 +32,7 @@ class PagesController extends Controller
     public function edit(Request $request)
     {
         $login_user = Auth::user();
-        if (empty($login_user))
-        { //aaaaaは単なるパラメーター、News::findによってニューステーブルの特定の情報１行（bodyとか名前とか）を＄newsに入れてる
+        if (empty($login_user)) { //aaaaaは単なるパラメーター、News::findによってニューステーブルの特定の情報１行（bodyとか名前とか）を＄newsに入れてる
             abort(404);
         }
         return view('user.users.edit',compact(

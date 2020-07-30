@@ -15,19 +15,17 @@ use \App\User;
 
 class TimelineController extends Controller
 {
-    
+ 
    public function index(Request $request)
    {
         //自分の投稿とフォローしてるユーザの投稿を取得してそれを作成日時順で表示
        
-        $user_posts = Auth::user()->posts;
+       
         //dd($user_posts);
        // もしログインユーザが誰かをフォローしていたならforeachでフォローしてるユーザ１つ１つの投稿を取得
         $user_id = [Auth::id()];
-        if(count(Auth::user()->followings) > 0)
-        {
-            $following_users = Auth::user()->followings;
-            foreach($following_users as $following_user){
+        if(count(Auth::user()->followings) > 0) {
+            foreach( Auth::user()->followings as $following_user) {
                 //フォローしてるユーザーのID＋ログインユーザのID
                 array_push($user_id,$following_user->id);
             }
@@ -54,8 +52,7 @@ class TimelineController extends Controller
         //dd($request);
         if($request->hasFile('image')){
             //dd($images);
-            foreach($request->file('image') as $image)
-            {
+            foreach($request->file('image') as $image){
                 //$image->store('/public/images');
                 PostPhoto::create([
                     'post_id' => $post->id,
@@ -117,7 +114,6 @@ class TimelineController extends Controller
     public function delete(Request $request)
     {
         Post::find($request->id)->delete();
-        
         return redirect('/timeline'); 
     }
 
@@ -128,7 +124,6 @@ class TimelineController extends Controller
         //dd($keyword);
         //$results = [];
         if (isset($keyword)) {
-           
             $results = Post::where('title', $keyword)
                    ->orderBy('created_at','DESC')
                    ->paginate(9);
