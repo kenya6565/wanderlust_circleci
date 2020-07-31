@@ -13,9 +13,9 @@
 
 
 Route::get('/', 'TopController@index');
-
-
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
+
 
 //未ログイン時
 Route::group(['prefix' => 'guest'], function () {
