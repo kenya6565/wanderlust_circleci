@@ -29,6 +29,9 @@
     <div id="app">
          <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
+                @if($errors->first('title'))
+                    <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('title')}}</p>
+                @endif
                 <a class="navbar-brand" href="{{ action('TopController@index' )}}">
                     <i class="fas fa-plane-departure faa-wrench animated"></i>
                     {{ config('app.name', 'Laravel') }}
@@ -41,7 +44,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                             <form action="/timeline" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('post') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-xl">
                                 新規登録
@@ -111,9 +114,6 @@
                                 </div>
                               </div>
                             </div>
-                            @if($errors->first('post'))
-                                <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
-                            @endif
                             </form>
                         </li>
                        

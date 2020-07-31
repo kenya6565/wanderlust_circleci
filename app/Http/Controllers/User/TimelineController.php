@@ -62,7 +62,7 @@ class TimelineController extends Controller
             }
             
         }
-        return redirect(route('timeline'))->with('flash_message', '投稿が完了しました');
+        return redirect(route('user_timeline'))->with('flash_message', '投稿が完了しました');
     }
    
     public function show(Request $request)
@@ -127,6 +127,8 @@ class TimelineController extends Controller
             $results = Post::where('title', $keyword)
                    ->orderBy('created_at','DESC')
                    ->paginate(9);
+        }else{
+            $results = null;
         }
      
         return view('user.timeline.search', compact(
