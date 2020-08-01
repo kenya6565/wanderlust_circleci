@@ -25,10 +25,12 @@
     @yield('css')
 </head>
 <body>
-    
     <div id="app">
          <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
+                @if($errors->first('title'))
+                    <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('title')}}</p>
+                @endif
                 <a class="navbar-brand" href="{{ action('TopController@index' )}}">
                     <i class="fas fa-plane-departure faa-wrench animated"></i>
                     {{ config('app.name', 'Laravel') }}
@@ -41,10 +43,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                             <form action="/timeline" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('post') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-xl">
-                                新規登録
+                               {{ __('messages.new_post') }}
                             </a>
                             <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
@@ -89,7 +91,7 @@
                         
                         <li class="nav-item">
                             <form action="{{ route('search') }}" method="GET" class= "form-inline my-2 my-md-0">
-                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">検索</a>
+                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">{{ __('messages.search') }}</a>
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myHugeModalLabel" aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -111,14 +113,11 @@
                                 </div>
                               </div>
                             </div>
-                            @if($errors->first('post'))
-                                <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('post')}}</p>
-                            @endif
                             </form>
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ action('User\PagesController@show',Auth::id() )}}">マイページ</a>
+                            <a class="nav-link" href="{{ action('User\PagesController@show',Auth::id() )}}"> {{ __('messages.mypage') }}</a>
                         </li>
                 @endif
                     </ul>
@@ -127,11 +126,11 @@
                         <!-- Authentication Links -->
                         @if(Auth::check())
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('User\TimelineController@index' )}}">タイムライン</a>
+                                    <a class="nav-link" href="{{ action('User\TimelineController@index' )}}">{{ __('messages.timeline') }}</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}">タイムライン</a>
+                                    <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}">{{ __('messages.timeline') }}</a>
                             </li>
                         @endif
                         @guest
@@ -163,6 +162,20 @@
                             </li>
                         @endguest
                     </ul>
+                    <li class="dropdown" id="nav-lang">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="margin-left:5px">
+                                {{ Config::get('languages')[App::getLocale()] }}
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @foreach (Config::get('languages') as $lang => $language)
+                                    @if ($lang != App::getLocale())
+                                        <li>
+                                            <a style="margin-left:50px" href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                    </li>
                 </div>
             </div>
         </nav>

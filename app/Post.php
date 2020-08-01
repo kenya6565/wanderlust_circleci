@@ -14,7 +14,8 @@ class Post extends Model
     ];
     
     public static $rules = array(
-        'post' => ['required', 'string', 'max:140'], 
+        'post' => ['required','max:140'], 
+        'title' => 'required', 
     );
     
     public function User()

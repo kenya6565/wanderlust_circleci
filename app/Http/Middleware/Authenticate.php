@@ -18,4 +18,6 @@ class Authenticate extends Middleware
             return view('user/timeline');
         }
     }
+    
+   
 }
