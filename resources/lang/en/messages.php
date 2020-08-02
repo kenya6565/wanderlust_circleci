@@ -5,5 +5,8 @@ return [
     'mypage' => 'Mypage',
     'search' => 'Search',
     'timeline' => 'Timeline',
+    'register' => 'Register',
+    'login' => 'Login',
+    'logout' => 'Logout',
     
 ];
