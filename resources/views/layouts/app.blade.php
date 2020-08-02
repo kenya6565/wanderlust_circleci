@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                                        <button type="submit" class="btn btn-primary">検索</button>
+                                        <button type="submit" class="btn btn-primary">{{ __('messages.search') }}</button>
                                     </div>
                                 </div>
                               </div>
@@ -133,36 +133,7 @@
                                     <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}">{{ __('messages.timeline') }}</a>
                             </li>
                         @endif
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">ログイン</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">ユーザー登録</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        ログアウト
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                    <li class="dropdown" id="nav-lang">
+                        <li class="dropdown" id="nav-lang" style="margin-top:8px">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="margin-left:5px">
                                 {{ Config::get('languages')[App::getLocale()] }}
                             <span class="caret"></span></a>
@@ -175,7 +146,51 @@
                                     @endif
                                 @endforeach
                             </ul>
-                    </li>
+                        </li>
+                       
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('messages.login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('messages.logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                           
+                        @endguest
+                        
+                    </ul>
+                   
+                    @if(isset(Auth::user()->user_icon_image))
+                        <div class="col-1">
+                            <img class="rounded-circle img-fluid" src="{{ asset('storage/images/' .Auth::user()->user_icon_image) }}"  alt="Circle image">
+                        </div>
+                    @elseif(!Auth::check())
+                    
+                    @else
+                    <div class="col-1">
+                        <img class="rounded-circle img-fluid" src="{{ asset('images/nonuser.png') }}"  alt="Circle image">
+                    </div>
+                    @endif
                 </div>
             </div>
         </nav>
