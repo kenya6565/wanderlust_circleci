@@ -19,9 +19,9 @@
 
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/layout.css') }}" rel="stylesheet">
+    <link href="{{ secure_asset('css/utility.css') }}" rel="stylesheet">
     @yield('css')
 </head>
 <body>
