@@ -5,6 +5,7 @@
 <div class="container">
     <div class="row justify-content-center mb50">
       <div class="col-12">
+       @if(Auth::user()->is_following($user_info->id) || Auth::id() == $user_info->id)
         <div class="card">
           <h3 class="card-header">{{ $user_info->name }}</h3>
           <div class="card-body">
@@ -18,7 +19,7 @@
             </h6> 
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
            
-            @if (Auth::id() == $user_info->id)
+            @if(Auth::id() == $user_info->id)
              
             @elseif(Auth::user()->is_following($user_info->id))
                 <form action="{{ route('unfollow', ['id' => $user_info->id]) }}" method="POST">
@@ -42,6 +43,7 @@
         </div>
       </div>
     </div>
+    
     <div class="row justify-content-center container">
         @foreach($posts as $post)
         <div class="col-4 mb50">
@@ -59,6 +61,13 @@
         </div>
         @endforeach
     </div>
+    @else
+    <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading"><i class="fas fa-user-lock">{{ $user_info->name }}はロックされています</i></h4>
+            <strong></strong>
+    </div>
+    @endif
+    
 </div>
 <div class="d-flex justify-content-center mt40">
   {{ $posts->links() }}

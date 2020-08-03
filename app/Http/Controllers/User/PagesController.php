@@ -18,6 +18,7 @@ class PagesController extends Controller
     public function show(Request $request)
     {
         $user_info = User::find($request->id);
+        //dd($user_info);
         $counts = BaseClass::counts($user_info);
         $posts = Post::where('user_id',$request->id)->orderBy('created_at','DESC')->paginate(9);
       
