@@ -46,7 +46,7 @@
                 </div>
             @endforeach
         </div>
-    @else
+    @elseif($results == null)
         <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">検索に失敗しました</h4>
             <strong>{{ $keyword }}</strong> は見つかりませんでした。
