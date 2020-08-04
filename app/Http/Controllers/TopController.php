@@ -8,6 +8,19 @@ class TopController extends Controller
 {
     public function index()
     {
-       return view('welcome');
+        // $images = [
+        //     'photo-1492136344046-866c85e0bf04.jpeg',
+        //     'photo-1502602898657-3e91760cbb34.jpeg',
+        // ];
+        //$index = time() % count($images);
+        $collection = 
+        collect([
+           'photo-1492136344046-866c85e0bf04.jpeg',
+            'photo-1502602898657-3e91760cbb34.jpeg',
+        ]);
+        $random =  $collection->random();
+        //dd($random);
+        
+        return view('welcome',compact('random'));
     }
 }

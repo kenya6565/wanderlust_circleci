@@ -26,7 +26,7 @@
 </head>
 <body>
     <div id="app">
-         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
+         <nav class="navbar navbar-expand-md navbar-dark shadow-sm sticky-top">
             <div class="container">
                 @if($errors->first('title'))
                     <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('title')}}</p>
