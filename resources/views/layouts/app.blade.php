@@ -26,7 +26,7 @@
 </head>
 <body>
     <div id="app">
-         <nav class="navbar navbar-expand-md navbar-dark shadow-sm sticky-top">
+         <nav class="navbar navbar-expand-md navbar-dark shadow-sm">
             <div class="container">
                 @if($errors->first('title'))
                     <p style="font-size: 0.7rem; color: red; padding: 0 2rem;">※{{$errors->first('title')}}</p>
@@ -46,7 +46,7 @@
                             <form action="{{ route('post') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-xl">
-                               {{ __('messages.new_post') }}
+                               <i class="fas fa-edit"></i>{{ __('messages.new_post') }}
                             </a>
                             <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                               <div class="modal-dialog modal-xl" role="document">
@@ -91,7 +91,7 @@
                         
                         <li class="nav-item">
                             <form action="{{ route('search') }}" method="GET" class= "form-inline my-2 my-md-0">
-                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">{{ __('messages.search') }}</a>
+                            <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fas fa-search"></i>{{ __('messages.search') }}</a>
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myHugeModalLabel" aria-hidden="true">
                               <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -117,7 +117,7 @@
                         </li>
                        
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ action('User\PagesController@show',Auth::id() )}}"> {{ __('messages.mypage') }}</a>
+                            <a class="nav-link" href="{{ action('User\PagesController@show',Auth::id() )}}"> <i class="fas fa-user"></i>{{ __('messages.mypage') }}</a>
                         </li>
                 @endif
                     </ul>
@@ -126,16 +126,16 @@
                         <!-- Authentication Links -->
                         @if(Auth::check())
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('User\TimelineController@index' )}}">{{ __('messages.timeline') }}</a>
+                                    <a class="nav-link" href="{{ action('User\TimelineController@index' )}}"><i class="fas fa-stream"></i>{{ __('messages.timeline') }}</a>
                             </li>
                         @else
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}">{{ __('messages.timeline') }}</a>
+                                    <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}"><i class="fas fa-stream"></i>{{ __('messages.timeline') }}</a>
                             </li>
                         @endif
                         <li class="dropdown" id="nav-lang" style="margin-top:8px">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="margin-left:5px">
-                                {{ Config::get('languages')[App::getLocale()] }}
+                                <i class="fas fa-language"></i>{{ Config::get('languages')[App::getLocale()] }}
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @foreach (Config::get('languages') as $lang => $language)
@@ -203,7 +203,7 @@
         @endif
             @yield('content')
         </main>
-        <footer class='footer p20'>
+        <footer class='footer p20 '>
           <small class='copyright'>Wanderlust 2020 copyright</small>
         </footer>
     </div>

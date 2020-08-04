@@ -19,7 +19,7 @@ class TopController extends Controller
             'photo-1502602898657-3e91760cbb34.jpeg',
             'australia.jpeg',
             'dessert.jpeg',
-            'greatbarrierleaf.jpg',
+            'greatbarrier.webp',
             'mtfuji.jpeg',
             'Tajmahal.jpeg',
         ]);
