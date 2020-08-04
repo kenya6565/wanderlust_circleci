@@ -62,9 +62,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        //dd($data);
+        //dd($request);
         
         //$image = $data['user_icon_image'];
         //dd($data['user_icon_image']->getClientOriginalName());
