@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -62,21 +64,21 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        //Request $request
-        //dd($request);
+        //$a = $request['user_icon_image'];
+        //dd($a);
         
-        //$image = $data['user_icon_image'];
-        //dd($data['user_icon_image']->getClientOriginalName());
+        //dd($request->user_icon_image);
+        //dd($request['user_icon_image']->getClientOriginalName());
         //dd($image);
-        //file($image)->store('/public/images');
+        $request->file('user_icon_image')->store('/public/images');
       
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            //'user_icon_image' => file($image)->hashName(),
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'user_icon_image' => $request->file('user_icon_image')->hashName(),
             
         ]);
     }
