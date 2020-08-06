@@ -20,7 +20,7 @@ Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swit
 //未ログイン時
 Route::group(['prefix' => 'guest'], function () {
     Route::get('timeline/','Guest\TimelineController@index')->name('guest_timeline');
-    Route::get('detail/{id}','Guest\TimelineController@show')->name('postdetail');
+    Route::get('detail/{id}','Guest\TimelineController@show')->name('guest_postdetail');
     Route::get('users/{id}','Guest\PagesController@show')->name('mypage');
     Route::get('followings/{id}', 'Guest\FollowsController@showFollowings')->name('followings');
     Route::get('followers/{id}', 'Guest\FollowsController@showFollowers')->name('followers');
@@ -33,8 +33,8 @@ Auth::routes();
 Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::get('timeline/','User\TimelineController@index')->name('user_timeline');
     Route::post('/','User\TimelineController@post')->name('post');
-    Route::get('detail/{id}','User\TimelineController@show')->name('postdetail');
-    Route::post('detail','User\CommentController@comment');
+    Route::get('detail/{id}','User\TimelineController@show')->name('user_postdetail');
+    Route::post('detail','User\CommentController@comment')->name('comment');;
     Route::get('detail/edit/{id}','User\TimelineController@edit');
     Route::post('detail/edit','User\TimelineController@update');
     Route::post('detail/{id}', 'User\TimelineController@delete');
