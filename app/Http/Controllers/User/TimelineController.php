@@ -12,6 +12,7 @@ use \App\Post;
 use \App\PostPhoto;
 use \App\Comment;
 use \App\User;
+use Storage;
 
 class TimelineController extends Controller
 {
@@ -58,10 +59,18 @@ class TimelineController extends Controller
                     'post_id' => $post->id,
                     'image' => $image->hashName(),
                 ]);
-                \Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
+                //\Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
+                $image_s3 = \Image::make($image)->resize(800,1000);
+                Storage::disk('s3')->putFile('/',$image_s3,'public');
+                
+                //デフォルトでこの値はstorage/appディレクトリに設定されています。
+                //Storage::putFile('dir', $file);
+                // で$fileを'dir'に保存することができます。Storage::putFileでは
+                // ファイル名は自動で設定されます。
             }
-            
         }
+                // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+                // $news->image_path = Storage::disk('s3')->url($path);
         return redirect(route('user_timeline'))->with('flash_message', '投稿が完了しました');
     }
    
