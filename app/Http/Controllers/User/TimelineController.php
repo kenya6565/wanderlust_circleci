@@ -59,9 +59,9 @@ class TimelineController extends Controller
                     'post_id' => $post->id,
                     'image' => $image->hashName(),
                 ]);
-                //\Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
-                $image_s3 = \Image::make($image)->resize(800,1000);
-                Storage::disk('s3')->putFile('/',$image_s3,'public');
+                \Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
+                // $image_s3 = \Image::make($image)->resize(800,1000);
+                // Storage::disk('s3')->putFile('/',$image_s3,'public');
                 
                 //デフォルトでこの値はstorage/appディレクトリに設定されています。
                 //Storage::putFile('dir', $file);
@@ -73,27 +73,29 @@ class TimelineController extends Controller
                 // $news->image_path = Storage::disk('s3')->url($path);
         return redirect(route('user_timeline'))->with('flash_message', '投稿が完了しました');
     }
-   
     public function show(Request $request)
     {
-        //クリックした投稿のID
         $post = Post::find($request->id);
+        //dd($post);
+        //投稿詳細で開いているpost以外の全ての同一ユーザの投稿を取得
+        $recent_posts = Post::where('user_id',$post->user_id)
+                            ->whereNotIn('id',[$post->id])
+                            ->get();
+    
         $images = $post->photos;
-         //dd($images);
-       
+        //dd($images);
         //$images = \Image::make($images);
-        
         //dd($images);
         //１つの投稿を表示する際それについてるコメントを表示
+
         $comments = Comment::where('post_id',$post)->latest()->get();
-       
         return view('user.timeline.detail', compact(
             'post',
             'comments',
+            'recent_posts',
             'images'
         ));
     }
-   
    public function edit($id)
     {
         //dd($id);
@@ -122,8 +124,9 @@ class TimelineController extends Controller
    
     public function delete(Request $request)
     {
+
         Post::find($request->id)->delete();
-        return redirect('/timeline'); 
+        return redirect(route('user_timeline')); 
     }
 
     public function search(Request $request)

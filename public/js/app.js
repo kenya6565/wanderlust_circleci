@@ -49529,6 +49529,14 @@ $('#add').on('click', function () {
 
   return false;
 });
+$('#comment_content').toggle();
+$('#comment').on('click', function () {
+  $(this).next().slideToggle();
+});
+$("#tabMenu li a").on("click", function () {
+  $("#tabBoxes div").hide();
+  $($(this).attr("href")).fadeToggle();
+});
 
 /***/ }),
 

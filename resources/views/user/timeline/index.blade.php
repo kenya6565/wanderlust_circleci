@@ -10,7 +10,7 @@
             <div class="col-4 mb50">
                 <div class="card shadow-lg rounded">
                   @if(isset($post->firstPhoto()->image))
-                    <img class="card-img-top" src="{{ $post->firstPhoto()->image}}">
+                    <img class="card-img-top" src="{{  asset('storage/images/' .$post->firstPhoto()->image) }}">
                   @else
                     <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
                   @endif

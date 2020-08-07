@@ -32,20 +32,29 @@ const app = new Vue({
 });
 
 var num = 0;
-$('#add').on('click', function() {
+$('#add').on('click', function () {
 
-   var add_image = ' <input type="file" class="form-control-file text-dark"  name="image[]" id="File"  multiple="multiple">'
-   $('.form-group-file').append(add_image)
-   $(this).data("click", ++num);
+    var add_image = ' <input type="file" class="form-control-file text-dark"  name="image[]" id="File"  multiple="multiple">'
+    $('.form-group-file').append(add_image)
+    $(this).data("click", ++num);
     var click = $(this).data("click");
-    if(click >= 4){
+    if (click >= 4) {
         $("#add").attr('disabled', true);
         alert("投稿できる画像は5枚までです");
     }
     return false;
 });
 
+$('#comment_content').toggle();
+$('#comment').on('click', function () {
+    $(this).next().slideToggle();
 
-      
+});
 
-  
+
+
+$("#tabMenu li a").on("click", function () {
+    $("#tabBoxes div").hide();
+    $($(this).attr("href")).fadeToggle();
+});
+

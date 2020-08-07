@@ -22,20 +22,22 @@
                       {{ $post->post }}
                   </div>
                 </div>
-                @foreach($post->comments as $comment)
-                    <div class="media">
-                      <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="user_image">
-                      <div class="media-body">
-                         <a href="{{ action('User\PagesController@show', ['id' => $comment->user->id] )}}" class="text-secondary">{{ $comment->user->name }}</a>
-                        <h5 class="mt-0">{{ $comment->comment }}</h5>
-                      </div>
-                    </div>
-                @endforeach
+        
             </div>
+
             <div class="row justify-content-center container" style="margin: auto;">
-            <div class="col-4">
-                <iframe id="iframe" src="https://maps.google.co.jp/maps?output=embed&q={{ $post->title }}"></iframe>
+            
+            <ul id="tabMenu" class="clearfix">
+            <li><a href="#tabBox1">地図</a></li>
+            <li><a href="#tabBox2">タブメニュー2</a></li>
+
+            <div id="tabBoxes">
+                <div id="tabBox1"><iframe id="iframe" src="https://maps.google.co.jp/maps?output=embed&q={{ $post->title }}"></iframe></div>
+            　　<div id="tabBox2">タブボックス2</div>
             </div>
+
+
+            
             <div class="col-4">
                 
                 <!-- <form action="/timeline/detail" method="post">-->
@@ -88,5 +90,30 @@
                             
                             
         </div>
+        @if(isset($post->comments))
+        <button type="button" id="comment" class="btn btn-dark col-8">コメントを表示</button>
+       
+            <div class="row justify-content-center container" id="comment_content" style="margin: auto;">
+                <div class="col-8">
+                    
+
+
+                    @foreach($post->comments as $comment)
+                        <div class="media" >
+                            <img class="d-flex mr-3" data-src="holder.js/64x64?theme=sky" alt="user_image">
+                            <div class="media-body">
+                                <a href="{{ action('User\PagesController@show', ['id' => $comment->user->id] )}}" class="text-secondary">{{ $comment->user->name }}</a>
+                            <h5 class="mt-0">{{ $comment->comment }}</h5>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+        @foreach($recent_posts as $recent_post)
+        <div class="col-8">
+            {{$recent_post->post}}
+        </div>
+        @endforeach
     </div>
 @endsection

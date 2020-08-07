@@ -16,7 +16,7 @@ class CreatePostPhotosTable extends Migration
         Schema::create('post_photos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->string('image')->nullable()->comment('写真');
+            $table->string('image')->nullable()->comment('投稿写真');
             $table->bigInteger('post_id')->unsigned();
             
             $table->foreign('post_id')
