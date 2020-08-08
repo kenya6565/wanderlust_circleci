@@ -49533,6 +49533,7 @@ $('#comment_content').toggle();
 $('#comment').on('click', function () {
   $(this).next().slideToggle();
 });
+$('#tabBox2').toggle();
 $("#tabMenu li a").on("click", function () {
   $("#tabBoxes div").hide();
   $($(this).attr("href")).fadeToggle();

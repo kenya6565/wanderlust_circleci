@@ -52,7 +52,7 @@ $('#comment').on('click', function () {
 });
 
 
-
+$('#tabBox2').toggle();
 $("#tabMenu li a").on("click", function () {
     $("#tabBoxes div").hide();
     $($(this).attr("href")).fadeToggle();
