@@ -88,7 +88,8 @@ class TimelineController extends Controller
         //dd($images);
         //１つの投稿を表示する際それについてるコメントを表示
 
-        $comments = Comment::where('post_id',$post)->latest()->get();
+        $comments = Comment::where('post_id',$post->id)->get();
+        //dd($comments);
         return view('user.timeline.detail', compact(
             'post',
             'comments',
