@@ -10,6 +10,7 @@ use App\Library\BaseClass;
 use \App\User;
 use \App\Post;
 use \App\Follow;
+use \App\PostPhoto;
 use Hash;
 
 class PagesController extends Controller
@@ -20,8 +21,10 @@ class PagesController extends Controller
         $user_info = User::find($request->id);
         //dd($user_info);
         $counts = BaseClass::counts($user_info);
-        $posts = Post::where('user_id',$request->id)->orderBy('created_at','DESC')->paginate(9);
-      
+        $posts = Post::where('user_id',$request->id)
+                   ->orderBy('created_at','DESC')
+                   ->paginate(9);
+        
         return view('user.users.index',compact(
             'posts',
             'user_info',
