@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 
+
+
 class RegisterController extends Controller
 {
     /*
@@ -71,14 +73,38 @@ class RegisterController extends Controller
         //dd($request->user_icon_image);
         //dd($request['user_icon_image']->getClientOriginalName());
         //dd($image);
-        $request->file('user_icon_image')->store('/public/images');
-      
-        return User::create([
+        if ($request->hasFile('user_icon_image')) { //"photo" は input type の name属性
+ 
+            $request->file('user_icon_image')->store('/public/images');
+            return User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
             'user_icon_image' => $request->file('user_icon_image')->hashName(),
+            ]);
+        }else{
+            return User::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            ]);
             
-        ]);
+        }
+      
+        
     }
+    
+    // public function register(Request $request)
+    // {
+    //     \Debugbar::info("****Child*****");
+    //     $this->validator($request->all())->validate();
+
+    //     event(new Illuminate\Foundation\Auth\RegistersUsers\Registered($user = $this->create($request)));
+
+    //     $this->guard()->login($user);
+
+    //     return $this->registered($request, $user)
+    //                     ?: redirect($this->redirectPath());
+    // }
+
 }
