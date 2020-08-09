@@ -150,4 +150,16 @@ class TimelineController extends Controller
             
         ));
     }
+    
+    public function comment(Request $request)
+    {
+        //dd($request->post_id);
+        $this->validate($request, Comment::$rules);
+        Comment::create([ 
+            'user_id' => Auth::id(), 
+            'post_id' => $request->post_id,
+            'comment' => $request->comment, 
+        ]);
+        return redirect(route('user_postdetail',['id'=>$request->post_id]))->with('flash_message', 'コメントが完了しました');
+    }
 }

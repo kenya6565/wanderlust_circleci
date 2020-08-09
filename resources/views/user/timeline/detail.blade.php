@@ -5,13 +5,13 @@
     <div class="container">
         <div class="row  justify-content-center pt20" style="margin: auto;">
             @foreach($images as $image)
-                @if(count($images) > 0)
+                @if(isset($images))
                     <div class="col-3 mb20">
-                        <img src="{{ asset('storage/images/' .$image->image) }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded" alt="...">
+                        <img src="{{ asset('storage/images/'.$image->image) }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded" alt="...">
                     </div>
                 @else
                     <div class="col-3 mb20">
-                      <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
+                       <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
                     </div>
                 @endif
             @endforeach
