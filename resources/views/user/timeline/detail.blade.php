@@ -97,7 +97,7 @@
                             <a href="{{ action('User\TimelineController@edit', ['id' => $post->id] )}}" class="nav-link mt20"><i class="fas fa-comments"></i>編集する</a>
                             
                             
-                            <form action="/timeline/detail/{{$post->id}}" method="post">
+                            <form action="{{ route('delete',['id' => $post->id]) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="submit" value="削除する" class="mt20 ml10 btn btn-danger" onclick='return confirm("投稿を削除しますか？");'>
                             </form>
