@@ -82,7 +82,6 @@ class TimelineController extends Controller
                             ->whereNotIn('id',[$post->id])
                             ->get();
     
-    
         $images = $post->photos;
         //dd($images);
         //$images = \Image::make($images);
