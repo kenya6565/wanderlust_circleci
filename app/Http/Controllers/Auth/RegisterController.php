@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
 
 
 
@@ -94,17 +96,17 @@ class RegisterController extends Controller
         
     }
     
-    // public function register(Request $request)
-    // {
-    //     \Debugbar::info("****Child*****");
-    //     $this->validator($request->all())->validate();
+    public function register(Request $request)
+    {
+       
+        $this->validator($request->all())->validate();
 
-    //     event(new Illuminate\Foundation\Auth\RegistersUsers\Registered($user = $this->create($request)));
+        event(new Registered($user = $this->create($request)));
 
-    //     $this->guard()->login($user);
+        $this->guard()->login($user);
 
-    //     return $this->registered($request, $user)
-    //                     ?: redirect($this->redirectPath());
-    // }
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
+    }
 
 }
