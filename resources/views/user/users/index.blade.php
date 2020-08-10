@@ -46,19 +46,26 @@
     
     <div class="row justify-content-center container">
         @foreach($posts as $post)
-        <div class="col-4 mb50">
+          <div class="col-4 mb50">
             <div class="card">
-              <img class="far fa-heart card-img-top" src="{{ asset('storage/images/' .$post->image) }}">
-              <div class="card-body">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">
-                  <div>{{ $post->id }}</div>
-                  <div>{{ $post->post }}</div>
-                </p>
-                <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-primary">詳細</a>
-              </div>
+             
+              @if(isset($post->firstPhoto()->image))
+              <img class="card-img-top" src="{{ asset('storage/images/' .$post->firstPhoto()->image) }}">
+              @else
+             
+              <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
+              @endif
+            
+                <div class="card-body">
+                  <h4 class="card-title">{{ $post->title }}</h4>
+                  <p class="card-text">
+                    <div>{{ $post->id }}</div>
+                    <div>{{ $post->post }}</div>
+                  </p>
+                  <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-primary">詳細</a>
+                </div>
             </div>
-        </div>
+          </div>
         @endforeach
     </div>
     @else

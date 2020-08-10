@@ -5,13 +5,13 @@
     <div class="container">
         <div class="row  justify-content-center pt20" style="margin: auto;">
             @foreach($images as $image)
-                @if(count($images) > 0)
+                @if(isset($images))
                     <div class="col-3 mb20">
-                        <img src="{{ asset('storage/images/' .$image->image) }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded" alt="...">
+                        <img src="{{ asset('storage/images/'.$image->image) }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded" alt="...">
                     </div>
                 @else
                     <div class="col-3 mb20">
-                      <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
+                       <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
                     </div>
                 @endif
             @endforeach
@@ -97,7 +97,7 @@
                             <a href="{{ action('User\TimelineController@edit', ['id' => $post->id] )}}" class="nav-link mt20"><i class="fas fa-comments"></i>編集する</a>
                             
                             
-                            <form action="/timeline/detail/{{$post->id}}" method="post">
+                            <form action="{{ route('delete',['id' => $post->id]) }}" method="post">
                                 {{ csrf_field() }}
                                 <input type="submit" value="削除する" class="mt20 ml10 btn btn-danger" onclick='return confirm("投稿を削除しますか？");'>
                             </form>
