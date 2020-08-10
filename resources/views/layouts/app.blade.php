@@ -52,7 +52,7 @@
                               <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="exampleModalLabel">思い出の場所を共有しよう</h5>
+                                        <h5 class="modal-title text-dark" id="exampleModalLabel">思い出の場所を共有しよう</h5>
                                     </div>
                                     <div class="modal-body">
                                         <form>

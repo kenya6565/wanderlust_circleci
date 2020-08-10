@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="pt20 row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
@@ -61,10 +61,18 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="myicon" class="col-md-4 col-form-label text-md-right">アイコン</label>
+                            <label for="myicon" class="col-md-4 col-form-label text-md-right">アイコン(任意)</label>
                             
                             <div class="col-md-6">
                                  <input id="myicon" type="file" name="user_icon_image" class="form-control-file" id="exampleFormControlFile1">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label for="profile" class="col-md-4 col-form-label text-md-right">プロフィール(任意)</label>
+                            
+                            <div class="col-md-6">
+                                <textarea class="form-control" style=" height:220px; resize: none;" name="profile" id="profile" placeholder="あなたについて記載してください"></textarea>
                             </div>
                         </div>
 

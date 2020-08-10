@@ -17,7 +17,7 @@
               <p class="font-weight-bolder">フォロー</p>
               <a class="text-secondary" href="{{ action('User\FollowsController@showFollowings',  ['id' => $user_info->id] )}}">{{ $counts['count_followings'] }}</a>
             </h6> 
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">{{ $user_info->profile }}</p>
            
             @if(Auth::id() == $user_info->id)
              
