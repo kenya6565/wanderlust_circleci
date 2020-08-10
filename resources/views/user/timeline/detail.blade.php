@@ -4,29 +4,32 @@
 @section('content')
     <div class="container">
         <div class="row  justify-content-center pt20" style="margin: auto;">
-            @foreach($images as $image)
-                @if(isset($images))
-                    <div class="col-3 mb20">
-                        <img src="{{ asset('storage/images/'.$image->image) }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded" alt="...">
-                    </div>
-                @else
-                    <div class="col-3 mb20">
-                       <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
-                    </div>
-                @endif
-            @endforeach
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                      紹介文
-                    </div>
-                    <div class="card-body">
-                        <a href="{{ action('User\PagesController@show', ['id' => $post->user->id] )}}" class="text-secondary">{{ $post->user->name }}</a>
-                          {{ $post->post }}
+            <div class="card">
+                @foreach($images as $image)
+                    @if(isset($images))
+                        <div class="col-3 mb20">
+                            
+                            <img class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded" src="{{ Storage::disk('s3')->url('public/images/' . $image->image) }}">
+    
+                        </div>
+                    @else
+                        <div class="col-3 mb20">
+                           <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
+                        </div>
+                    @endif
+                @endforeach
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                          紹介文
+                        </div>
+                        <div class="card-body">
+                            <a href="{{ action('User\PagesController@show', ['id' => $post->user->id] )}}" class="text-secondary">{{ $post->user->name }}</a>
+                              {{ $post->post }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+          
             
 
                 <div id="tabMenu" class="row mb20 pt20" style="margin: auto;">
@@ -150,10 +153,10 @@
                       </div>
                     </div>
                     @endforeach
-          </div>
-             
-           
-      
+         
+        </div>
+       
+       </div>
     <!--</div>-->
     </div>
 @endsection

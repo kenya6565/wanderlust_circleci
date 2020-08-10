@@ -50,10 +50,9 @@
             <div class="card">
              
               @if(isset($post->firstPhoto()->image))
-              <img class="card-img-top" src="{{ asset('storage/images/' .$post->firstPhoto()->image) }}">
+                <img class="card-img-top" src="{{ Storage::disk('s3')->url('public/images/' . $post->firstPhoto()->image) }}">
               @else
-             
-              <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
+                <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
               @endif
             
                 <div class="card-body">

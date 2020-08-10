@@ -64,10 +64,6 @@
                                             <label for="message-text" class="col-form-label text-dark">紹介文:</label>
                                             <textarea class="form-control" style=" height:220px; resize: none;" name="post" id="message-text" placeholder="紹介文"></textarea>
                                           </div>
-                                          <div class="form-group">
-                                            <label for="country-name" class="col-form-label text-dark">名所の国:</label>
-                                            <input type="text" name="country" class="form-control" id="country-name" placeholder="国名を入力">
-                                          </div>
                                           <button type="button" id="add" class=" btn-floating btn-primary" ><i class="fas fa-plus"></i></button>
                                           <div class="form-group-file">
                                             <label for="message-text" class="col-form-label text-dark">画像(任意):</label>

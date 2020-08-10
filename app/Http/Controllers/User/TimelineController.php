@@ -62,7 +62,7 @@ class TimelineController extends Controller
                     'image' => $image_hash,
                 ]);
                 //\Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
-                $image_s3 = \Image::make($image)->resize(800,1000)->encode('jpg');
+                $image_s3 = \Image::make($image)->resize(416,416)->encode('jpg');
                 Storage::disk('s3')->put('public/images/' . $image_hash ,$image_s3,'public');
                 
                 //デフォルトでこの値はstorage/appディレクトリに設定されています。
