@@ -55,13 +55,15 @@ class TimelineController extends Controller
             //dd($images);
             foreach($request->file('image') as $image){
                 //$image->store('/public/images');
+                //どんなサイズ形式でもjpegになって投稿される
+                $image_hash = $image->hashName(). '.jpg';
                 PostPhoto::create([
                     'post_id' => $post->id,
-                    'image' => $image->hashName(),
+                    'image' => $image_hash,
                 ]);
-                \Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
-                // $image_s3 = \Image::make($image)->resize(800,1000);
-                // Storage::disk('s3')->putFile('/',$image_s3,'public');
+                //\Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
+                $image_s3 = \Image::make($image)->resize(800,1000)->encode('jpg');
+                Storage::disk('s3')->put('public/images/' . $image_hash ,$image_s3,'public');
                 
                 //デフォルトでこの値はstorage/appディレクトリに設定されています。
                 //Storage::putFile('dir', $file);
@@ -69,7 +71,7 @@ class TimelineController extends Controller
                 // ファイル名は自動で設定されます。
             }
         }
-                // $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+                //$path = Storage::disk('s3')->putFile('/',$form['image'],'public');
                 // $news->image_path = Storage::disk('s3')->url($path);
         return redirect(route('user_timeline'))->with('flash_message', '投稿が完了しました');
     }
