@@ -79,16 +79,17 @@ class RegisterController extends Controller
  
             $request->file('user_icon_image')->store('/public/images');
             return User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            'user_icon_image' => $request->file('user_icon_image')->hashName(),
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                'user_icon_image' => $request->file('user_icon_image')->hashName(),
             ]);
         }else{
             return User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            // 'user_icon_image' => file('nonuser.png'),
             ]);
             
         }

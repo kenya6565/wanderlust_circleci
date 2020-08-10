@@ -10,6 +10,7 @@
         </ul>
     @endif
     @foreach($followers as $follower)
+     <div class="col-12 pt20" style="margin: auto;">
         <div class="card">
             <div class="card-haeder p-3 w-100 d-flex">
                 <img src="{{ $follower->user_icon_image }}" class="rounded-circle" width="50" height="50">
@@ -39,6 +40,7 @@
                     @endif
                 </div>
             </div>
+        </div>
         </div>
     @endforeach
      <div class="d-flex justify-content-center mt40">

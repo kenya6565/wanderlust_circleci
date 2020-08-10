@@ -26,6 +26,7 @@ class FollowsController extends Controller
     public function showFollowings($id)
     {
         $following_users = User::find($id)->followings()->paginate(9);
+        //dd($following_users);
         return view('user.follow.followings',compact(
             'following_users'
         ));
