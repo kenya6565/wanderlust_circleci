@@ -127,8 +127,23 @@ class TimelineController extends Controller
    
     public function delete(Request $request)
     {
-
-        Post::find($request->id)->delete();
+       
+        $deleted_post = Post::find($request->id);
+        $deleted_photos = $deleted_post->photos;
+        //dd($deleted_photos);
+        if($deleted_photos->count() > 0){
+            foreach($deleted_photos as $deleted_photo){
+            
+                //s3内の画像を削除
+                 Storage::disk('s3')->delete('public/images/' . $deleted_photo->image);
+                //DB内の画像を削除
+                $deleted_photo->delete();
+            }
+        }
+        //投稿自体を削除
+        $deleted_post->delete();
+        
+        
         return redirect(route('user_timeline')); 
     }
 
