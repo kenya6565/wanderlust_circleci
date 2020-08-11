@@ -12,6 +12,7 @@ use \App\Post;
 use \App\Follow;
 use \App\PostPhoto;
 use Hash;
+use Storage;
 
 class PagesController extends Controller
 {
@@ -61,9 +62,11 @@ class PagesController extends Controller
         $updated_user_info = $request->all(); 
         $login_user->password = bcrypt($request->get('new-password'));
         $login_user->fill($updated_user_info)->save();
-        Storage::disk('s3')->delete('public/images/' . $login_user->user_icon_image);
-        Storage::disk('s3')->put('public/images/',$updated_user_info->file('user_icon_image'),'public');
+        Storage::disk('s3')->delete('public/images/' . $login_user['user_icon_image']);
+        Storage::disk('s3')->put('public/images/',$request->file('user_icon_image'),'public');
         
+        //s3に変更画像は入るがパスが/tmp/phplkzdo0 になっていて正しく画像を表示してくれない
+        //deleteはそもそもきいていない
         return redirect(route('mypage', ['id'=>Auth::id()]));
     }
 }

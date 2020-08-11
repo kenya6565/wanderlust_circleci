@@ -130,14 +130,14 @@
                             </li>
                         @endif
                         <li class="dropdown" id="nav-lang" style="margin-top:8px">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="margin-left:5px">
-                                <i class="fas fa-language"></i>{{ Config::get('languages')[App::getLocale()] }}
+                            <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" style="margin-left:5px">
+                                <i class="fas fa-language text-white"></i>{{ Config::get('languages')[App::getLocale()] }}
                             <span class="caret"></span></a>
                             <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @foreach (Config::get('languages') as $lang => $language)
                                     @if ($lang != App::getLocale())
                                         <li>
-                                            <a style="margin-left:50px" href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
+                                            <a style="margin-left:50px" class="text-dark" href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
                                         </li>
                                     @endif
                                 @endforeach
