@@ -61,6 +61,8 @@ class PagesController extends Controller
         $updated_user_info = $request->all(); 
         $login_user->password = bcrypt($request->get('new-password'));
         $login_user->fill($updated_user_info)->save();
+        Storage::disk('s3')->delete('public/images/' . $login_user->user_icon_image);
+        Storage::disk('s3')->put('public/images/',$updated_user_info->file('user_icon_image'),'public');
         
         return redirect(route('mypage', ['id'=>Auth::id()]));
     }

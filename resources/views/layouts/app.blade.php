@@ -178,7 +178,7 @@
                    
                     @if(isset(Auth::user()->user_icon_image))
                         <div class="col-1">
-                            <img class="rounded-circle img-fluid" src="{{ asset('storage/images/' .Auth::user()->user_icon_image) }}"  alt="Circle image">
+                            <img class="rounded-circle img-fluid" src="{{ Storage::disk('s3')->url('public/images/' .Auth::user()->user_icon_image) }}"  alt="Circle image">
                         </div>
                     @elseif(!Auth::check())
                     

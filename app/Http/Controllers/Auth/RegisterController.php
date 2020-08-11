@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use Storage;
 
 
 
@@ -76,14 +77,18 @@ class RegisterController extends Controller
         //dd($request['user_icon_image']->getClientOriginalName());
         //dd($image);
         if ($request->hasFile('user_icon_image')) { //"photo" は input type の name属性
- 
-            $request->file('user_icon_image')->store('/public/images');
+            
+           
+            
+            
+            $image_hash = $request->file('user_icon_image')->hashName();
+            Storage::disk('s3')->put('public/images/',$request->file('user_icon_image'),'public');
             return User::create([
                 'profile' => $request['profile'],
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
-                'user_icon_image' => $request->file('user_icon_image')->hashName(),
+                'user_icon_image' => $image_hash,
             ]);
         }else{
             return User::create([
@@ -91,7 +96,6 @@ class RegisterController extends Controller
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
-                // 'user_icon_image' => file('nonuser.png'),
             ]);
             
         }
