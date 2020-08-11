@@ -36,7 +36,8 @@ class UserTableSeeder extends Seeder
     $user = new \App\User([
         'name' => 'testuser',
         'email' => 'test@user.com',
-        'password' => bcrypt('testuser')
+        'password' => bcrypt('testuser'),
+        'profile' => '旅行が好きでいろいろな国に興味があります。よろしくお願いします。',
         ]);
     $user->save();
     

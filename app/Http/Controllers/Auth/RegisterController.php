@@ -79,6 +79,7 @@ class RegisterController extends Controller
  
             $request->file('user_icon_image')->store('/public/images');
             return User::create([
+                'profile' => $request['profile'],
                 'name' => $request['name'],
                 'email' => $request['email'],
                 'password' => Hash::make($request['password']),
@@ -86,10 +87,11 @@ class RegisterController extends Controller
             ]);
         }else{
             return User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-            // 'user_icon_image' => file('nonuser.png'),
+                'profile' => $request['profile'],
+                'name' => $request['name'],
+                'email' => $request['email'],
+                'password' => Hash::make($request['password']),
+                // 'user_icon_image' => file('nonuser.png'),
             ]);
             
         }

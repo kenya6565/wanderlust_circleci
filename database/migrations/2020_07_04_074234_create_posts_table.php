@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             $table->string('title')->comment('タイトル');
             $table->string('post')->comment('投稿内容');
-            $table->string('country')->nullable()->comment('国');
             $table->bigInteger('user_id')->unsigned();
             
             $table->foreign('user_id')

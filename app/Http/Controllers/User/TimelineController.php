@@ -62,7 +62,7 @@ class TimelineController extends Controller
                     'image' => $image_hash,
                 ]);
                 //\Image::make($image)->resize(800,1000)->save(storage_path('app/public/images/'.$image->hashName()));
-                $image_s3 = \Image::make($image)->resize(800,1000)->encode('jpg');
+                $image_s3 = \Image::make($image)->resize(416,416)->encode('jpg');
                 Storage::disk('s3')->put('public/images/' . $image_hash ,$image_s3,'public');
                 
                 //デフォルトでこの値はstorage/appディレクトリに設定されています。
@@ -127,8 +127,23 @@ class TimelineController extends Controller
    
     public function delete(Request $request)
     {
-
-        Post::find($request->id)->delete();
+       
+        $deleted_post = Post::find($request->id);
+        $deleted_photos = $deleted_post->photos;
+        //dd($deleted_photos);
+        if($deleted_photos->count() > 0){
+            foreach($deleted_photos as $deleted_photo){
+            
+                //s3内の画像を削除
+                 Storage::disk('s3')->delete('public/images/' . $deleted_photo->image);
+                //DB内の画像を削除
+                $deleted_photo->delete();
+            }
+        }
+        //投稿自体を削除
+        $deleted_post->delete();
+        
+        
         return redirect(route('user_timeline')); 
     }
 

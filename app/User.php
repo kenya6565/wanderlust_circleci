@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','user_icon_image',
+        'name', 'email', 'password','user_icon_image','profile',
     ];
 
     /**
@@ -38,11 +38,12 @@ class User extends Authenticatable
     ];
     
     public static $rules = array(
+        'profile' => 'max:150', 
         'name' => 'required',
         'email' => 'required',
         'current-password' => 'required',
         'new-password' => 'required|string|min:8|confirmed',
-        //バリデーションのルール設定
+      
     );
     
     public function posts()

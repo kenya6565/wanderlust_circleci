@@ -52,7 +52,7 @@
                               <div class="modal-dialog modal-xl" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                            <h5 class="modal-title text-dark" id="exampleModalLabel">思い出の場所を共有しよう</h5>
+                                        <h5 class="modal-title text-dark" id="exampleModalLabel">思い出の場所を共有しよう</h5>
                                     </div>
                                     <div class="modal-body">
                                         <form>
@@ -63,10 +63,6 @@
                                           <div class="form-group">
                                             <label for="message-text" class="col-form-label text-dark">紹介文:</label>
                                             <textarea class="form-control" style=" height:220px; resize: none;" name="post" id="message-text" placeholder="紹介文"></textarea>
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="country-name" class="col-form-label text-dark">名所の国:</label>
-                                            <input type="text" name="country" class="form-control" id="country-name" placeholder="国名を入力">
                                           </div>
                                           <button type="button" id="add" class=" btn-floating btn-primary" ><i class="fas fa-plus"></i></button>
                                           <div class="form-group-file">
