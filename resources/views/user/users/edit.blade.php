@@ -50,22 +50,13 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="image">画像</label>
                         <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
-                            <div class="form-text text-info">
-                                @if($login_user->user_icon_image !== null)
-                                     {{ $login_user->user_icon_image }}
-                                 @else
-                                   
-                                @endif
-                            </div>
-                   
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
-                                </label>
-                            </div>
+                            <input id="image" type="file" class="form-control-file" name="user_icon_image">
                         </div>
                     </div>
+                    
+                   
+                    
+                    
                     <div class="form-group row">
                         <label for="profile" class="col-md-2">プロフィール</label>
                         <div class="col-md-10">

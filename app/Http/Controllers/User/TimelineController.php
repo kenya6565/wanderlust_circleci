@@ -133,9 +133,8 @@ class TimelineController extends Controller
         //dd($deleted_photos);
         if($deleted_photos->count() > 0){
             foreach($deleted_photos as $deleted_photo){
-            
                 //s3内の画像を削除
-                 Storage::disk('s3')->delete('public/images/' . $deleted_photo->image);
+                Storage::disk('s3')->delete('public/images/' . $deleted_photo->image);
                 //DB内の画像を削除
                 $deleted_photo->delete();
             }
