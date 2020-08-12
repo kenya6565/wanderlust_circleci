@@ -10,12 +10,18 @@
         </ul>
     @endif
     @foreach($following_users as $following_user)
-        <div class="card">
-            <div class="card-haeder p-3 w-100 d-flex">
-                <img src="{{ $following_user->user_icon_image }}" class="rounded-circle" width="50" height="50">
-                <div class="ml-2 d-flex flex-column">
-                    <a href="{{ action('Guest\PagesController@show', ['id' => $following_user->id] )}}" class="text-secondary">{{ $following_user->id }}</a>
-                    <p class="mb-0">{{ $following_user->name }}</p>
+        <div class="col-12 pt20" style="margin: auto;">
+            <div class="card">
+                <div class="card-haeder p-3 w-100 d-flex">
+                    @if(isset($following_user->user_icon_image))
+                        <img src="{{ $following_user->user_icon_image }}" class="img-fluid rounded-circle" width="50" height="50">
+                    @else
+                        <img class="rounded-circle img-fluid" src="{{ asset('images/nonuser.png') }}"  width="50" height="50">
+                    @endif
+                    <div class="ml-2 d-flex flex-column">
+                        <a href="{{ action('Guest\PagesController@show', ['id' => $following_user->id] )}}" class="text-secondary">{{ $following_user->id }}</a>
+                        <p class="mb-0">{{ $following_user->name }}</p>
+                    </div>
                 </div>
             </div>
         </div>
