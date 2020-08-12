@@ -47,6 +47,7 @@ class PagesController extends Controller
     
     public function update(Request $request)
     {
+        //dd($request);
          //現在のパスワードが正しいかを調べる
         if(!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             return redirect()->back()->with('change_password_error', '現在のパスワードが間違っています。');
@@ -60,13 +61,24 @@ class PagesController extends Controller
         $this->validate($request, User::$rules);
         $login_user = Auth::user();
         $updated_user_info = $request->all(); 
-        $login_user->password = bcrypt($request->get('new-password'));
-        $login_user->fill($updated_user_info)->save();
-        Storage::disk('s3')->delete('public/images/' . $login_user['user_icon_image']);
-        Storage::disk('s3')->put('public/images/',$request->file('user_icon_image'),'public');
         
-        //s3に変更画像は入るがパスが/tmp/phplkzdo0 になっていて正しく画像を表示してくれない
-        //deleteはそもそもきいていない
+        $login_user->password = bcrypt($request->get('new-password'));
+        
+       
+        // if($login_user->user_icon_image->count() > 0){
+        //     Storage::disk('s3')->delete('public/images/' .$login_user->user_icon_image );
+        // }
+        // dd($updated_user_info);
+        if($request->hasFile('user_icon_image')) { 
+            
+            Storage::disk('s3')->put('public/images/',$request->file('user_icon_image'),'public');
+            $image_hash = $request->file('user_icon_image')->hashName();
+            //fill->saveを使うには配列である必要がある。→$request->file('user_icon_image')を使うことができない。
+            $updated_user_info['user_icon_image'] = $image_hash;
+        }
+        
+        $login_user->fill($updated_user_info)->save();
+      
         return redirect(route('mypage', ['id'=>Auth::id()]));
     }
 }

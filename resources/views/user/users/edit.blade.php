@@ -50,14 +50,13 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="image">画像</label>
                         <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="user_icon_image">
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" name="remove" value="true">画像を削除
-                                </label>
-                            </div>
+                            <input id="image" type="file" class="form-control-file" name="user_icon_image">
                         </div>
                     </div>
+                    
+                   
+                    
+                    
                     <div class="form-group row">
                         <label for="profile" class="col-md-2">プロフィール</label>
                         <div class="col-md-10">

@@ -72,7 +72,7 @@ class RegisterController extends Controller
     {
         //$a = $request['user_icon_image'];
         //dd($a);
-        
+
         //dd($request->user_icon_image);
         //dd($request['user_icon_image']->getClientOriginalName());
         //dd($image);
