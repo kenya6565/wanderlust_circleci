@@ -15,6 +15,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Creepster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.2.1/font-awesome-animation.css" type="text/css" media="all" />
 
 
@@ -43,7 +45,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <form action="{{ route('post') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('post') }}" class="mb0" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <a class="nav-link" data-toggle="modal" data-target=".bd-example-modal-xl">
                                <i class="fas fa-edit"></i>{{ __('messages.new_post') }}

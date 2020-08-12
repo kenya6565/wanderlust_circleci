@@ -3,7 +3,7 @@
     
 @section('content')
    <div class="container">
-    <div class="pt20 row justify-content-center">
+    <div class="pt20 pb20 row justify-content-center">
         <div class="col-md-10">
             <div class="card">
                 <div class="card-header">ユーザ編集</div>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-md-2" for="image">画像</label>
+                        <label class="col-md-2" for="image">マイアイコン</label>
                         <div class="col-md-10">
                             <input id="image" type="file" class="form-control-file" name="user_icon_image">
                         </div>
