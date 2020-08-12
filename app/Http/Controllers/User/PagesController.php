@@ -65,11 +65,14 @@ class PagesController extends Controller
         $login_user->password = bcrypt($request->get('new-password'));
         
        
-        // if($login_user->user_icon_image->count() > 0){
-        //     Storage::disk('s3')->delete('public/images/' .$login_user->user_icon_image );
-        // }
-        // dd($updated_user_info);
+       
+        
         if($request->hasFile('user_icon_image')) { 
+            
+            //初期に画像は設定していなかったが編集で初めて画像設定する場合はここを通らない
+            if($login_user->count('user_icon_image') > 0){
+                Storage::disk('s3')->delete('public/images/' .$login_user['user_icon_image'] );
+            }
             
             Storage::disk('s3')->put('public/images/',$request->file('user_icon_image'),'public');
             $image_hash = $request->file('user_icon_image')->hashName();
