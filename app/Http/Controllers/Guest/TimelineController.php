@@ -29,7 +29,9 @@ class TimelineController extends Controller
         $post = Post::find($request->id);
         $images = $post->photos;
          //dd($images);
-       
+        $recent_posts = Post::where('user_id',$post->user_id)
+                            ->whereNotIn('id',[$post->id])
+                            ->get();
         //$images = \Image::make($images);
         
         //dd($images);
@@ -39,6 +41,7 @@ class TimelineController extends Controller
         return view('guest.timeline.detail', compact(
             'post',
             'comments',
+            'recent_posts',
             'images'
         ));
     }
