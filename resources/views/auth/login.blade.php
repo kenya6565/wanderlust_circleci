@@ -1,5 +1,21 @@
 @extends('layouts.app')
-
+    <style type="text/css">
+    .btn-square {
+      display: inline-block;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      border-bottom: solid 4px #627295;
+      border-radius: 3px;
+      background: #808080;
+      color: #FFFFFF;
+    }
+    .btn-square:active {
+      /*ボタンを押したとき*/
+      -webkit-transform: translateY(4px);
+      transform: translateY(4px);/*下に動く*/
+      border-bottom: none;/*線を消す*/
+    }
+    </style>
 @section('content')
 <div class="pt20 container">
     <div class="row justify-content-center">
@@ -54,7 +70,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn-square" >
                                     {{ __('Login') }}
                                 </button>
                                  
@@ -67,12 +83,17 @@
                             </div>
                         </div>
                     </form>
-                    <form  method="POST" action="{{ route('login')  }}">
-                         @csrf
-                        <input id="email" type="hidden"  name="email" value="test@user.com">
-                        <input id="password" type="hidden" name="password" value="testuser">
-			            <input type="submit" value="テストログイン">
-                    </form>
+                    <div class="form-group row pt20">
+                        <div class="col-md-6 offset-md-4">
+                            <form  method="POST" action="{{ route('login')  }}">
+                                 @csrf
+                                <input id="email" type="hidden"  name="email" value="test@user.com">
+                                <input id="password" type="hidden" name="password" value="testuser">
+        			            <input type="submit" class="btn-square" value="テストログイン">
+                            </form>
+                        </div>
+                    </div>
+                            
                 </div>
             </div>
         </div>

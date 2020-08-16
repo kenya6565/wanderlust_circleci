@@ -10,8 +10,6 @@
         </ul>
     @endif
     @foreach($following_users as $following_user)
-
-  
         <div class="col-12 pt20" style="margin: auto;">
             <div class="card">
                 <div class="card-haeder p-3 w-100 d-flex">

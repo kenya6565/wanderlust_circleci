@@ -3,7 +3,7 @@
     
 @section('content')
 <div class="container">
-    <div class="row justify-content-center mb50">
+    <div class="row justify-content-center mb50 pt20">
       <div class="col-12">
         <div class="card">
           <h3 class="card-header">{{  $user_info->name }}</h3>
@@ -16,7 +16,7 @@
               <p class="font-weight-bolder">フォロー</p>
               <a class="text-secondary" href="{{ action('Guest\FollowsController@showFollowings',  ['id' => $user_info->id] )}}">{{ $counts['count_followings'] }}</a>
             </h6> 
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text">{{ $user_info->profile }}</p>
           </div>
         </div>
       </div>
@@ -25,14 +25,18 @@
         @foreach($posts as $post)
         <div class="col-4 mb50">
             <div class="card">
-              <img class="far fa-heart card-img-top" src="{{ asset('storage/images/' .$post->image) }}">
+              @if(isset($post->firstPhoto()->image))
+                <img class="card-img-top" src="{{ Storage::disk('s3')->url('public/images/' . $post->firstPhoto()->image) }}">
+              @else
+                <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
+              @endif
               <div class="card-body">
                 <h4 class="card-title">Card title</h4>
                 <p class="card-text">
                   <div>{{ $post->id }}</div>
                   <div>{{ $post->post }}</div>
                 </p>
-                <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-primary">詳細</a>
+                <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-primary">詳細</a>
               </div>
             </div>
         </div>
