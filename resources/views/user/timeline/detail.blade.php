@@ -1,25 +1,62 @@
 @extends('layouts.app')
 @section('title', 'postdetail')
-    
+    <style>
+        .btn-open {
+          display: inline-block;
+          width: 180px;
+          height:50px;
+          text-align: center;
+          background-color: #444444	;
+          font-size: 16px;
+          line-height: 52px;
+          color: #FFF;
+          text-decoration: none;
+          font-weight: bold;
+          border: 2px solid #666666	;
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+        }
+        .btn-open:after{
+          width: 100%;
+          height: 0;
+          content:"";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          background : #FFF;
+          opacity: 0;
+          transform: translateX(-50%) translateY(-50%) rotate(45deg);
+          transition: .2s;
+          z-index: -1;
+        }
+        .btn-open:hover{
+          color: #444444;
+        }
+        .btn-open:hover:after{
+          height: 240%;
+          opacity: 1;
+        }
+        .btn-open:active:after{
+          height: 340%;
+          opacity: 1;
+        }
+    </style>
 @section('content')
     <div class="container">
-        <div class="row justify-content-center pt20 font-italic font-weight-bold"><h5 class="text-white">{{ $post->title }}</h5></div>
-        <div class="row justify-content-center pt20" style="margin: auto;">
-           
-                    @foreach($images as $image)
-                        @if(isset($images))
-                       
-                            <div class="col-3 mb20">
-                                
-                                <img class="img-thumbnail img-responsive  d-block w-100 shadow-lg bg-dark rounded" src="{{ Storage::disk('s3')->url('public/images/' . $image->image) }}">
-        
-                            </div>
-                        @else
-                            <div class="col-3 mb20">
-                               <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
-                            </div>
-                        @endif
-                    @endforeach
+        <div class="row justify-content-center pt20 font-italic font-weight-bold"><h4 style=" font-family: 'Kosugi Maru', sans-serif;" class="text-white">{{ $post->title }}</h4></div>
+            <div class="row justify-content-center pt20" style="margin: auto;">
+                @foreach($images as $image)
+                    @if(isset($image->image))
+                        <div class="col-3 mb20">
+                            <img class="img-thumbnail img-responsive  d-block w-100 shadow-lg bg-dark rounded" src="{{ Storage::disk('s3')->url('public/images/' . $image->image) }}">
+                        </div>
+                    @elseif(empty($image->image))
+                        <div class="col-3 mb20">
+                           <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
+                        </div>
+                    @endif
+                @endforeach
                     
                     <div class="col-12">
                     <div class="card border-dark">
@@ -30,8 +67,7 @@
                               紹介文
                             </div>
                             <div class="card-body">
-                                <a href="{{ action('User\PagesController@show', ['id' => $post->user->id] )}}" class="text-secondary">{{ $post->user->name }}</a>
-                                 
+                               {{ $post->post }}</a>
                             </div>
                     </div>
                    
@@ -158,18 +194,20 @@
           </div>
             <div class="row justify-content-center container pt20 pb20" style="margin: auto;">
            
-            <button type="button" id="comment" class="justify-content-center col-12 btn-block btn btn-secondary">コメントを表示</button>
+            <button type="button" id="comment" class="btn-open justify-content-center col-12">コメントを表示</button>
                 <div class="row justify-content-center" id="comment_content" style="margin: auto;">
                    
                     @foreach($post->comments as $comment)
                     <div class="col-9 p20">
                         <div class="media">
                             <img class="rounded-circle img-fluid" src="{{ asset('images/nonuser.png') }}"  width="50" height="50">
-                        <div class="media-body">
-                            <h5 class="mt-0 pl20"><a href="{{ action('User\PagesController@show', ['id' => $comment->user->id] )}}" class="text-secondary">{{ $comment->user->name }}</a></h5> {{ $comment->created_at }}
-                              <h5 class="pl20 text-white">{{ $comment->comment }}</h5>
-                           
-                        </div>
+                        
+                            <h5 class="mt-0 pl20"><a href="{{ action('User\PagesController@show', ['id' => $comment->user->id] )}}" class="text-white">{{ $comment->user->name }}</a></h5>
+                            
+                       
+                              <h5 class="pl20 text-white pt20">{{ $comment->comment }}</h5>
+                             
+                       
                         </div>
                     </div>
                     @endforeach

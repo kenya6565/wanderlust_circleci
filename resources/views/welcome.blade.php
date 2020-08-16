@@ -58,30 +58,19 @@
         text-shadow: 2px 2px 3px #000;
        
       }
-
     </style>
 
 @section('content')
-   
     <div class="container-fluid" >
       <div class="row" style="padding:0px">
-        
-       
         <div class="col no-gutters text-image" style="padding:0px">
           <img class=" img-fluid w-100" style="width:100px height:100px" src="{{ asset('images/'.$random) }}">
-             
           <div class="text1">
       			<h6><p>Wanderlustで世界を観光しよう</p></h6>
       		</div>
-      		
-      		
       		<h1>あなたのお気に入りの世界の名所を投稿して共有するアプリです。</h1>
-      		
-        	
           <a href="{{ route('login') }}" class="btn-shine  text-white">ログインして始める</a>
-  
         </div>
-       
       </div>
     </div>
 @endsection

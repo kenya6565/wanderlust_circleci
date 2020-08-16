@@ -121,7 +121,7 @@ class TimelineController extends Controller
         //dd($updated_post);
         $post->fill($updated_post)->save();
         
-        return redirect('/timeline'); 
+        return redirect(route('user_timeline')); 
     
     }
    
