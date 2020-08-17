@@ -73,11 +73,7 @@ class TimelineController extends Controller
         $recent_posts = Post::where('user_id',$post->user_id)
                             ->whereNotIn('id',[$post->id])
                             ->get();
-    
         $images = $post->photos;
-        //dd(count($images));
-        //$images = \Image::make($images);
-        //dd($images);
         //１つの投稿を表示する際それについてるコメントを表示
 
         $comments = Comment::where('post_id',$post->id)->get();
@@ -133,7 +129,7 @@ class TimelineController extends Controller
     {
         $keyword = $request->input('keyword');
         if (isset($keyword)) {
-            $results = Post::where('title', $keyword)
+            $results = Post::where('title', 'like','%'.$keyword.'%')
                    ->orderBy('created_at','DESC')
                    ->paginate(9);
         }else{

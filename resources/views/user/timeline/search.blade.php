@@ -6,7 +6,7 @@
 @section('title', 'search')
 @section('content')
     @if(isset($results))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success pt20" role="alert">
             <h4 class="alert-heading">検索成功！</h4>
             <strong>{{ count($results) }}</strong> 件ヒットしました
         </div>
@@ -15,15 +15,16 @@
                 <div class="col-4 mb50">
                     <div class="card">
                         @if(isset($result->firstPhoto()->image))
-                            <img class="card-img-top" src="{{ asset('storage/images/' .$result->firstPhoto()->image) }}">
+                            <img class="card-img-top" src="{{ Storage::disk('s3')->url('public/images/' . $result->firstPhoto()->image) }}">
+                        @else
+                            <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
                         @endif
                         <div class="card-body">
                             <h4 class="card-title">{{ $result->title }}</h4>
                             <p class="card-text">
-                                <div>{{ $result->id }}</div>
                                 <div>{{ $result->post }}</div>
                             </p>
-                            <a href="{{ action('User\TimelineController@show',  $result->id )}}" class="btn btn-primary">詳細</a>
+                            <a href="{{ action('User\TimelineController@show',  $result->id )}}" class="btn btn-secondary">詳細</a>
                             <div class="d-flex justify-content-end flex-grow-1">
                                 @if (Auth::user()->is_liking($result->id))
                                     <form action="{{ route('unlike', ['id' => $result->id]) }}" method="POST">
@@ -46,7 +47,7 @@
             @endforeach
         </div>
     @elseif($results == null)
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger pt20" role="alert">
             <h4 class="alert-heading">検索に失敗しました</h4>
             <strong>{{ $keyword }}</strong> は見つかりませんでした。
         </div>
