@@ -19,7 +19,7 @@
                         <p class="card-text">
                             <div>{{ $post->post }}</div>
                         </p>
-                        <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-secondary">詳細</a>
+                        <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-secondary">{{ __('messages.detail') }}</a>
                         <div class="d-flex justify-content-end flex-grow-1">
                             @if (Auth::user()->is_liking($post->id))
                                 <form action="{{ route('unlike', ['id' => $post->id]) }}" method="POST">

@@ -19,7 +19,7 @@
                         <p class="card-text">
                             <div>{{ $post->post }}</div>
                         </p>
-                        <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-secondary">詳細</a>
+                        <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-secondary">{{ __('messages.detail') }}</a>
                     </div>
                 </div>
             </div>

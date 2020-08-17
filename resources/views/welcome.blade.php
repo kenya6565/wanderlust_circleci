@@ -12,7 +12,7 @@
       .text-image p {
         position: absolute;
         top: 30%;
-        left: 24%;
+        left: 19%;
         font-size: 60px;
         color: #ffffff;
         font-family: 'Creepster', cursive;
@@ -22,7 +22,7 @@
       .text-image h1 {
         position: absolute;
         top: 40%;
-        left: 13%;
+        left: 10%;
         color: #ffffff;
         font-family: 'Kosugi Maru', sans-serif;
       } 
@@ -64,10 +64,10 @@
             <div class="col no-gutters text-image" style="padding:0px">
               　<img class=" img-fluid w-100" style="width:100px height:100px" src="{{ asset('images/'.$random) }}">
               　<div class="text1">
-          			<h6><p>Wanderlustで世界を観光しよう</p></h6>
+          			<h6><p>{{ __('messages.wanderlust') }}</p></h6>
           		</div>
-          		<h1>あなたのお気に入りの世界の名所を投稿して共有するアプリです。</h1>
-              　<a href="{{ route('login') }}" class="btn-shine  text-white">ログインして始める</a>
+          		<h1>{{ __('messages.explanation') }}</h1>
+              　<a href="{{ route('login') }}" class="btn-shine  text-white">{{ __('messages.start') }}</a>
             </div>
       　</div>
     </div>
