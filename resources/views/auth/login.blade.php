@@ -1,20 +1,20 @@
 @extends('layouts.app')
     <style type="text/css">
-    .btn-square {
-      display: inline-block;
-      padding: 0.5em 1em;
-      text-decoration: none;
-      border-bottom: solid 4px #627295;
-      border-radius: 3px;
-      background: #808080;
-      color: #FFFFFF;
-    }
-    .btn-square:active {
-      /*ボタンを押したとき*/
-      -webkit-transform: translateY(4px);
-      transform: translateY(4px);/*下に動く*/
-      border-bottom: none;/*線を消す*/
-    }
+        .btn-square {
+          display: inline-block;
+          padding: 0.5em 1em;
+          text-decoration: none;
+          border-bottom: solid 4px #627295;
+          border-radius: 3px;
+          background: #808080;
+          color: #FFFFFF;
+        }
+        .btn-square:active {
+          /*ボタンを押したとき*/
+          -webkit-transform: translateY(4px);
+          transform: translateY(4px);/*下に動く*/
+          border-bottom: none;/*線を消す*/
+        }
     </style>
 @section('content')
 <div class="pt20 container">
@@ -89,7 +89,7 @@
                                  @csrf
                                 <input id="email" type="hidden"  name="email" value="test@user.com">
                                 <input id="password" type="hidden" name="password" value="testuser">
-        			            <input type="submit" class="btn-square" value="テストログイン">
+        			            <input type="submit" class="btn-square" value="テストユーザーとしてログイン">
                             </form>
                         </div>
                     </div>

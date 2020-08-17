@@ -48,17 +48,20 @@
             <h4 style=" font-family: 'Kosugi Maru', sans-serif;" class="text-white">{{ $post->title }}</h4>
         </div>
         <div class="row justify-content-center pt20" style="margin: auto;">
-            @foreach($images as $image)
-                @if(isset($image->image))
-                    <div class="col-3 mb20">
-                        <img class="img-thumbnail img-responsive  d-block w-100 shadow-lg bg-dark rounded" src="{{ Storage::disk('s3')->url('public/images/' . $image->image) }}">
-                    </div>
-                @elseif(empty($image->image))
-                    <div class="col-3 mb20">
-                       <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
-                    </div>
-                @endif
-            @endforeach
+            @if($images->count())
+    
+                @foreach($images as $image)
+                    @if(isset($image->image))
+                        <div class="col-3 mb20">
+                            <img class="img-thumbnail img-responsive  d-block w-100 shadow-lg bg-dark rounded" src="{{ Storage::disk('s3')->url('public/images/' . $image->image) }}">
+                        </div>
+                    @endif
+                @endforeach
+            @else
+                <div class="col-3 mb20">
+                   <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
+                </div>
+            @endif
             <div class="col-12">
                 <div class="card border-dark">
                     <div class="card">
@@ -119,5 +122,4 @@
             </div>
         </div>
     </div>
-   
 @endsection

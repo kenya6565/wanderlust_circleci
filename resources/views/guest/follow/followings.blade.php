@@ -2,15 +2,15 @@
 @section('title', 'followings')
     
 @section('content')
-    @if (count($errors) > 0)
-        <ul>
-            @foreach($errors->all() as $e)
-                <li>{{ $e }}</li>
-            @endforeach
-        </ul>
-    @endif
     @foreach($following_users as $following_user)
         <div class="col-12 pt20" style="margin: auto;">
+            @if (count($errors) > 0)
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            @endif
             <div class="card">
                 <div class="card-haeder p-3 w-100 d-flex">
                     @if(isset($following_user->user_icon_image))
@@ -27,7 +27,7 @@
         </div>
     @endforeach
     <div class="d-flex justify-content-center mt40">
-      {{ $following_users->links() }}
+        {{ $following_users->links() }}
     </div>
     
 @endsection

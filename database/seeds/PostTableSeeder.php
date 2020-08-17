@@ -12,24 +12,24 @@ class PostTableSeeder extends Seeder
     public function run()
     {
         $post = new \App\Post([
-            'title' => 'ユーザー1',
-            'post' => 'ユーザー1',
+            'title' => 'エッフェル塔',
+            'post' => 'フランスに行ったら必ず行こうと思っていた場所!!',
             'user_id' => '1',
      
             ]);
         $post->save();
         
         $post = new \App\Post([
-            'title' => 'ユーザー1',
-            'post' => 'ユーザー1',
+            'title' => 'ピラミッド',
+            'post' => 'こんな巨大な建築物が数百年も前に作られたなんて想像できない。。。',
             'user_id' => '1',
      
             ]);
         $post->save();
         
         $post = new \App\Post([
-            'title' => 'ユーザー2',
-            'post' => 'ユーザー2',
+            'title' => 'ピザの斜塔',
+            'post' => '本当に斜めっていた！',
             'user_id' => '2',
      
             ]);
@@ -38,17 +38,25 @@ class PostTableSeeder extends Seeder
         $post->save();
         
         $post = new \App\Post([
-            'title' => 'ユーザー3',
-            'post' => 'ユーザー3',
+            'title' => 'オペラハウス',
+            'post' => '中には入れなかったけど近くにあったレストランで景色を見ながら食事を楽しめました',
             'user_id' => '3',
      
             ]);
         $post->save();
         
         $post = new \App\Post([
-            'title' => '55555',
-            'post' => '55555',
-            'user_id' => '5',
+            'title' => 'Mt.Fuji',
+            'post' => 'It was the best mountain that i have ever seen. you must see it on your eyes!!',
+            'user_id' => '8',
+     
+            ]);
+        $post->save();
+        
+        $post = new \App\Post([
+            'title' => '鶴岡八幡宮',
+            'post' => 'たくさんの観光客が訪れておりとても興味深かった',
+            'user_id' => '4',
      
             ]);
         $post->save();

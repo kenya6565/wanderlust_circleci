@@ -2,19 +2,19 @@
 @section('title', 'followings')
     
 @section('content')
-    @if (count($errors) > 0)
-        <ul>
-            @foreach($errors->all() as $e)
-                <li>{{ $e }}</li>
-            @endforeach
-        </ul>
-    @endif
     @foreach($following_users as $following_user)
         <div class="col-12 pt20" style="margin: auto;">
+            @if (count($errors) > 0)
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+            @endif
             <div class="card">
                 <div class="card-haeder p-3 w-100 d-flex">
                     @if(isset($following_user->user_icon_image))
-                   　     <img src="{{ $following_user->user_icon_image }}" class="img-fluid rounded-circle" width="50" height="50">
+                   　    <img src="{{ $following_user->user_icon_image }}" class="img-fluid rounded-circle" width="50" height="50">
                     @else
                         <img class="rounded-circle img-fluid" src="{{ asset('images/nonuser.png') }}"  width="50" height="50">
                     @endif
@@ -32,13 +32,11 @@
                             <form action="{{ route('unfollow', ['id' => $following_user->id]) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
-    
                                 <button type="submit" class="btn btn-danger">フォロー解除</button>
                             </form>
                         @else
                             <form action="{{ route('follow', ['id' => $following_user->id]) }}" method="POST">
                                 {{ csrf_field() }}
-    
                                 <button type="submit" class="btn btn-primary">フォローする</button>
                             </form>
                         @endif
@@ -47,10 +45,7 @@
             </div>
         </div>
     @endforeach
-    </div>
-    </div>
     <div class="d-flex justify-content-center">
-      {{ $following_users->links() }}
+       {{ $following_users->links() }}
     </div>
-    
 @endsection
