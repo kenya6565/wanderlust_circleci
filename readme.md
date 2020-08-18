@@ -18,7 +18,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 ## 機能一覧
 
-- ユーザー登録、ログイン**
+- ユーザー登録、ログイン
 - CRUD機能
 - 画像複数投稿機能
 - 言語変更機能（日・英）
