@@ -55,6 +55,6 @@ Thank you for considering contributing to the Laravel framework! The contributio
 
 インフラ
 <p>①本番環境をHerokuからAWSに変更</p>
-②ローカル環境をcloud9からDockerに変更
-③CU/CIパイプラインにCircle CIを導入
+<p>②ローカル環境をcloud9からDockerに変更</p>
+<p>③CU/CIパイプラインにCircle CIを導入</p>
 
