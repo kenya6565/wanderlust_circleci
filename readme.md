@@ -37,9 +37,16 @@ Wanderlustとは英語で旅をしたい、世界を知りたいという強い�
 - フォロー/フォロー解除機能
 - トップ画面で10種類の世界の名所がランダムで表示される
 
-## Contributin
+## 使用技術
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- PHP 7.2.31
+- Laravel  5.8.38
+- mysql 5.7.30(開発環境)
+- JavaScript (jQuery)
+- Bootstrap
+- AWS (EC2,cloud9, S3, VPC,)
+- Git, GitHub
+- Heroku
 
 ## ER図
 
