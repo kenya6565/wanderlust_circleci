@@ -4,7 +4,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center mb50 pt20">
-            <div class="col-12">
+            <div class="col-lg-4 col-12">
                 <div class="card">
                     <h3 class="card-header">
                         {{ $user_info->name }}
