@@ -1,14 +1,13 @@
-<p align="center">
- <img width="1316" alt="スクリーンショット 2020-08-18 1 41 01" src="https://user-images.githubusercontent.com/61537178/90506002-8b7c3480-e18e-11ea-8098-45297f59f31f.png">
-</p>
-
-
 
 ## Wanderlust
 
 Wanderlustは世界の名所を投稿してシェアできるSNSサイトです
 Wanderlustとは英語で旅をしたい、世界を知りたいという強い気持ち、欲望、衝動のことをあらわす言葉です。
 このアプリを機に少しでも多くの方が海外に興味を持っていただければと思います。
+<p align="center">
+ <img width="1316" alt="スクリーンショット 2020-08-18 1 41 01" src="https://user-images.githubusercontent.com/61537178/90506002-8b7c3480-e18e-11ea-8098-45297f59f31f.png">
+</p>
+
 
 ## 概要
 
