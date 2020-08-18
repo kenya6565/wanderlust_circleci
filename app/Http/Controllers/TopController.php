@@ -10,9 +10,12 @@ class TopController extends Controller
     {
         $collection = 
             collect([
-                'photo-1492136344046-866c85e0bf04.jpeg',
-                'photo-1502602898657-3e91760cbb34.jpeg',
+                'effeltower.jpeg',
+                'thai.jpg',
                 'australia.jpeg',
+                'colosseo.jpeg',
+                'pyramid.jpg',
+                'shanghai.jpg',
                 'dessert.jpeg',
                 'greatbarrier.webp',
                 'mtfuji.jpeg',
