@@ -54,7 +54,7 @@ Thank you for considering contributing to the Laravel framework! The contributio
 - 投稿をPDF化して保存する機能
 
 インフラ
-①本番環境をHerokuからAWSに変更
+<p>①本番環境をHerokuからAWSに変更</p>
 ②ローカル環境をcloud9からDockerに変更
 ③CU/CIパイプラインにCircle CIを導入
 
