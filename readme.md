@@ -10,15 +10,19 @@
 ## Wanderlust
 
 Wanderlustは世界の名所を投稿してシェアできるSNSサイトです
-## Learning Laravel
+Wanderlustとは英語で旅をしたい、世界を知りたいという強い気持ち、欲望、衝動のことをあらわす言葉です。
+このアプリを機に少しでも多くの方が海外に興味を持っていただければと思います。
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 概要
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+合計約2年間オーストラリアとインドで海外留学、海外インターンを経験しました。
+そこで偶然巡り合った人との出会い、文化、繋がりを自分だけの記憶ではなく世界中の仲間、コミュニティとSNSを通じて共感、シェアできるようなサービスを作りたいと思ったからです。
+
 
 ## 機能一覧
 
 - ユーザー登録、ログイン
+- 簡単ログイン
 - CRUD機能
 - 画像複数投稿機能
 - 言語変更機能（日・英）
