@@ -61,7 +61,7 @@
 @section('content')
     <div class="container-fluid" >
       　<div class="row" style="padding:0px">
-            <div class="col no-gutters text-image" style="padding:0px">
+            <div class="col-sm-12 no-gutters text-image" style="padding:0px">
               　<img class=" img-fluid w-100" style="width:100px height:100px" src="{{ asset('images/'.$random) }}">
               　<div class="text1">
           			<h6><p>{{ __('messages.wanderlust') }}</p></h6>
