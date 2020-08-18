@@ -13,7 +13,7 @@
 
 
 Route::get('/', 'TopController@index');
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'guest'], function () {
 
 
 Auth::routes();
-//ログイン一般ユーザー
+//ログイン時
 Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::get('timeline/','User\TimelineController@index')->name('user_timeline');
     Route::post('/','User\TimelineController@post')->name('post');

@@ -13,15 +13,14 @@ use \App\User;
 
 class TimelineController extends Controller
 {
-   public function index(Request $request)
-   {
-      
+    public function index(Request $request)
+    {
         $all_posts = Post::orderBy('created_at','DESC')->paginate(9);
       
         return view('guest.timeline.index',compact(
             'all_posts'
         ));
-   }
+    }
    
    public function show(Request $request)
     {
@@ -29,16 +28,17 @@ class TimelineController extends Controller
         $post = Post::find($request->id);
         $images = $post->photos;
          //dd($images);
-       
-        //$images = \Image::make($images);
-        
-        //dd($images);
+        $recent_posts = Post::where('user_id',$post->user_id)
+                            ->whereNotIn('id',[$post->id])
+                            ->get();
+     
         //１つの投稿を表示する際それについてるコメントを表示
         $comments = Comment::where('post_id',$post)->latest()->get();
        
         return view('guest.timeline.detail', compact(
             'post',
             'comments',
+            'recent_posts',
             'images'
         ));
     }

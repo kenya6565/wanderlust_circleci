@@ -16,7 +16,9 @@ class PagesController extends Controller
     {
         $user_info = User::find($request->id);
         $counts = BaseClass::counts($user_info);
-        $posts = Post::where('user_id',$request->id)->orderBy('created_at','DESC')->paginate(9);
+        $posts = Post::where('user_id',$request->id)
+                   ->orderBy('created_at','DESC')
+                   ->paginate(9);
       
         return view('guest.users.index',compact(
             'posts',
