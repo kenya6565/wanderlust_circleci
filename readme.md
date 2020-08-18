@@ -46,6 +46,8 @@ Wanderlustは世界の名所を投稿してシェアできるSNSサイトです
 
 ## ER図
 
+<img width="880" alt="スクリーンショット 2020-08-18 20 59 10" src="https://user-images.githubusercontent.com/61537178/90510396-e36a6980-e195-11ea-9b06-c1e90a905306.png">
+
 
 
 ## 今後の実装予定
