@@ -37,14 +37,24 @@ Wanderlustとは英語で旅をしたい、世界を知りたいという強い�
 - フォロー/フォロー解除機能
 - トップ画面で10種類の世界の名所がランダムで表示される
 
-## Contributing
+## Contributin
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
+## ER図
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 今後の実装予定
+
+機能
+
+- 通知機能
+- ソート機能
+- 投稿をPDF化して保存する機能
+
+インフラ
+①本番環境をHerokuからAWSに変更
+②ローカル環境をcloud9からDockerに変更
+③CU/CIパイプラインにCircle CIを導入
+
