@@ -7,7 +7,7 @@
 @section('content')
     <div class="row justify-content-center container pt20" style="margin: auto;">
         @foreach($all_posts as $post)
-            <div class="col-4 mb50">
+            <div class="col-sm-4 mb50">
                 <div class="card">
                   　@if(isset($post->firstPhoto()->image))
                     　　<img class="card-img-top" src="{{ Storage::disk('s3')->url('public/images/' . $post->firstPhoto()->image) }}">
@@ -19,7 +19,7 @@
                         <p class="card-text">
                             <div>{{ $post->post }}</div>
                         </p>
-                        <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-secondary">{{ __('messages.detail') }}</a>
+                        <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-secondary"><i class="fas fa-info-circle"></i> {{ __('messages.detail') }}</a>
                     </div>
                 </div>
             </div>

@@ -61,11 +61,9 @@
 @section('content')
     <div class="container-fluid" >
       　<div class="row" style="padding:0px">
-            <div class="col-sm-12 no-gutters text-image" style="padding:0px">
+            <div class="col-lg-12 col-12 no-gutters text-image" style="padding:0px">
               　<img class=" img-fluid w-100" style="width:100px height:100px" src="{{ asset('images/'.$random) }}">
-              　<div class="text1">
-          			<h6><p>{{ __('messages.wanderlust') }}</p></h6>
-          		</div>
+          		<h6><p>{{ __('messages.wanderlust') }}</p></h6>
           		<h1>{{ __('messages.explanation') }}</h1>
               　<a href="{{ route('login') }}" class="btn-shine  text-white">{{ __('messages.start') }}</a>
             </div>

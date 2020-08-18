@@ -52,13 +52,13 @@
     
                 @foreach($images as $image)
                     @if(isset($image->image))
-                        <div class="col-3 mb20">
+                        <div class="col-lg-3 col-12 mb20">
                             <img class="img-thumbnail img-responsive  d-block w-100 shadow-lg bg-dark rounded" src="{{ Storage::disk('s3')->url('public/images/' . $image->image) }}">
                         </div>
                     @endif
                 @endforeach
             @else
-                <div class="col-3 mb20">
+                <div class="col-lg-3 col-12 mb20">
                    <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
                 </div>
             @endif
