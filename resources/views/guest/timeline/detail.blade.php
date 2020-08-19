@@ -87,13 +87,13 @@
                                                     <p>
                                                         <img class="img-fluid" width="50" height="50" src="{{ Storage::disk('s3')->url('public/images/' . $recent_post->firstPhoto()->image) }}">
                                                         <a href="{{ action('User\TimelineController@show',  $recent_post->id )}}" class="text-dark">{{$recent_post->title}}</a>
-                                                        {{$recent_post->created_at}}
+                                                        {{ $recent_post->created_at }}
                                                     </p>
                                                 @else
                                                     <p>
                                                         <img class="img-fluid" width="50" height="50" src="{{ asset('images/'.'noimageavailable.png') }}">
                                                         <a href="{{ action('Guest\TimelineController@show',  $recent_post->id )}}" class="text-dark">{{$recent_post->title}}</a>
-                                                        {{$recent_post->created_at}}
+                                                        {{ $recent_post->created_at }}
                                                     </p>
                                                 @endif
                                             @endforeach
