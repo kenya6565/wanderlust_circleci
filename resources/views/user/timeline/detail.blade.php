@@ -49,7 +49,6 @@
         </div>
         <div class="row justify-content-center pt20" style="margin: auto;">
             @if($images->count())
-    
                 @foreach($images as $image)
                     @if(isset($image->image))
                         <div class="col-3 mb20">

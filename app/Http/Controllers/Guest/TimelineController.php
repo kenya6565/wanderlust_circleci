@@ -33,7 +33,7 @@ class TimelineController extends Controller
                             ->get();
      
         //１つの投稿を表示する際それについてるコメントを表示
-        $comments = Comment::where('post_id',$post)->latest()->get();
+        $comments = Comment::where('post_id',$post)->get();
        
         return view('guest.timeline.detail', compact(
             'post',
