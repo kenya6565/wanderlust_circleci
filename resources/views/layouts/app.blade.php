@@ -97,7 +97,7 @@
                                                 <div class="modal-body">
                                                     <form>
                                                       <div class="form-group">
-                                                        <input type="text" name="keyword" style="width:100%;" class="form-control" id="title-name"  placeholder="名所の名前を入力してください">
+                                                        <input type="text" name="keyword" style="width:100%;" class="form-control" id="title-name"  placeholder="名所 + 国名を入力してください">
                                                       </div>
                                                     </form>
                                                 </div>

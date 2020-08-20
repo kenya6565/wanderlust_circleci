@@ -9,16 +9,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TimelineControllerTest extends TestCase
 {
+   
     //タイムライン表示
-    public function Test_showTimelinePage()
+    public function test_showTimelinePage()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get(route('user_timeline'));
-        $response->assertStatus(200)->assertViewIs('user_timeline');
+        $response->assertStatus(200)->assertViewIs('user.timeline.index');
     }
     
     //投稿
-    public function Test_post()
+    public function test_post()
     {
         $user = factory(User::class)->create();
         $response = $this->actingAs($user)->get(route('user_timeline'));

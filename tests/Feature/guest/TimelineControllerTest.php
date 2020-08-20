@@ -9,19 +9,24 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TimelineControllerTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-   
-    
-    //未ログイン時
-    public function Test_showTimelinePage_Guest()
+     //未ログイン時
+    public function test_showTimelinePage_Guest()
     {
-        $response->assertRedirect(route('guest_timeline'));
+        $response = $this->get(route('guest_timeline'));
+        
+        $response->assertStatus(200)
+            ->assertViewIs('guest.timeline.index');
     }
     
-  
+    public function test_showPostDetail_Guest()
+    {
+        
+        $response = $this->get(route('guest_postdetail'));
+        $response->assertStatus(200)
+            ->assertViewIs('guest.timeline.show');
+    }
+    
+   
+    
     
 }
