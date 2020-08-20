@@ -1,33 +1,24 @@
 @extends('layouts.app')
-   <style type="text/css">
-      .text-image {
+<style type="text/css">
+    .text-image {
         position: relative;
         width: 500px;
-      }
-      
-      .text-image img {
+    }
+    
+    .text-image img {
         width: 100%;
-      }
-      
-      .text-image p {
+    }
+    
+    
+    
+     .text {
         position: absolute;
         top: 30%;
-        left: 19%;
-        font-size: 60px;
-        color: #ffffff;
-        font-family: 'Creepster', cursive;
-        font-family: 'Kosugi Maru', sans-serif;
-      }
-      
-      .text-image h1 {
-        position: absolute;
-        top: 40%;
-        left: 10%;
         color: #ffffff;
         font-family: 'Kosugi Maru', sans-serif;
-      } 
-        
-      .btn-shine {
+    } 
+    
+    .btn-shine {
         color: #FFF;
         display: inline-block;
         font-size: 16px;
@@ -43,29 +34,58 @@
         text-shadow: none;
         transition: all 1.2s cubic-bezier(0.2, 1, 0.2, 1);
         position: absolute;
-        top: 58%;
+        top: 10%;
         left: 43%;
         font-family: 'Kosugi Maru', sans-serif;
         text-align: center;
-      }
+    }
     
-      .btn-shine:hover {
+    .btn-shine:hover {
         border-color: #FFF;
         box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
         outline-color: transparent;
         outline-offset: 12px;
         text-shadow: 2px 2px 3px #000;
+    
+    }
+    
+    @media (min-width: 992px) {
+        .text {
+                font-size: 4.0rem;
+        }
+      
+    }
+    @media (max-width: 991.98px) {
+        .text {
+            font-size: 4.0rem;
+        }
        
-      }
-    </style>
+    }
+    @media (max-width: 767.98px) {
+        .text {
+            font-size: 2.0rem;
+        }
+       
+    }
+    @media (max-width: 575.98px) {
+        .text {
+            font-size: 1.0rem;
+        }
+       
+    }
+    
+  
+</style>
 @section('content')
     <div class="container-fluid" >
       　<div class="row" style="padding:0px">
-            <div class="col-lg-12 col-12 no-gutters text-image" style="padding:0px">
-              　<img class=" img-fluid w-100" style="width:100px height:100px" src="{{ asset('images/'.$random) }}">
-          		<h6><p>{{ __('messages.wanderlust') }}</p></h6>
-          		<h1>{{ __('messages.explanation') }}</h1>
-              　<a href="{{ route('login') }}" class="btn-shine  text-white">{{ __('messages.start') }}</a>
+            <div class="col-lg-12 col-12 no-gutters text-image text-center text-sm-center" style="padding:0px">
+                <img class="img-fluid" src="{{ asset('images/'.$random) }}">
+              　<div class="text">
+              		<p>{{ __('messages.wanderlust') }}</p>
+              		{{ __('messages.explanation') }}
+          		</div>
+              　<a href="{{ route('login') }}" class="btn-shine  d-flex justify-content-center d-md-table mx-auto text-white">{{ __('messages.start') }}</a>
             </div>
       　</div>
     </div>

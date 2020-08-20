@@ -51,13 +51,13 @@
             @if($images->count())
                 @foreach($images as $image)
                     @if(isset($image->image))
-                        <div class="col-3 mb20">
+                        <div class="col-lg-3 col-12 mb20">
                             <img class="img-thumbnail img-responsive  d-block w-100 shadow-lg bg-dark rounded" src="{{ Storage::disk('s3')->url('public/images/' . $image->image) }}">
                         </div>
                     @endif
                 @endforeach
             @else
-                <div class="col-3 mb20">
+                <div class="col-lg-3 col-12 mb20">
                    <img src="{{ asset('images/'.'noimageavailable.png') }}" class="img-thumbnail img-responsive d-block w-100 shadow-lg bg-white rounded">
                 </div>
             @endif
@@ -133,7 +133,7 @@
                                 <a href="{{ action('User\TimelineController@edit', ['id' => $post->id] )}}" class="nav-link mt20  text-dark"><i class="fas fa-comments"></i>編集する</a>
                                 <form action="{{ route('delete',['id' => $post->id]) }}" method="post">
                                     {{ csrf_field() }}
-                                    <input type="submit" value="削除する" class="mt20 ml10 btn btn-danger" onclick='return confirm("投稿を削除しますか？");'>
+                                    <input type="submit" value="削除する" class="mt20 ml10 btn-sm btn btn-danger" onclick='return confirm("投稿を削除しますか？");'>
                                 </form>
                             @endif
                         </div>
