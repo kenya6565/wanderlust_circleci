@@ -12,9 +12,8 @@
 .main {
     background: radial-gradient(#536976, #292E49);
     background-size: cover;
-    min-height: 85vh;
+    min-height: 90vh;
    
-    /*padding-bottom: 20px;*/
 }
 .pagetitle {
     color: #fff;
