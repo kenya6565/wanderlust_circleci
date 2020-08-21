@@ -14,16 +14,20 @@ class TimelineControllerTest extends TestCase
     {
         $response = $this->get(route('guest_timeline'));
         
-        $response->assertStatus(200)
-            ->assertViewIs('guest.timeline.index');
+        //タイムラインに遷移しているか
+        $response->assertStatus(200)->assertViewIs('guest.timeline.index');
+        
+        //ゲストとして画面遷移しているか
+        $this->assertGuest($guard = null);
     }
     
     public function test_showPostDetail_Guest()
     {
-        
-        $response = $this->get(route('guest_postdetail'));
-        $response->assertStatus(200)
-            ->assertViewIs('guest.timeline.show');
+        $response = $this->get(route('guest_postdetail',['id' => '1']));
+        $response->assertStatus(200)->assertViewIs('guest.timeline.detail');
+            
+         //postテーブルのidが1である投稿に正しくアクセスできているか確認
+        $response->assertSee('エッフェル塔 フランス'); 
     }
     
    

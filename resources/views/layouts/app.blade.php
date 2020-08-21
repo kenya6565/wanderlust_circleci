@@ -60,7 +60,7 @@
                                                     <form>
                                                       <div class="form-group">
                                                         <label for="title-name" class="col-form-label text-dark">名所の名前:</label>
-                                                        <input type="text" name="title" class="form-control" id="title-name" placeholder="名所の名前">
+                                                        <input type="text" name="title" class="form-control" id="title-name" placeholder="名所 + 国名を入力してください">
                                                       </div>
                                                       <div class="form-group">
                                                         <label for="message-text" class="col-form-label text-dark">紹介文:</label>
@@ -97,7 +97,7 @@
                                                 <div class="modal-body">
                                                     <form>
                                                       <div class="form-group">
-                                                        <input type="text" name="keyword" style="width:100%;" class="form-control" id="title-name"  placeholder="名所 + 国名を入力してください">
+                                                        <input type="text" name="keyword" style="width:100%;" class="form-control" id="title-name"  placeholder="名所 or 国名を入力してください">
                                                       </div>
                                                     </form>
                                                 </div>
