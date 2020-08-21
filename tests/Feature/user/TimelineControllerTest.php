@@ -30,8 +30,8 @@ class TimelineControllerTest extends TestCase
     {
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create();
+        // $response = $this->actingAs($user)->get(route('user_postdetail',$post->id));
         $response = $this->actingAs($user)->get(route('user_postdetail',$post->id));
-        
         $response->assertStatus(200)->assertViewIs('user.timeline.detail');
             
          //postテーブルのidが1である投稿に正しくアクセスできているか確認
