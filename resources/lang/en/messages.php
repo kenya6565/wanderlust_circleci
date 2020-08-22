@@ -24,6 +24,9 @@ return [
     'option' => 'Option',
     'must' => 'Required',
     'detail' => 'Detail',
+    'sort' => 'Sort',
+    'asc' => 'Ascending',
+    'desc' => 'Descending',
   
     
 ];

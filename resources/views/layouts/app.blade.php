@@ -121,14 +121,14 @@
                         @if(Auth::check())
                             <li class="dropdown" id="nav-lang" style="margin-top:8px">
                             <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" style="margin-left:5px">
-                               並び替え
+                               <i class="fas fa-sort"></i>{{ __('messages.sort') }}
                             <span class="caret"></span></a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <li>
-                                        <a style="margin-left:50px" class="text-dark" href="?sort=asc">昇順</a>
+                                        <a style="margin-left:50px" class="text-dark" href="{{ action('User\TimelineController@index',['sort'=>'asc']) }}">{{ __('messages.asc') }}</a>
                                     </li>
                                     <li>
-                                        <a style="margin-left:50px" class="text-dark" href="?sort=desc">降順</a>
+                                        <a style="margin-left:50px" class="text-dark" href="{{ action('User\TimelineController@index',['sort'=>'desc']) }}">{{ __('messages.desc') }}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -138,14 +138,14 @@
                         @else
                             <li class="dropdown" id="nav-lang" style="margin-top:8px">
                             <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" style="margin-left:5px">
-                               並び替え
+                               <i class="fas fa-sort"></i>{{ __('messages.sort') }}
                             <span class="caret"></span></a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <li>
-                                        <a style="margin-left:50px" class="text-dark" href="?sort=asc">昇順</a>
+                                        <a style="margin-left:50px" class="text-dark" href="{{ action('Guest\TimelineController@index',['sort'=>'asc']) }}">{{ __('messages.asc') }}</a>
                                     </li>
                                     <li>
-                                        <a style="margin-left:50px" class="text-dark" href="?sort=desc">降順</a>
+                                        <a style="margin-left:50px" class="text-dark" href="{{ action('Guest\TimelineController@index',['sort'=>'desc']) }}">{{ __('messages.desc') }}</a>
                                     </li>
                                 </ul>
                             </li>
@@ -164,7 +164,7 @@
                                 @foreach (Config::get('languages') as $lang => $language)
                                     @if ($lang != App::getLocale())
                                         <li>
-                                            <a style="margin-left:50px" class="text-dark" href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
+                                            <a style="margin-left:50px" class="text-dark" href="{{ route('lang.switch', $lang) }}">{{ $language }}</a>
                                         </li>
                                     @endif
                                 @endforeach
