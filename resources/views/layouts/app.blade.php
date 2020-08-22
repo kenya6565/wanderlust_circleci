@@ -119,10 +119,39 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @if(Auth::check())
+                            <li class="dropdown" id="nav-lang" style="margin-top:8px">
+                            <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" style="margin-left:5px">
+                               並び替え
+                            <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a style="margin-left:50px" class="text-dark" href="?sort=asc">昇順</a>
+                                    </li>
+                                    <li>
+                                        <a style="margin-left:50px" class="text-dark" href="?sort=desc">降順</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('User\TimelineController@index' )}}"><i class="fas fa-stream"></i>{{ __('messages.timeline') }}</a>
                             </li>
                         @else
+                            <li class="dropdown" id="nav-lang" style="margin-top:8px">
+                            <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" style="margin-left:5px">
+                               並び替え
+                            <span class="caret"></span></a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <li>
+                                        <a style="margin-left:50px" class="text-dark" href="?sort=asc">昇順</a>
+                                    </li>
+                                    <li>
+                                        <a style="margin-left:50px" class="text-dark" href="?sort=desc">降順</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            
+                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}"><i class="fas fa-stream"></i>{{ __('messages.timeline') }}</a>
                             </li>

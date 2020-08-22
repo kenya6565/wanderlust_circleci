@@ -13,6 +13,8 @@
 
 
 Route::get('/', 'TopController@index');
+// Route::get('/ascendingOrder', 'TopController@ascendingOrder');
+// Route::get('/descendingOrder', 'TopController@descendingOrder');
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 

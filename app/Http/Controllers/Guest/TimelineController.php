@@ -15,8 +15,12 @@ class TimelineController extends Controller
 {
     public function index(Request $request)
     {
-        $all_posts = Post::orderBy('created_at','DESC')->paginate(9);
-      
+        if($request->sort == "asc"){
+            $all_posts = Post::orderBy('id','ASC')->paginate(9);
+        }else{
+            $all_posts = Post::orderBy('id','DESC')->paginate(9);
+        }
+        
         return view('guest.timeline.index',compact(
             'all_posts'
         ));
