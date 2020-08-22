@@ -29,9 +29,15 @@ class TimelineController extends Controller
             }
         }
         //postsテーブルのユーザID(投稿ユーザ)にフォローしてるユーザのIDかログインユーザのIDがあったら取得
-        $all_posts = Post::whereIn('user_id',$user_id)
-                           ->orderBy('created_at','DESC')
+        if($request->sort == "asc"){
+            $all_posts = Post::whereIn('user_id',$user_id)
+                           ->orderBy('id','ASC')
                            ->paginate(9);
+        }else{
+            $all_posts = Post::whereIn('user_id',$user_id)
+                           ->orderBy('id','DESC')
+                           ->paginate(9);
+        }
                 
         return view('user.timeline.index',compact(
             'all_posts'

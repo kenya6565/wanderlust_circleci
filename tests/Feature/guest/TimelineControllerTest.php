@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TimelineControllerTest extends TestCase
 {
+    //use RefreshDatabase;
      //未ログイン時
     public function test_showTimelinePage_Guest()
     {
