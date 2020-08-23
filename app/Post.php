@@ -9,8 +9,7 @@ class Post extends Model
     protected $fillable = [   
         'user_id',
         'title',
-        'post',
-        'country'
+        'post'
     ];
     
     public static $rules = array(

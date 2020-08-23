@@ -31,6 +31,40 @@ class TimelineControllerTest extends TestCase
         $response->assertSee('エッフェル塔 フランス'); 
     }
     
+    public function test_sortAsc_Guest()
+    {
+        $response = $this->get(route('guest_timeline',['sort'=>'asc']));
+        
+        //タイムラインに遷移しているか
+        $response->assertStatus(200)->assertViewIs('guest.timeline.index');
+        
+        //ゲストとして画面遷移しているか
+        $this->assertGuest($guard = null);
+    }
+    
+    public function test_sortDesc_Guest()
+    {
+        $response = $this->get(route('guest_timeline',['sort'=>'desc']));
+        
+        //タイムラインに遷移しているか
+        $response->assertStatus(200)->assertViewIs('guest.timeline.index');
+        
+        //ゲストとして画面遷移しているか
+        $this->assertGuest($guard = null);
+    }
+    
+    public function test_getRecentPhoto_Guest()
+    {
+        $response = $this->get(route('guest_postdetail',['id' => '1']));
+        
+        
+        //タイムラインに遷移しているか
+        $response->assertStatus(200)->assertViewIs('guest.timeline.index');
+        
+        //ゲストとして画面遷移しているか
+        $this->assertGuest($guard = null);
+    }
+    
    
     
     
