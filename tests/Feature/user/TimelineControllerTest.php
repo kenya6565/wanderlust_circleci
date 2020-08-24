@@ -29,11 +29,11 @@ class TimelineControllerTest extends TestCase
     public function test_showPostDetail()
     {
         $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->get(route('user_postdetail',['id' => '1']));
+        $response = $this->actingAs($user)->get(route('user_postdetail',['id' => '2']));
         $response->assertStatus(200)->assertViewIs('user.timeline.detail');
         // /$response->dump();
          //postテーブルのidが1である投稿に正しくアクセスできているか確認
-        $response->assertSee('エッフェル塔 フランス'); 
+        $response->assertSee('ピラミッド エジプト'); 
     }
     
     public function test_showMyPage()
@@ -49,48 +49,39 @@ class TimelineControllerTest extends TestCase
     public function test_post()
     {
         $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->get(route('user_timeline'));
-        //$response = $this->from('user_timeline')->post('user_timeline', ['post' => 'post'],['title' => 'title']);
-        // $this->assertDatabaseHas('posts',  ['post' => 'post'],['title' => 'title']);
         $post = factory(Post::class)->create();
-        // $this->assertDatabaseHas('posts',  ['post' => 'post'],['title' => 'title']);
-       
-        // $response = $this->post(route('post'),[
-        //     'posts' =>[
-        //         'post' => 'post',
-        //         'title' => 'title',
-        //         'user_id' => $user->id,
-        //     ]
-        // ]);
-        
-        
-
-        //登録処理が完了して、一覧画面にリダイレクトすることを検証
-      
-       
-       
-        $response->assertStatus(200) # ステータスコードが 200
-            ->assertJsonFragment([ # レスポンス JSON に以下の値を含む
-                'title' => '京都',
-                'post' => 'とても綺麗だった',
-            ]);
-       
-       
-        
-       
-        
+        $response = $this->actingAs($user)->get(route('user_timeline'));
+        $response->assertStatus(200)->assertViewIs('user.timeline.index');
+        $this->assertDatabaseHas('posts', [
+            'post' => $post['post'],
+            'title' => $post['title'],
+        ]);
     }
     
-    public function test_sortAsc()
+    public function test_postDelete()
     {
         $user = factory(User::class)->create();
-        $response = $this->actingAs($user)->get(route('user_timeline',['sort'=>'asc']));
+        $post = factory(Post::class)->create();
+        $response = $this->actingAs($user)->get(route('user_postdetail',['id' => $post['id']]));
+        \App\Post::where('title', $post['title'])->delete();
+        $response->assertStatus(200);
+       
+        $this->assertDatabaseMissing('posts', [
+            'title' => $post['title'],
+        ]);
+    }
+    // public function test_sortAsc()
+    // {
+    //     $user = factory(User::class)->create();
+    //     $response = $this->actingAs($user)->get(route('user_timeline',['sort'=>'asc']));
         
-        //タイムラインに遷移しているか
-        $response->assertStatus(200)->assertViewIs('user.timeline.index');
+    //     //タイムラインに遷移しているか
+    //     $response->assertStatus(200)->assertViewIs('user.timeline.index');
+    //     $response->assertSeeText('エッフェル塔'); 
+
         
        
-    }
+   // }
     
     public function test_sortDesc()
     {
@@ -99,8 +90,7 @@ class TimelineControllerTest extends TestCase
         
         //タイムラインに遷移しているか
         $response->assertStatus(200)->assertViewIs('user.timeline.index');
-        
-       
+        $response->assertDontSee('ピラミッド エジプト'); 
     }
     
     
