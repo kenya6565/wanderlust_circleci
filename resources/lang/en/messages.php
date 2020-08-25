@@ -27,6 +27,18 @@ return [
     'sort' => 'Sort',
     'asc' => 'Ascending',
     'desc' => 'Descending',
+    'memory' => 'Tell us your memorable places!',
+    'spot' => 'Tourist spot',
+    'spot_post' => 'Please write the tourist spot + its country name',
+    'search_post' => 'Please write the tourist spot or its country name',
+    'intro' => 'Introduction',
+    'intro_post' => 'Please write introduction of your memorable places',
+    'post' => 'Post',
+    'close' => 'Close',
+    'file' => 'Image (option) **You cannot post an image that exceeds more than 2M**:',
+    
+
+    
   
     
 ];

@@ -91,7 +91,7 @@
               		<p>{{ __('messages.wanderlust') }}</p>
               		{{ __('messages.explanation') }}
           		</div>
-              　<a href="{{ route('login') }}" class="btn-shine  d-flex justify-content-center d-md-table mx-auto text-white">{{ __('messages.start') }}</a>
+              　<a href="{{ route('login') }}" class="btn-shine d-flex justify-content-center d-md-table mx-auto text-white">{{ __('messages.start') }}</a>
             </div>
       　</div>
     </div>

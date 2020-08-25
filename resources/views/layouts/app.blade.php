@@ -54,28 +54,28 @@
                                         <div class="modal-dialog modal-xl" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title text-dark" id="exampleModalLabel">思い出の場所を共有しよう</h5>
+                                                    <h5 class="modal-title text-dark" id="exampleModalLabel">{{ __('messages.memory') }}</h5>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form>
                                                       <div class="form-group">
-                                                        <label for="title-name" class="col-form-label text-dark">名所の名前:</label>
-                                                        <input type="text" name="title" class="form-control" id="title-name" placeholder="名所 + 国名を入力してください">
+                                                        <label for="title-name" class="col-form-label text-dark">{{ __('messages.spot') }}:</label>
+                                                        <input type="text" name="title" class="form-control" id="title-name" placeholder="{{ __('messages.spot_post') }}">
                                                       </div>
                                                       <div class="form-group">
-                                                        <label for="message-text" class="col-form-label text-dark">紹介文:</label>
-                                                        <textarea class="form-control" style=" height:220px; resize: none;" name="post" id="message-text" placeholder="紹介文"></textarea>
+                                                        <label for="message-text" class="col-form-label text-dark">{{ __('messages.intro') }}:</label>
+                                                        <textarea class="form-control" style=" height:220px; resize: none;" name="post" id="message-text" placeholder="{{ __('messages.intro_post') }}"></textarea>
                                                       </div>
                                                       <button type="button" id="add" class=" btn-floating btn-primary" ><i class="fas fa-plus"></i></button>
                                                       <div class="form-group-file">
-                                                        <label for="message-text" class="col-form-label text-dark">画像(任意):</label>
+                                                        <label for="message-text" class="col-form-label text-dark">{{ __('messages.file') }}</label>
                                                         <input type="file" class="form-control-file text-dark"  name="image[]" id="File"  multiple="multiple">
                                                       </div>
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-                                                    <button type="submit" class="btn btn-primary">投稿</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.close') }}</button>
+                                                    <button type="submit" class="btn btn-primary">{{ __('messages.post') }}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -92,17 +92,17 @@
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title text-dark" id="exampleModalLabel">検索</h5>
+                                                    <h5 class="modal-title text-dark" id="exampleModalLabel">{{ __('messages.search') }}</h5>
                                                 </div>
                                                 <div class="modal-body">
                                                     <form>
                                                       <div class="form-group">
-                                                        <input type="text" name="keyword" style="width:100%;" class="form-control" id="title-name"  placeholder="名所 or 国名を入力してください">
+                                                        <input type="text" name="keyword" style="width:100%;" class="form-control" id="title-name"  placeholder="{{ __('messages.search_post') }}">
                                                       </div>
                                                     </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('messages.close') }}</button>
                                                     <button type="submit" class="btn btn-primary">{{ __('messages.search') }}</button>
                                                 </div>
                                             </div>
