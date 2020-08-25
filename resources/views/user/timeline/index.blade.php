@@ -43,6 +43,6 @@
         @endforeach
     </div>
     <div class="d-flex justify-content-center mt40">
-        {{ $all_posts->links() }}
+         {{ $all_posts->appends(request()->input())->links() }}
     </div>
 @endsection
