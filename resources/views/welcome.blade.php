@@ -3,15 +3,16 @@
     .text-image {
         position: relative;
         width: 500px;
+        min-height: 90vh;
+       
     }
     
     .text-image img {
         width: 100%;
+        min-height: 90vh;
     }
     
-    
-    
-     .text {
+    .text {
         position: absolute;
         top: 30%;
         color: #ffffff;
@@ -71,13 +72,18 @@
         .text {
             font-size: 1.0rem;
         }
+    
        
     }
+    
+    /*.top_view {*/
+    /*    min-height: initial;*/
+    /*}*/
     
   
 </style>
 @section('content')
-    <div class="container-fluid" >
+    <div class="container-fluid top_view">
       　<div class="row" style="padding:0px">
             <div class="col-lg-12 col-12 no-gutters text-image text-center text-sm-center" style="padding:0px">
                 <img class="img-fluid" src="{{ asset('images/'.$random) }}">
