@@ -18,7 +18,6 @@
                         <h4 class="card-title">{{ $post->title }}</h4>
                         <p class="card-text">
                             <div>{{ $post->post }}</div>
-                            <div>{{ $post->id }}</div>
                         </p>
                         <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-secondary"><i class="fas fa-info-circle"></i> {{ __('messages.detail') }}</a>
                     </div>
