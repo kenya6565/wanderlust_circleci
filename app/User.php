@@ -136,4 +136,30 @@ class User extends Authenticatable
         //ある投稿に対してpost_idがあるか
         return $this->likes()->where('post_id',$postId)->exists();
     }
+    
+    
+    
+    // public function follow_request($postId)
+    // {
+    //     //ある投稿に対してpost_idがあるか
+    //     return $this->likes()->where('post_id',$postId)->exists();
+    // }
+    
+    public function lock()
+    {
+        $this->is_private = 1; 
+        $this->save();
+    }
+    
+    public function unlock()
+    {
+        $this->is_private = 0; 
+        $this->save();
+    }
+    
+    public function is_locked()
+    {
+        return User::where('is_private',1)->exists();
+    }
+    
 }

@@ -8,7 +8,25 @@
           　     @if(Auth::user()->is_following($user_info->id) || Auth::id() == $user_info->id)
                     <div class="card">
                         <h3 class="card-header">
-                          　{{ $user_info->name }}
+                            {{ $user_info->name }}
+                          　@if(Auth::user()->is_locked())
+                            　  <i class="fas fa-user-lock float-left"></i>
+                          　@endif
+                          　<div class="d-flex justify-content-end flex-grow-1">
+                                @if(Auth::user()->is_locked())
+                                    <form action="{{ route('unlock') }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        
+                                        <button type="submit" class="btn btn-primary">鍵を解除する</button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('lock') }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-danger">鍵をかける</button>
+                                    </form>
+                                @endif
+                            </div>
                         </h3>
                         <div class="card-body">
                             <h6 class="float-right">
@@ -65,6 +83,13 @@
                 @else
                     <div class="alert alert-danger" role="alert">
                         <h4 class="alert-heading"><i class="fas fa-user-lock">{{ $user_info->name }}はロックされています</i></h4>
+                        <div class="d-flex justify-content-end flex-grow-1">
+                            <form action="" method="POST">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-danger">フォローリクエスト</button>
+                            </form>
+                        </div>
                     </div>
                 @endif
             </div>

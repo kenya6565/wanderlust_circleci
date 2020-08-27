@@ -47,4 +47,6 @@ Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::get('/search', 'User\TimelineController@search')->name('search');
     Route::post('like','User\LikesController@store')->name('like');
     Route::delete('unlike','User\LikesController@destroy')->name('unlike');
+    Route::post('lock', 'User\PagesController@store')->name('lock');
+    Route::delete('unlock','User\PagesController@destroy')->name('unlock');
 });

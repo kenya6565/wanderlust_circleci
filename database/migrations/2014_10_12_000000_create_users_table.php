@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('user_icon_image')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            //$table->integer('language');
+            $table->bigInteger('is_private')->default(0)->comment('鍵垢の判断をする。初期値は鍵垢ではない');
         });
     }
 

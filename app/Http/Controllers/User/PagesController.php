@@ -20,7 +20,6 @@ class PagesController extends Controller
     public function show(Request $request)
     {
         $user_info = User::find($request->id);
-        //dd($user_info);
         $counts = BaseClass::counts($user_info);
         $posts = Post::where('user_id',$request->id)
                    ->orderBy('created_at','DESC')
@@ -64,9 +63,6 @@ class PagesController extends Controller
         
         $login_user->password = bcrypt($request->get('new-password'));
         
-       
-       
-        
         if($request->hasFile('user_icon_image')) { 
             
             //初期に画像は設定していなかったが編集で初めて画像設定する場合はここを通らない
@@ -83,5 +79,17 @@ class PagesController extends Controller
         $login_user->fill($updated_user_info)->save();
       
         return redirect(route('mypage', ['id'=>Auth::id()]));
+    }
+    
+    public function store()
+    {
+        \Auth::user()->lock();
+        return back();
+    }
+
+    public function destroy()
+    {
+        \Auth::user()->unlock();
+        return back();
     }
 }
