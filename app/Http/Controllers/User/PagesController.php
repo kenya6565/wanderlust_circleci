@@ -84,12 +84,12 @@ class PagesController extends Controller
     public function store()
     {
         \Auth::user()->lock();
-        return back();
+        return back()->with('flash_message', '鍵をかけました');
     }
 
     public function destroy()
     {
         \Auth::user()->unlock();
-        return back();
+        return back()->with('flash_message', '鍵を解除しました');
     }
 }

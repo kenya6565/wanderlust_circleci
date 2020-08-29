@@ -44,6 +44,11 @@ Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::get('followers/{id}', 'User\FollowsController@showFollowers')->name('followers');
     Route::post('follow/{id}', 'User\FollowsController@store')->name('follow');
     Route::delete('unfollow/{id}', 'User\FollowsController@destroy')->name('unfollow');
+    
+    Route::post('followRequest/{id}', 'User\FollowsController@followRequest')->name('followRequest');
+    Route::delete('unfollowRequest/{id}', 'User\FollowsController@unfollowRequest')->name('unfollowRequest');
+    
+    
     Route::get('/search', 'User\TimelineController@search')->name('search');
     Route::post('like','User\LikesController@store')->name('like');
     Route::delete('unlike','User\LikesController@destroy')->name('unlike');

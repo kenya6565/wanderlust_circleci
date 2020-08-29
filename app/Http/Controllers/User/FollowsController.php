@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use \App\User;
-use \App\Auth;
+use Illuminate\Support\Facades\Auth;
 
 class FollowsController extends Controller
 {
@@ -37,5 +37,17 @@ class FollowsController extends Controller
         return view('user.follow.followers', compact(
             'followers'
         ));
+    }
+    
+    public function followRequest($id)
+    {
+        \Auth::user()->follow_request($id);
+        return back()->with('flash_message', 'フォローリクエストしました');
+    }
+    
+    public function unfollowRequest($id)
+    {
+        \Auth::user()->unfollow_request($id);
+        return back()->with('flash_message', 'フォローリクエストを取り消しました');
     }
 }

@@ -4,26 +4,26 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center mb50 pt20">
-          　<div class="col-12">
-          　     @if(Auth::user()->is_following($user_info->id) || Auth::id() == $user_info->id)
+            <div class="col-12">
+                @if(Auth::user()->is_following($user_info->id) || Auth::id() == $user_info->id)
                     <div class="card">
                         <h3 class="card-header">
                             {{ $user_info->name }}
-                          　@if(Auth::user()->is_locked())
-                            　  <i class="fas fa-user-lock float-left"></i>
-                          　@endif
-                          　<div class="d-flex justify-content-end flex-grow-1">
+                            @if(Auth::user()->is_locked())
+                                <i class="fas fa-user-lock float-left"></i>
+                            @endif
+                            <div class="d-flex justify-content-end flex-grow-1">
                                 @if(Auth::user()->is_locked())
                                     <form action="{{ route('unlock') }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         
-                                        <button type="submit" class="btn btn-primary">鍵を解除する</button>
+                                        <button type="submit" class="btn btn-danger">鍵を解除する</button>
                                     </form>
                                 @else
                                     <form action="{{ route('lock') }}" method="POST">
                                         {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-danger">鍵をかける</button>
+                                        <button type="submit" class="btn btn-primary">鍵をかける</button>
                                     </form>
                                 @endif
                             </div>
@@ -83,13 +83,22 @@
                 @else
                     <div class="alert alert-danger" role="alert">
                         <h4 class="alert-heading"><i class="fas fa-user-lock">{{ $user_info->name }}はロックされています</i></h4>
-                        <div class="d-flex justify-content-end flex-grow-1">
-                            <form action="" method="POST">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-danger">フォローリクエスト</button>
-                            </form>
-                        </div>
+                        @if(Auth::user()->is_follow_requesting($user_info->id))
+                            <div class="d-flex justify-content-end flex-grow-1">
+                                <form action="{{ route('unfollowRequest', ['id' => $user_info->id]) }}"  method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">フォローリクエスト解除</button>
+                                </form>
+                            </div>
+                        @else
+                            <div class="d-flex justify-content-end flex-grow-1">
+                                <form action="{{ route('followRequest', ['id' => $user_info->id]) }}"  method="POST">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-primary">フォローリクエスト</button>
+                                </form>
+                            </div>
+                        @endif
                     </div>
                 @endif
             </div>

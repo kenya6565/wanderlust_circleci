@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','user_icon_image','profile',
+        'name', 
+        'email', 
+        'password',
+        'user_icon_image',
+        'profile',
     ];
 
     /**
@@ -63,7 +68,7 @@ class User extends Authenticatable
     //あるユーザのフォロワーとなっているユーザ を取得する
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'follows', 'following_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class,'follows','following_id','user_id')->withTimestamps();
     }
 
     public function is_following($userId)
@@ -138,12 +143,34 @@ class User extends Authenticatable
     }
     
     
+    public function is_follow_requesting($id)
+    {
+        return FollowRequest::where('is_follow_requesting',1)->where('user_id',Auth::id())->where('following_id',$id)->exists();
+    }
     
-    // public function follow_request($postId)
-    // {
-    //     //ある投稿に対してpost_idがあるか
-    //     return $this->likes()->where('post_id',$postId)->exists();
-    // }
+    public function follow_request($followed_user)
+    {
+        //followsテーブルを更新
+        //user_idにuserクラスのid入れてfollowing_idに取ってきた引数のIDいれる
+        $follow = new FollowRequest(['user_id'=>Auth::id(), 'following_id'=>$followed_user]);
+        //フォロリクされてないならフォロリク状態(1)にする
+        if($follow->is_follow_requesting == 0){
+            $follow->is_follow_requesting= 1;
+        }else{
+            $follow->is_follow_requesting = 0;
+        }
+            $follow->save();
+    }
+    
+   
+    
+    
+    public function unfollow_request($unfollowed_requested_user)
+    {
+        FollowRequest::where('user_id',Auth::id())->where('following_id',$unfollowed_requested_user)->delete();
+    }
+    
+    
     
     public function lock()
     {
@@ -159,7 +186,7 @@ class User extends Authenticatable
     
     public function is_locked()
     {
-        return User::where('is_private',1)->exists();
+        return $this->where('is_private',1)->exists();
     }
     
 }
