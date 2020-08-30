@@ -10,6 +10,7 @@ use App\Library\BaseClass;
 use \App\User;
 use \App\Post;
 use \App\Follow;
+use \App\FollowRequest;
 use \App\PostPhoto;
 use Hash;
 use Storage;
@@ -24,11 +25,14 @@ class PagesController extends Controller
         $posts = Post::where('user_id',$request->id)
                    ->orderBy('created_at','DESC')
                    ->paginate(9);
+                   
+        $follow_request_sum = FollowRequest::where('following_id',Auth::id())->count();
         
         return view('user.users.index',compact(
             'posts',
             'user_info',
-            'counts'
+            'counts',
+            'follow_request_sum'
             
         ));
     }

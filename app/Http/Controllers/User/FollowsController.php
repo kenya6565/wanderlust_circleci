@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use \App\User;
 use Illuminate\Support\Facades\Auth;
+use \App\User;
+use \App\Follow;
+use \App\FollowRequest;
 
 class FollowsController extends Controller
 {
@@ -39,6 +41,15 @@ class FollowsController extends Controller
         ));
     }
     
+    public function showFollowrequests($id)
+    {
+        $follow_requesting_users = User::find($id)->follow_requests()->paginate(9);
+      
+        return view('user.follow.followrequests',compact(
+            'follow_requesting_users'
+        ));
+    }
+    
     public function followRequest($id)
     {
         \Auth::user()->follow_request($id);
@@ -49,5 +60,22 @@ class FollowsController extends Controller
     {
         \Auth::user()->unfollow_request($id);
         return back()->with('flash_message', 'フォローリクエストを取り消しました');
+    }
+    
+    public function followApprove($id)
+    {
+        FollowRequest::where('user_id',$id)->where('following_id',Auth::id())->delete();
+        Follow::create([
+            'user_id' => $id,
+            'following_id' => Auth::id(),
+            'is_follow_requesting' => 0,
+        ]);
+        return back();
+    }
+    
+    public function followDecline($id)
+    {
+        FollowRequest::where('user_id',$id)->where('following_id',Auth::id())->delete();
+        return back();
     }
 }

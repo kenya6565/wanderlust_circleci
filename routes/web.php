@@ -36,19 +36,19 @@ Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::post('detail','User\TimelineController@comment')->name('comment');;
     Route::get('detail/edit/{id}','User\TimelineController@edit');
     Route::post('detail/edit','User\TimelineController@update');
-    Route::post('detail/{id}','User\TimelineController@delete')->name('delete');
+    Route::delete('detail/{id}','User\TimelineController@delete')->name('delete');
     Route::get('users/{id}','User\PagesController@show')->name('mypage');
     Route::get('users/edit/{id}','User\PagesController@edit');
     Route::post('users/edit','User\PagesController@update');
     Route::get('followings/{id}', 'User\FollowsController@showFollowings')->name('followings');
     Route::get('followers/{id}', 'User\FollowsController@showFollowers')->name('followers');
+    Route::get('followrequests/{id}', 'User\FollowsController@showFollowrequests')->name('followrequests');
     Route::post('follow/{id}', 'User\FollowsController@store')->name('follow');
     Route::delete('unfollow/{id}', 'User\FollowsController@destroy')->name('unfollow');
-    
-    Route::post('followRequest/{id}', 'User\FollowsController@followRequest')->name('followRequest');
-    Route::delete('unfollowRequest/{id}', 'User\FollowsController@unfollowRequest')->name('unfollowRequest');
-    
-    
+    Route::post('users/{id}', 'User\FollowsController@followRequest')->name('followRequest');
+    Route::delete('users/{id}', 'User\FollowsController@unfollowRequest')->name('unfollowRequest');
+    Route::post('followRequest/{id}', 'User\FollowsController@followApprove')->name('approve');
+    Route::delete('followRequest/{id}', 'User\FollowsController@followDecline')->name('decline');
     Route::get('/search', 'User\TimelineController@search')->name('search');
     Route::post('like','User\LikesController@store')->name('like');
     Route::delete('unlike','User\LikesController@destroy')->name('unlike');

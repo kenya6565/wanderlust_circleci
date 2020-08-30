@@ -17,7 +17,6 @@ class CreateFollowsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('following_id')->unsigned();
-            $table->bigInteger('is_follow_requesting')->default(0)->comment('フォロリクされているか');
             $table->timestamps();
             
             $table->foreign('user_id')

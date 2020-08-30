@@ -28,11 +28,15 @@
                         </div>
                     @endif
                     <div class="d-flex justify-content-end flex-grow-1">
-                        @if (Auth::user()->is_following($follower->id))
+                        @if(Auth::user()->is_following($follower->id))
                             <form action="{{ route('unfollow', ['id' => $follower->id]) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-danger">フォロー解除</button>
+                            </form>
+                        @elseif(Auth::user()->is_locked($follower->id))
+                            <form action="" method="POST">
+                                <button type="button" class="btn btn-warning text-white">フォローリクエスト中</button>
                             </form>
                         @else
                             <form action="{{ route('follow', ['id' => $follower->id]) }}" method="POST">
@@ -44,8 +48,8 @@
                 </div>
             </div>
         </div>
-        @endforeach
-        <div class="d-flex justify-content-center mt40">
-             {{ $followers->links() }}
-        </div>
+    @endforeach
+    <div class="d-flex justify-content-center mt40">
+         {{ $followers->links() }}
+    </div>
 @endsection
