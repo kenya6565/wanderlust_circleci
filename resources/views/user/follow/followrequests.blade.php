@@ -30,14 +30,14 @@
                         <form action="{{ route('decline', ['id' => $follow_requesting_user->id]) }}" method="POST">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger">拒否</button>
+                            <button type="submit" class="btn btn-danger ml10">拒否</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     @endforeach
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt40">
        {{ $follow_requesting_users->links() }}
     </div>
 @endsection
