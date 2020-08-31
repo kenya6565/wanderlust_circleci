@@ -34,6 +34,8 @@
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-danger">フォロー解除</button>
                             </form>
+                        @elseif(Auth::id() == $following_user->id)
+                        
                         @else
                             <form action="{{ route('follow', ['id' => $following_user->id]) }}" method="POST">
                                 {{ csrf_field() }}
@@ -45,7 +47,7 @@
             </div>
         </div>
     @endforeach
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt40">
        {{ $following_users->links() }}
     </div>
 @endsection

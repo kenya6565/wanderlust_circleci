@@ -10,6 +10,7 @@ use App\Library\BaseClass;
 use \App\User;
 use \App\Post;
 use \App\Follow;
+use \App\FollowRequest;
 use \App\PostPhoto;
 use Hash;
 use Storage;
@@ -20,16 +21,18 @@ class PagesController extends Controller
     public function show(Request $request)
     {
         $user_info = User::find($request->id);
-        //dd($user_info);
         $counts = BaseClass::counts($user_info);
         $posts = Post::where('user_id',$request->id)
                    ->orderBy('created_at','DESC')
                    ->paginate(9);
+                   
+        $follow_request_sum = FollowRequest::where('following_id',Auth::id())->count();
         
         return view('user.users.index',compact(
             'posts',
             'user_info',
-            'counts'
+            'counts',
+            'follow_request_sum'
             
         ));
     }
@@ -64,9 +67,6 @@ class PagesController extends Controller
         
         $login_user->password = bcrypt($request->get('new-password'));
         
-       
-       
-        
         if($request->hasFile('user_icon_image')) { 
             
             //初期に画像は設定していなかったが編集で初めて画像設定する場合はここを通らない
@@ -83,5 +83,17 @@ class PagesController extends Controller
         $login_user->fill($updated_user_info)->save();
       
         return redirect(route('mypage', ['id'=>Auth::id()]));
+    }
+    
+    public function store()
+    {
+        \Auth::user()->lock();
+        return back()->with('flash_message', '鍵をかけました');
+    }
+
+    public function destroy()
+    {
+        \Auth::user()->unlock();
+        return back()->with('flash_message', '鍵を解除しました');
     }
 }

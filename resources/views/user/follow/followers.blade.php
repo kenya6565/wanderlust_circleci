@@ -20,7 +20,11 @@
                     @endif
                     <div class="ml-2 d-flex flex-column">
                         <a href="{{ action('User\PagesController@show', ['id' => $follower->id] )}}" class="text-secondary">{{ $follower->id }}</a>
-                        <p class="mb-0">{{ $follower->name }}</p>
+                        @if(Auth::user()->is_locked($follower->id))
+                             <p class="mb-0"><i class="fas fa-lock"></i> {{ $follower->name }}</p>
+                        @else
+                            <p class="mb-0">{{ $follower->name }}</p>
+                        @endif
                     </div>
                     @if (Auth::user()->is_following($follower->id))
                         <div class="px-2">
@@ -28,12 +32,23 @@
                         </div>
                     @endif
                     <div class="d-flex justify-content-end flex-grow-1">
-                        @if (Auth::user()->is_following($follower->id))
+                        @if(Auth::user()->is_following($follower->id))
                             <form action="{{ route('unfollow', ['id' => $follower->id]) }}" method="POST">
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
                                 <button type="submit" class="btn btn-danger">フォロー解除</button>
                             </form>
+                        @elseif(Auth::user()->is_follow_requesting($follower->id))
+                            <form action="" method="POST">
+                                <button type="button" class="btn btn-warning text-white">フォローリクエスト中</button>
+                            </form>
+                        @elseif(Auth::user()->is_locked($follower->id))
+                            <form action="{{ route('followRequest', ['id' => $follower->id]) }}" method="POST">
+                                {{ csrf_field() }}
+                                <button type="submit" class="btn btn-primary">フォローリクエスト</button>
+                            </form>
+                        @elseif(Auth::id() == $follower->id)
+                        
                         @else
                             <form action="{{ route('follow', ['id' => $follower->id]) }}" method="POST">
                                 {{ csrf_field() }}
@@ -44,8 +59,8 @@
                 </div>
             </div>
         </div>
-        @endforeach
-        <div class="d-flex justify-content-center mt40">
-             {{ $followers->links() }}
-        </div>
+    @endforeach
+    <div class="d-flex justify-content-center mt40">
+         {{ $followers->links() }}
+    </div>
 @endsection
