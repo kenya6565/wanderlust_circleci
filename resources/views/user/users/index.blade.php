@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title', 'users')
-    
+@section('breadcrumbs', Breadcrumbs::render('mypage',$user_info))
 @section('content')
     <div class="container">
         <div class="row justify-content-center mb50 pt20">

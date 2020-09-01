@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title', 'followings')
-    
+@section('breadcrumbs', Breadcrumbs::render('followings'))
 @section('content')
     @foreach($following_users as $following_user)
-        <div class="col-12 pt20" style="margin: auto;">
+        <div class="col-12" style="margin: auto;">
             @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)

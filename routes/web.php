@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'TopController@index');
+Route::get('/', 'TopController@index')->name('top');
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 
@@ -33,8 +33,8 @@ Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::get('timeline/','User\TimelineController@index')->name('user_timeline');
     Route::post('/','User\TimelineController@post')->name('post');
     Route::get('detail/{id}','User\TimelineController@show')->name('user_postdetail');
-    Route::post('detail','User\TimelineController@comment')->name('comment');;
-    Route::get('detail/edit/{id}','User\TimelineController@edit');
+    Route::post('detail','User\TimelineController@comment')->name('comment');
+    Route::get('detail/edit/{id}','User\TimelineController@edit')->name('post_edit');
     Route::post('detail/edit','User\TimelineController@update');
     Route::delete('detail/{id}','User\TimelineController@delete')->name('delete');
     Route::get('users/{id}','User\PagesController@show')->name('mypage');
