@@ -42,7 +42,7 @@
           opacity: 1;
         }
     </style>
-@section('breadcrumbs', Breadcrumbs::render('detail',$post))
+@section('breadcrumbs', Breadcrumbs::render('user_detail',$post,$user_info))
 @section('content')
     <div class="container">
         <div class="row justify-content-center font-italic font-weight-bold">
@@ -66,7 +66,7 @@
                 <div class="card border-dark">
                     <div class="card">
                         <div class="card-header">
-                          紹介文
+                          紹介文 
                         </div>
                         <div class="card-body">
                            {{ $post->post }}</a>

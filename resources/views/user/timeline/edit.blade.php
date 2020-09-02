@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title','edit')
+@section('breadcrumbs', Breadcrumbs::render('postedit',$edit_post, $post))
 @section('content')
-
     <div class="container">
         <div class="pb20 row justify-content-center">
             <div class="col-md-10">

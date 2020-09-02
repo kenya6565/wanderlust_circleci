@@ -25,7 +25,7 @@
             </div>
         @endforeach
     </div>
-    <div class="d-flex justify-content-center mt40">
+    <div class="d-flex justify-content-center">
         {{ $all_posts->appends(request()->input())->links() }}
     </div>
 @endsection

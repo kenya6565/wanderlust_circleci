@@ -40,11 +40,14 @@ class PagesController extends Controller
     public function edit(Request $request)
     {
         $login_user = Auth::user();
-        if (empty($login_user)) { //aaaaaは単なるパラメーター、News::findによってニューステーブルの特定の情報１行（bodyとか名前とか）を＄newsに入れてる
+        $user_info = Auth::user();
+        
+        if (empty($login_user)) { 
             abort(404);
         }
         return view('user.users.edit',compact(
-            'login_user'
+            'login_user',
+            'user_info'
         ));
     }
     

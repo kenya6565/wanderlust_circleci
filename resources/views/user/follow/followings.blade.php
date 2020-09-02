@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title', 'followings')
-@section('breadcrumbs', Breadcrumbs::render('followings'))
 @section('content')
     @foreach($following_users as $following_user)
-        <div class="col-12" style="margin: auto;">
+        @section('breadcrumbs', Breadcrumbs::render('user_followings',$following_user,$user_info))
+        <div class="col-12 pt20" style="margin:auto;">
             @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)
@@ -47,7 +47,7 @@
             </div>
         </div>
     @endforeach
-    <div class="d-flex justify-content-center mt40">
+    <div class="d-flex justify-content-center">
        {{ $following_users->links() }}
     </div>
 @endsection

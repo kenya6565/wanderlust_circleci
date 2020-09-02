@@ -28,25 +28,33 @@ class FollowsController extends Controller
     public function showFollowings($id)
     {
         $following_users = User::find($id)->followings()->paginate(9);
+        $user_info = User::find($id);
+        
         return view('user.follow.followings',compact(
-            'following_users'
+            'following_users',
+            'user_info'
         ));
     }
 
     public function showFollowers($id)
     {
         $followers = User::find($id)->followers()->paginate(9);
+        $user_info = User::find($id);
+        
         return view('user.follow.followers', compact(
-            'followers'
+            'followers',
+            'user_info'
         ));
     }
     
     public function showFollowrequests($id)
     {
         $follow_requesting_users = User::find($id)->follow_requests()->paginate(9);
+        $user_info = User::find($id);
       
         return view('user.follow.followrequests',compact(
-            'follow_requesting_users'
+            'follow_requesting_users',
+            'user_info'
         ));
     }
     

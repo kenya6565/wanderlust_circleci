@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title', 'users')
-@section('breadcrumbs', Breadcrumbs::render('mypage',$user_info))
+@section('breadcrumbs', Breadcrumbs::render('user_mypage',$user_info))
 @section('content')
     <div class="container">
-        <div class="row justify-content-center mb50 pt20">
+        <div class="row justify-content-center mb50">
             <div class="col-12">
                 @if(Auth::user()->is_following($user_info->id) || Auth::id() == $user_info->id || Auth::user()->is_unlocked($user_info->id))
                     <div class="card">
@@ -110,7 +110,7 @@
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-center mt40">
+    <div class="d-flex justify-content-center">
         {{ $posts->links() }}
     </div>
 @endsection
