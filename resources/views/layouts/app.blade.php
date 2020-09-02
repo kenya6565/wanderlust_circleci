@@ -149,9 +149,6 @@
                                     </li>
                                 </ul>
                             </li>
-                            
-                            
-                            
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ action('Guest\TimelineController@index' )}}"><i class="fas fa-stream"></i>{{ __('messages.timeline') }}</a>
                             </li>
@@ -210,12 +207,12 @@
             </div>
         </nav>
         <main class="main">
-         <!-- フラッシュメッセージ -->
-        @if (session('flash_message'))
-            <div class="flash_message bg-success text-center py-3 my-0 mb30">
-                {{ session('flash_message') }}
-            </div>
-        @endif
+            @yield('breadcrumbs')
+            @if (session('flash_message'))
+                <div class="flash_message bg-success text-center py-3 my-0">
+                    {{ session('flash_message') }}
+                </div>
+            @endif
             @yield('content')
         </main>
         <footer class='footer p20 '>

@@ -4,9 +4,10 @@
     <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
 @endsection
 @section('title', 'search')
+@section('breadcrumbs', Breadcrumbs::render('search'))
 @section('content')
     @if(isset($results))
-        <div class="alert alert-success pt20" role="alert">
+        <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">検索成功！</h4>
             <strong>{{ count($results) }}</strong> 件ヒットしました
         </div>
@@ -47,7 +48,7 @@
             @endforeach
         </div>
     @elseif($results == null)
-        <div class="alert alert-danger pt20" role="alert">
+        <div class="alert alert-danger" role="alert">
             <h4 class="alert-heading">検索に失敗しました</h4>
             <strong>{{ $keyword }}</strong> は見つかりませんでした。
         </div>

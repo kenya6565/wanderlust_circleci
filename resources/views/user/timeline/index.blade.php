@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('css')
     <link href="{{ asset('css/top.css') }}" rel="stylesheet">
     <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
@@ -41,7 +42,7 @@
             </div>
         @endforeach
     </div>
-    <div class="d-flex justify-content-center mt40">
+    <div class="d-flex justify-content-center">
          {{ $all_posts->appends(request()->input())->links() }}
     </div>
 @endsection

@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('title', 'users')
-    
+@section('breadcrumbs', Breadcrumbs::render('guest_mypage',$user_info))
 @section('content')
     <div class="container">
-        <div class="row justify-content-center mb50 pt20">
-            <div class="col-lg-4 col-12">
+        <div class="row justify-content-center mb50">
+            <div class=" col-12">
                 <div class="card">
                     <h3 class="card-header">
                         {{ $user_info->name }}
@@ -33,19 +33,18 @@
                             <img class="card-img-top" src="{{ asset('images/'.'noimageavailable.png') }}">
                         @endif
                         <div class="card-body">
-                            <h4 class="card-title">Card title</h4>
+                            <h4 class="card-title">{{ $post->title }}</h4>
                             <p class="card-text">
-                                <div>{{ $post->id }}</div>
                                 <div>{{ $post->post }}</div>
                             </p>
-                            <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-primary">詳細</a>
+                            <a href="{{ action('Guest\TimelineController@show',  $post->id )}}" class="btn btn-secondary">詳細</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
-    <div class="d-flex justify-content-center mt40">
+    <div class="d-flex justify-content-center">
         {{ $posts->links() }}
     </div>
 @endsection

@@ -30,6 +30,7 @@ class TimelineController extends Controller
     {
         //クリックした投稿のID
         $post = Post::find($request->id);
+        $user_info = User::find($post->user_id);
         $images = $post->photos;
          //dd($images);
         $recent_posts = Post::where('user_id',$post->user_id)
@@ -43,7 +44,8 @@ class TimelineController extends Controller
             'post',
             'comments',
             'recent_posts',
-            'images'
+            'images',
+            'user_info'
         ));
     }
 }

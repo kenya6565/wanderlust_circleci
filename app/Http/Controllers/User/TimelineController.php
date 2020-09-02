@@ -75,6 +75,7 @@ class TimelineController extends Controller
     public function show(Request $request)
     {
         $post = Post::find($request->id);
+        $user_info = User::find($post->user_id);
         //投稿詳細で開いているpost以外の全ての同一ユーザの投稿を取得
         $recent_posts = Post::where('user_id',$post->user_id)
                             ->whereNotIn('id',[$post->id])
@@ -88,17 +89,20 @@ class TimelineController extends Controller
             'post',
             'comments',
             'recent_posts',
-            'images'
+            'images',
+            'user_info'
         ));
     }
     public function edit($id)
     {
         $edit_post = Post::find($id);
+        $post = Post::find($id);
         //dd($edit_post);
        
        
         return view('user.timeline.edit',compact(
-            'edit_post'
+            'edit_post',
+            'post'
         ));
     }
     

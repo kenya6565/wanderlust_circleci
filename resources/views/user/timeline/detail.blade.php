@@ -42,9 +42,10 @@
           opacity: 1;
         }
     </style>
+@section('breadcrumbs', Breadcrumbs::render('user_detail',$post,$user_info))
 @section('content')
     <div class="container">
-        <div class="row justify-content-center pt20 font-italic font-weight-bold">
+        <div class="row justify-content-center font-italic font-weight-bold">
             <h4 style=" font-family: 'Kosugi Maru', sans-serif;" class="text-white">{{ $post->title }}</h4>
         </div>
         <div class="row justify-content-center pt20" style="margin: auto;">
@@ -65,7 +66,7 @@
                 <div class="card border-dark">
                     <div class="card">
                         <div class="card-header">
-                          紹介文
+                          紹介文 
                         </div>
                         <div class="card-body">
                            {{ $post->post }}</a>

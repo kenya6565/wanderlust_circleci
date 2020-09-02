@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'TopController@index');
+Route::get('/', 'TopController@index')->name('top');
 Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@switchLang']);
 
 
@@ -20,9 +20,9 @@ Route::get('lang/{lang}', ['as'=>'lang.switch', 'uses'=>'LanguageController@swit
 Route::group(['prefix' => 'guest'], function () {
     Route::get('timeline/','Guest\TimelineController@index')->name('guest_timeline');
     Route::get('detail/{id}','Guest\TimelineController@show')->name('guest_postdetail');
-    Route::get('users/{id}','Guest\PagesController@show')->name('mypage');
-    Route::get('followings/{id}', 'Guest\FollowsController@showFollowings')->name('followings');
-    Route::get('followers/{id}', 'Guest\FollowsController@showFollowers')->name('followers');
+    Route::get('users/{id}','Guest\PagesController@show')->name('guest_mypage');
+    Route::get('followings/{id}', 'Guest\FollowsController@showFollowings')->name('guest_followings');
+    Route::get('followers/{id}', 'Guest\FollowsController@showFollowers')->name('guest_followers');
 });
 
 
@@ -33,12 +33,12 @@ Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::get('timeline/','User\TimelineController@index')->name('user_timeline');
     Route::post('/','User\TimelineController@post')->name('post');
     Route::get('detail/{id}','User\TimelineController@show')->name('user_postdetail');
-    Route::post('detail','User\TimelineController@comment')->name('comment');;
-    Route::get('detail/edit/{id}','User\TimelineController@edit');
+    Route::post('detail','User\TimelineController@comment')->name('comment');
+    Route::get('detail/edit/{id}','User\TimelineController@edit')->name('post_edit');
     Route::post('detail/edit','User\TimelineController@update');
     Route::delete('detail/{id}','User\TimelineController@delete')->name('delete');
     Route::get('users/{id}','User\PagesController@show')->name('mypage');
-    Route::get('users/edit/{id}','User\PagesController@edit');
+    Route::get('users/edit/{id}','User\PagesController@edit')->name('mypage_edit');
     Route::post('users/edit','User\PagesController@update');
     Route::get('followings/{id}', 'User\FollowsController@showFollowings')->name('followings');
     Route::get('followers/{id}', 'User\FollowsController@showFollowers')->name('followers');

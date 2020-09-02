@@ -75,12 +75,6 @@
     
        
     }
-    
-    /*.top_view {*/
-    /*    min-height: initial;*/
-    /*}*/
-    
-  
 </style>
 @section('content')
     <div class="container-fluid top_view">
