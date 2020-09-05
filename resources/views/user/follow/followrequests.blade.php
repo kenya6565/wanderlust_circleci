@@ -37,7 +37,7 @@
             </div>
         </div>
     @endforeach
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center pt20">
        {{ $follow_requesting_users->links() }}
     </div>
 @endsection
