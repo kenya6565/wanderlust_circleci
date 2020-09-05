@@ -4,7 +4,7 @@
     <link href="{{ asset('css/utility.css') }}" rel="stylesheet">
 @endsection
 @section('title', 'search')
-@section('breadcrumbs', Breadcrumbs::render('search'))
+@section('breadcrumbs', Breadcrumbs::render('search',$user_info))
 @section('content')
     @if(isset($results))
         <div class="alert alert-success" role="alert">

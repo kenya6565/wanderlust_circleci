@@ -20,13 +20,13 @@ Breadcrumbs::for('user_detail', function ($trail, $post, $user_info) {
     $trail->push($post->title, route('user_postdetail', $post->id));
 });
 
-Breadcrumbs::for('postedit', function ($trail, $edit_post, $post) {
-    $trail->parent('user_detail',$post);
+Breadcrumbs::for('postedit', function ($trail, $post, $user_info, $edit_post) {
+    $trail->parent('user_detail',$post, $user_info);
     $trail->push('Edit', route('post_edit', $edit_post->id));
 });
 
-Breadcrumbs::for('search', function ($trail) {
-    $trail->parent('user_timeline');
+Breadcrumbs::for('search', function ($trail, $user_info) {
+    $trail->parent('user_mypage',$user_info);
     $trail->push('Search', route('search'));
 });
 
@@ -64,9 +64,6 @@ Breadcrumbs::for('guest_detail', function ($trail, $post, $user_info) {
     $trail->parent('guest_mypage', $user_info);
     $trail->push($post->title, route('guest_postdetail', $post->id));
 });
-
-
-
 
 Breadcrumbs::for('guest_followings', function ($trail, $following_user, $user_info) {
     $trail->parent('guest_mypage',$user_info);

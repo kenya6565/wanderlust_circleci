@@ -36,7 +36,7 @@ Route::group(['prefix' => 'user',['middleware' => 'auth']], function () {
     Route::post('detail','User\TimelineController@comment')->name('comment');
     Route::get('detail/edit/{id}','User\TimelineController@edit')->name('post_edit');
     Route::post('detail/edit','User\TimelineController@update');
-    Route::delete('detail/{id}','User\TimelineController@delete')->name('delete');
+    Route::post('detail/{id}','User\TimelineController@delete')->name('delete');
     Route::get('users/{id}','User\PagesController@show')->name('mypage');
     Route::get('users/edit/{id}','User\PagesController@edit')->name('mypage_edit');
     Route::post('users/edit','User\PagesController@update');

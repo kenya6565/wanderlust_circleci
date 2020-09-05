@@ -58,3 +58,37 @@ $("#tabMenu li a").on("click", function () {
     $($(this).attr("href")).fadeToggle();
 });
 
+
+
+    
+$('.fav').click('on', function(){
+    
+    
+    const post_id = $('.fav').data('name');
+  
+    console.log(post_id);
+    // $.ajax({
+    //     headers: {
+    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     },
+    //     url:"{{ action('User\LikesController@store', ['id' => $post->id ]) }}",
+    //     type: 'POST',
+    //     data: {}
+    // })
+    // .done(function(response) {
+    //     //console.log(response);
+    //     var get_data = JSON.parse(response);
+    //     //console.log(get_data);
+    //     alert('成功');
+    //     if(get_data ==='true')
+    //     {
+    //         $('.fas').hide();
+    //         $('.far').show();
+    //     }
+    // })
+
+    // .fail(function() {
+    //     alert('エラー');
+    // });
+ })
+    
