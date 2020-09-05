@@ -16,7 +16,7 @@ class PostTableSeeder extends Seeder
             'post' => 'フランスに行ったら必ず行こうと思っていた場所!!',
             'user_id' => '1',
      
-            ]);
+        ]);
         $post->save();
         
         $post = new \App\Post([
@@ -24,15 +24,14 @@ class PostTableSeeder extends Seeder
             'post' => 'こんな巨大な建築物が数百年も前に作られたなんて想像できない。。。',
             'user_id' => '1',
      
-            ]);
+        ]);
         $post->save();
         
         $post = new \App\Post([
             'title' => 'ピザの斜塔 イタリア',
             'post' => '本当に斜めっていた！',
             'user_id' => '2',
-     
-            ]);
+        ]);
         $post->save();
         
        
@@ -60,6 +59,7 @@ class PostTableSeeder extends Seeder
      
             ]);
         $post->save();
+        
         }
         
 }

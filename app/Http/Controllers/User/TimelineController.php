@@ -93,16 +93,16 @@ class TimelineController extends Controller
             'user_info'
         ));
     }
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $edit_post = Post::find($id);
-        $post = Post::find($id);
-        //dd($edit_post);
-       
+        $edit_post = Post::find($request->id);
+        $post = Post::find($request->id);
+        $user_info = $post->User;
        
         return view('user.timeline.edit',compact(
+            'post',
             'edit_post',
-            'post'
+            'user_info'
         ));
     }
     
@@ -138,6 +138,7 @@ class TimelineController extends Controller
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
+        $user_info = User::find(Auth::id());
         if (isset($keyword)) {
             $results = Post::where('title', 'like','%'.$keyword.'%')
                    ->orderBy('created_at','DESC')
@@ -148,7 +149,8 @@ class TimelineController extends Controller
      
         return view('user.timeline.search', compact(
             'results',
-            'keyword'
+            'keyword',
+            'user_info'
             
         ));
     }

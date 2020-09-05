@@ -19,6 +19,7 @@
                         <h4 class="card-title">{{ $post->title }}</h4>
                         <p class="card-text">
                             <div>{{ $post->post }}</div>
+                            <div>{{ $post->id }}</div>
                         </p>
                         <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-secondary"><i class="fas fa-info-circle"></i> {{ __('messages.detail') }}</a>
                         <div class="d-flex justify-content-end flex-grow-1">
@@ -35,6 +36,12 @@
                                     <span class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
                                     <button type="submit" class="far fa-heart "></button>
                                 </form>
+                                
+                                <!--<button type="button" class="fav" data-name="{{$post->id}}">-->
+                                <!--        <i class="far fa-heart"></i>-->
+                                <!--        <span id="like" data-name="{{$post->id}}"></span>-->
+                                <!--</button>-->
+
                             @endif
                         </div>
                     </div>
@@ -45,4 +52,7 @@
     <div class="d-flex justify-content-center">
          {{ $all_posts->appends(request()->input())->links() }}
     </div>
+
 @endsection
+
+
