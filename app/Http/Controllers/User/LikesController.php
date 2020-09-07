@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use \App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -11,13 +12,18 @@ class LikesController extends Controller
     {
        
         \Auth::user()->like($request->id);
-        return back();
+        
+        return response()->json([
+          'count_likes' => Post::find($request->id)->liking_users()->count(),
+        ]);
     }
 
     public function destroy(Request $request)
     {
         \Auth::user()->unlike($request->id);
-        return back();
+        return response()->json([
+          'count_likes' => Post::find($request->id)->liking_users()->count(),
+        ]);
         
     }
 }

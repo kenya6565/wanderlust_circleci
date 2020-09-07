@@ -20,7 +20,11 @@
                     @endif
                     <div class="ml-2 d-flex flex-column">
                         <a href="{{ action('User\PagesController@show', ['id' => $following_user->id] )}}" class="text-secondary">{{ $following_user->id }}</a>
-                        <p class="mb-0">{{ $following_user->name }}</p>
+                        @if(Auth::user()->is_locked($following_user->id))
+                             <p class="mb-0"><i class="fas fa-lock"></i> {{ $following_user->name }}</p>
+                        @else
+                            <p class="mb-0">{{ $following_user->name }}</p>
+                        @endif
                     </div>
                     @if (Auth::user()->is_following($following_user->id))
                         <div class="px-2">
