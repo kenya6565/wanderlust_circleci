@@ -20,7 +20,11 @@
                     @endif
                     <div class="ml-2 d-flex flex-column">
                         <a href="{{ action('User\PagesController@show', ['id' => $follow_requesting_user->id] )}}" class="text-secondary">{{ $follow_requesting_user->id }}</a>
-                        <p class="mb-0">{{ $follow_requesting_user->name }}</p>
+                        @if(Auth::user()->is_locked($follow_requesting_user->id))
+                             <p class="mb-0"><i class="fas fa-lock"></i> {{ $follow_requesting_user->name }}</p>
+                        @else
+                            <p class="mb-0">{{ $follow_requesting_user->name }}</p>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-end flex-grow-1">
                         <form action="{{ route('approve', ['id' => $follow_requesting_user->id]) }}" method="POST">

@@ -19,29 +19,19 @@
                         <h4 class="card-title">{{ $post->title }}</h4>
                         <p class="card-text">
                             <div>{{ $post->post }}</div>
-                            <!--<div>{{ $post->id }}</div>-->
                         </p>
                         <a href="{{ action('User\TimelineController@show',  $post->id )}}" class="btn btn-secondary"><i class="fas fa-info-circle"></i> {{ __('messages.detail') }}</a>
                         <div class="d-flex justify-content-end flex-grow-1">
                             @if (Auth::user()->is_liking($post->id))
-                                <form action="{{ route('unlike', ['id' => $post->id]) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <span class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
-                                    <button type="submit" class="fas fa-heart"></button>
-                                </form>
+                                <div class="unlike">
+                                    <span id="count_{{$post->id}}" class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
+                                    <i class="fav far fa-heart fa-3x" data-id="{{$post->id}}" data-name="unlike" style="cursor:pointer; color:red"></i>
+                                </div>
                             @else
-                                <form action="{{ route('like', ['id' => $post->id]) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <span class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
-                                    <button type="submit" class="far fa-heart "></button>
-                                </form>
-                                
-                                <!--<button type="button" class="fav" data-name="{{$post->id}}">-->
-                                <!--        <i class="far fa-heart"></i>-->
-                                <!--        <span id="like" data-name="{{$post->id}}"></span>-->
-                                <!--</button>-->
-
+                                <div class="like">
+                                    <span id="count_{{$post->id}}" class="badge badge-pill badge-success">{{  $post->liking_users()->count() }}</span>
+                                    <i class="fav far fa-heart fa-3x" data-id="{{$post->id}}" data-name="like" style="cursor:pointer;"></i>
+                                </div>
                             @endif
                         </div>
                     </div>

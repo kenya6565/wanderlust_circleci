@@ -62,33 +62,37 @@ $("#tabMenu li a").on("click", function () {
 
     
 $('.fav').click('on', function(){
-    
-    
-    const post_id = $('.fav').data('name');
-  
-    console.log(post_id);
-    // $.ajax({
-    //     headers: {
-    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     },
-    //     url:"{{ action('User\LikesController@store', ['id' => $post->id ]) }}",
-    //     type: 'POST',
-    //     data: {}
-    // })
-    // .done(function(response) {
-    //     //console.log(response);
-    //     var get_data = JSON.parse(response);
-    //     //console.log(get_data);
-    //     alert('成功');
-    //     if(get_data ==='true')
-    //     {
-    //         $('.fas').hide();
-    //         $('.far').show();
-    //     }
-    // })
-
-    // .fail(function() {
-    //     alert('エラー');
-    // });
- })
+    var post_id = $(this).data('id');
+    var fav_font = $(this);
+    var like = $(this).data('name');
+    if(like == 'like') {
+        $.ajax({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'like',
+            type: 'POST',
+            data: {'id': post_id },
+        })
+        .done(function(response) {
+            document.getElementById('count_'+ post_id).innerHTML = response['count_likes'];
+            fav_font.css('color','red');
+            fav_font.data('name', 'unlike');
+        })
+    }else{
+        $.ajax({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'unlike',
+            type: 'POST',
+            data: {'id': post_id, '_method': 'DELETE' },
+        })
+        .done(function(response) {
+            document.getElementById('count_'+ post_id).innerHTML = response['count_likes'];
+            fav_font.css('color','');
+            fav_font.data('name', 'like');
+        })
+    }
+});
     
