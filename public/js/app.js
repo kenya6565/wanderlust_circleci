@@ -49541,10 +49541,9 @@ $("#tabMenu li a").on("click", function () {
 $('.fav').click('on', function () {
   var post_id = $(this).data('id');
   var fav_font = $(this);
-  var like = $(this).data('name'); //console.log(post_id);
+  var like = $(this).data('name');
 
   if (like == 'like') {
-    console.log('いいね');
     $.ajax({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -49555,21 +49554,11 @@ $('.fav').click('on', function () {
         'id': post_id
       }
     }).done(function (response) {
-      //console.log(response['count_likes']);
-      // var count_likes = $(response['count_likes']);
-      // console.log(count_likes);
-      // console.log("count_"+post_id);
-      document.getElementById('count_' + post_id).innerHTML = response['count_likes']; //console.log(current_count_likes.innerHTML)
-      //current_count_likes.innerHTML = count_likes;
-      //console.log(a)
-
+      document.getElementById('count_' + post_id).innerHTML = response['count_likes'];
       fav_font.css('color', 'red');
       fav_font.data('name', 'unlike');
-    }).fail(function () {
-      alert('エラー');
     });
   } else {
-    console.log('解除');
     $.ajax({
       headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -49583,11 +49572,7 @@ $('.fav').click('on', function () {
     }).done(function (response) {
       document.getElementById('count_' + post_id).innerHTML = response['count_likes'];
       fav_font.css('color', '');
-      fav_font.data('name', 'like'); // var count_likes = $(response);
-      // var b = document.getElementById("count").textContent
-      // console.log(b)
-    }).fail(function () {
-      alert('エラー');
+      fav_font.data('name', 'like');
     });
   }
 });
