@@ -1,0 +1,87 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2-node-browsers
+        environment:
+          - APP_ENV: testing
+          - DB_CONNECTION: mysql
+          - DB_PORT: 3306
+          - DB_HOST: 127.0.0.1
+          - DB_DATABASE: ${DATABASE}
+          - DB_USERNAME: ${USERNAME}
+          - DB_PASSWORD: ${USERPASS}
+      - image: circleci/mysql:5.7
+        environment:
+          - MYSQL_DATABASE: ${DATABASE}
+          - MYSQL_USER: ${USERNAME}
+          - MYSQL_ROOT_PASSWORD: ${ROOTPASS}
+          - MYSQL_PASSWORD: ${USERPASS}
+    
+    steps:
+      - checkout
+    
+      - run:
+          name: get ready for mysql
+          command: |
+            sudo apt-get update
+            sudo apt-get install libpq-dev
+            sudo docker-php-ext-install pdo_mysql
+            dockerize -wait tcp://localhost:3306 -timeout 1m
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "./app/composer.json" }}
+            - v1-dependencies- 
+            
+      - save_cache:
+          key: v1-dependencies-{{ checksum "./app/composer.json" }}
+          paths:
+            - ./app/vendor
+ 
+      - run:
+          name: Install GD library
+          command: sudo apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev && sudo docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && sudo docker-php-ext-install -j$(nproc) gd
+
+      - run: composer install -n --prefer-dist --working-dir=./app
+
+      - save_cache:
+          key: composer-v1-{{ checksum "./app/composer.lock" }}
+          paths:
+            - ./app/vendor
+    
+      - restore_cache:
+          key: npm-v1-{{ checksum "./app/package-lock.json" }}
+
+      - run:
+          name: npm ci
+          working_directory: ./app
+          command: |
+            if [ ! -d node_modules ]; then
+              npm ci 
+            fi
+      
+      - save_cache:
+          key: npm-v1-{{ checksum "./app/package-lock.json" }}
+          paths:
+            - node_modules
+
+      - run: 
+          name: npm run dev
+          working_directory: ./app
+          command: npm run dev
+
+      - run: 
+          name: migrate
+          working_directory: ./app
+          command: |
+            cp .env.example .env
+            php artisan key:generate
+            php artisan config:cache
+            php artisan migrate --seed
+
+      - run:
+          name: php test
+          command: |
+            ./app/vendor/bin/phpunit ./app/tests/Feature/TimelineGuestControllerTest.php
+            ./app/vendor/bin/phpunit ./app/tests/Feature/TimelineUserControllerTest.php
