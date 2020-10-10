@@ -83,7 +83,6 @@ jobs:
             vendor/bin/phpunit tests/Feature/TimelineGuestControllerTest.php
             vendor/bin/phpunit tests/Feature/TimelineUserControllerTest.php
   
-
   deploy:
     docker:
       - image: circleci/php:7.2-node-browsers
