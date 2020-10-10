@@ -1,13 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Guest;
 
 use App\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class TimelineControllerTest extends TestCase
+class TimelineGuestControllerTest extends TestCase
 {
     //use RefreshDatabase;
      //未ログイン時

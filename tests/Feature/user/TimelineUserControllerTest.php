@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use App\User;
 use App\Post;
@@ -11,7 +11,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Feature\ImageService;
 
-class TimelineControllerTest extends TestCase
+class TimelineUserControllerTest extends TestCase
 {
   
     //use RefreshDatabase;
