@@ -80,5 +80,5 @@ jobs:
       - run:
           name: php test
           command: |
-            vendor/bin/phpunit tests/Feature/Guest/TimelineGuestControllerTest.php
-            vendor/bin/phpunit tests/Feature/User/TimelineUserControllerTest.php
+            vendor/bin/phpunit tests/Feature/TimelineGuestControllerTest.php
+            vendor/bin/phpunit tests/Feature/TimelineUserControllerTest.php
