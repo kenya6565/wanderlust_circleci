@@ -93,7 +93,7 @@ jobs:
       - run:
           name: deploy
           command: |
-            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} "cd ~ && \
+            ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} "cd /var/www/wanderlust_for_proper_repo && \
               git pull origin master && \
               composer install -n --no-dev --prefer-dist && \
               npm ci && \
