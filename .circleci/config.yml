@@ -98,7 +98,7 @@ jobs:
               composer install -n --no-dev --prefer-dist && \
               sudo yum -y update && \
               sudo yum install -y npm && \
-              npm ci && \
+              npm install && \
               npm run prod && \
               php artisan migrate --force && \
               php artisan config:cache"
