@@ -96,8 +96,8 @@ jobs:
             ssh -o StrictHostKeyChecking=no -t ec2-user@${HOST_NAME} "cd /var/www/wanderlust_for_proper_repo && \
               git pull origin master && \
               composer install -n --no-dev --prefer-dist && \
-              sudo yum -y update && \
-              sudo yum install -y npm && \
+              sudo apt-get -y update && \
+              sudo apt-get install -y npm && \
               npm install && \
               npm run prod && \
               php artisan migrate --force && \
