@@ -130,6 +130,9 @@
                                     <li>
                                         <a style="margin-left:50px" class="text-dark" href="{{ action('User\TimelineController@index',['sort'=>'desc']) }}">{{ __('messages.desc') }}</a>
                                     </li>
+                                    <li>
+                                        <a style="margin-left:50px" class="text-dark" href="{{ action('User\TimelineController@index',['sort'=>'fav']) }}">fav</a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="nav-item">

@@ -29,16 +29,19 @@ class TimelineController extends Controller
             }
         }
         //postsテーブルのユーザID(投稿ユーザ)にフォローしてるユーザのIDかログインユーザのIDがあったら取得
-        if($request->sort == "asc"){
+        if($request->sort = "asc"){
             $all_posts = Post::whereIn('user_id',$user_id)
                            ->orderBy('id','ASC')
                            ->paginate(9);
-        }else{
+        }elseif($request->sort = "desc"){
             $all_posts = Post::whereIn('user_id',$user_id)
                            ->orderBy('id','DESC')
                            ->paginate(9);
+        }elseif($request->sort = "fav"){
+          //$all_posts = Post::withCount('likes')->orderBy('likes_count', 'desc')->paginate(9);
+           $all_posts = Post::withCount('user')->orderBy('user_count', 'desc')->paginate(9);
         }
-                
+
         return view('user.timeline.index',compact(
             'all_posts'
         ));
