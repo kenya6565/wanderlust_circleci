@@ -38,7 +38,7 @@ class TimelineGuestControllerTest extends TestCase
         
         //タイムラインに遷移しているか
         $response->assertStatus(200)->assertViewIs('guest.timeline.index');
-        $response->assertSeeText('ピラミッド エジプト'); 
+        $response->assertSeeText('ピラミッド エジプト');
         //ゲストとして画面遷移しているか
         $this->assertGuest($guard = null);
     }
@@ -50,7 +50,7 @@ class TimelineGuestControllerTest extends TestCase
         
         //タイムラインに遷移しているか
         $response->assertStatus(200)->assertViewIs('guest.timeline.index');
-        $response->assertDontSee('エッフェル塔　フランス'); 
+        $response->assertDontSee('エッフェル塔　フランス');
         //ゲストとして画面遷移しているか
         $this->assertGuest($guard = null);
     }

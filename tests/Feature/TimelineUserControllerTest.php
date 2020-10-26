@@ -52,7 +52,7 @@ class TimelineUserControllerTest extends TestCase
         $response->assertStatus(200)->assertViewIs('user.timeline.detail');
         // /$response->dump();
          //postテーブルのidが1である投稿に正しくアクセスできているか確認
-        $response->assertSee('ピラミッド エジプト'); 
+        $response->assertSee('ピラミッド エジプト');
     }
     
     public function test_showMyPage()
